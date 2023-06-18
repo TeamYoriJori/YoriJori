@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63B8D9302A3D9B6500C6D0E8 /* PermanentStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8D92F2A3D9B6500C6D0E8 /* PermanentStorageManager.swift */; };
+		63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */; };
+		63CBCAF12A3F1A3B0069B433 /* CoreDataProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */; };
 		C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */; };
 		C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E22A2F5EA4001EEDFE /* ContentView.swift */; };
 		C20140E52A2F5EA5001EEDFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20140E42A2F5EA5001EEDFE /* Assets.xcassets */; };
@@ -22,7 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		63B8D92F2A3D9B6500C6D0E8 /* PermanentStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermanentStorageManager.swift; sourceTree = "<group>"; };
+		63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
+		63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProviderError.swift; sourceTree = "<group>"; };
 		C20140DD2A2F5EA4001EEDFE /* YoriJori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoriJori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoriJoriApp.swift; sourceTree = "<group>"; };
 		C20140E22A2F5EA4001EEDFE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,9 +53,18 @@
 		63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */ = {
 			isa = PBXGroup;
 			children = (
-				63B8D92F2A3D9B6500C6D0E8 /* PermanentStorageManager.swift */,
+				63CBCAEB2A3EB7280069B433 /* CoreData */,
 			);
 			path = PermanentStorage;
+			sourceTree = "<group>";
+		};
+		63CBCAEB2A3EB7280069B433 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */,
+				63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		C20140D42A2F5EA3001EEDFE = {
@@ -177,13 +188,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63B8D9302A3D9B6500C6D0E8 /* PermanentStorageManager.swift in Sources */,
 				C20140F42A2F614C001EEDFE /* IngredientGroup.swift in Sources */,
 				C20140F22A2F6126001EEDFE /* Ingredient.swift in Sources */,
 				C20140F02A2F60E3001EEDFE /* Unit.swift in Sources */,
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
 				C20140F82A2F6162001EEDFE /* Progress.swift in Sources */,
+				63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */,
 				C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */,
+				63CBCAF12A3F1A3B0069B433 /* CoreDataProviderError.swift in Sources */,
 				C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */,
 				C20140F62A2F615D001EEDFE /* Step.swift in Sources */,
 				C20140FA2A2F616C001EEDFE /* Recipe.swift in Sources */,
