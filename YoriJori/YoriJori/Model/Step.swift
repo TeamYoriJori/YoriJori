@@ -12,4 +12,5 @@ struct Step {
     let description: String
     let image: Data
     let time: Int
+    let ingredients: [Ingredient]
 }
