@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="category">
+    <entity name="CDIngredient" representedClassName="CDIngredient" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unit" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="IngredientGroup" representedClassName="IngredientGroup" syncable="YES" codeGenerationType="category">
+    <entity name="CDIngredientGroup" representedClassName="CDIngredientGroup" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredient"/>
     </entity>
-    <entity name="Progress" representedClassName="Progress" syncable="YES" codeGenerationType="category">
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step"/>
+    <entity name="CDProgress" representedClassName="CDProgress" syncable="YES">
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDStep"/>
     </entity>
-    <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="category">
+    <entity name="CDRecipe" representedClassName="CDRecipe" syncable="YES">
         <attribute name="cookingTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptions" optional="YES" attributeType="String"/>
@@ -23,25 +23,25 @@
         <attribute name="subTitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="ingredientGroups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientGroup"/>
-        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Progress"/>
-        <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="recipes" inverseEntity="Tag"/>
+        <relationship name="ingredientGroups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredientGroup"/>
+        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CDProgress"/>
+        <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDTag" inverseName="recipes" inverseEntity="CDTag"/>
     </entity>
-    <entity name="RecipeBook" representedClassName="RecipeBook" syncable="YES" codeGenerationType="category">
+    <entity name="CDRecipeBook" representedClassName="CDRecipeBook" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Recipe"/>
+        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CDRecipe"/>
     </entity>
-    <entity name="Step" representedClassName="Step" syncable="YES" codeGenerationType="category">
+    <entity name="CDStep" representedClassName="CDStep" syncable="YES">
         <attribute name="descriptions" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Ingredient"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="CDIngredient"/>
     </entity>
-    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="category">
+    <entity name="CDTag" representedClassName="CDTag" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Recipe" inverseName="tags" inverseEntity="Recipe"/>
+        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="CDRecipe" inverseName="tags" inverseEntity="CDRecipe"/>
     </entity>
 </model>
