@@ -9,9 +9,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredient"/>
     </entity>
-    <entity name="CDProgress" representedClassName="CDProgress" syncable="YES">
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDStep"/>
-    </entity>
     <entity name="CDRecipe" representedClassName="CDRecipe" syncable="YES">
         <attribute name="cookingTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -24,7 +21,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="ingredientGroups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredientGroup"/>
-        <relationship name="progress" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CDProgress"/>
+        <relationship name="progress" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDStep"/>
         <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDTag" inverseName="recipes" inverseEntity="CDTag"/>
     </entity>
     <entity name="CDRecipeBook" representedClassName="CDRecipeBook" syncable="YES">

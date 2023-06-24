@@ -14,7 +14,7 @@ struct Recipe {
     let tag: [String]
     let ingredientsGroups: [IngreidentGroup]
     let cookingTime: Int
-    let progress: Progress
+    let progress: [Step]
     let description: String
     let note: String
     let serving: Int

@@ -18,8 +18,6 @@
 		63CBCB0C2A4097ED0069B433 /* CDIngredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */; };
 		63CBCB0D2A4097ED0069B433 /* CDRecipeBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFF2A4097EC0069B433 /* CDRecipeBook+CoreDataClass.swift */; };
 		63CBCB0E2A4097ED0069B433 /* CDRecipeBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB002A4097EC0069B433 /* CDRecipeBook+CoreDataProperties.swift */; };
-		63CBCB0F2A4097ED0069B433 /* CDProgress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB012A4097ED0069B433 /* CDProgress+CoreDataClass.swift */; };
-		63CBCB102A4097ED0069B433 /* CDProgress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB022A4097ED0069B433 /* CDProgress+CoreDataProperties.swift */; };
 		63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */; };
 		63CBCB122A4097ED0069B433 /* CDTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */; };
 		63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */; };
@@ -32,7 +30,6 @@
 		C20140F22A2F6126001EEDFE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140F12A2F6126001EEDFE /* Ingredient.swift */; };
 		C20140F42A2F614C001EEDFE /* IngredientGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140F32A2F614C001EEDFE /* IngredientGroup.swift */; };
 		C20140F62A2F615D001EEDFE /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140F52A2F615D001EEDFE /* Step.swift */; };
-		C20140F82A2F6162001EEDFE /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140F72A2F6162001EEDFE /* Progress.swift */; };
 		C20140FA2A2F616C001EEDFE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140F92A2F616C001EEDFE /* Recipe.swift */; };
 		C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140FB2A2F6173001EEDFE /* RecipeBook.swift */; };
 /* End PBXBuildFile section */
@@ -49,8 +46,6 @@
 		63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCAFF2A4097EC0069B433 /* CDRecipeBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipeBook+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CBCB002A4097EC0069B433 /* CDRecipeBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipeBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		63CBCB012A4097ED0069B433 /* CDProgress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProgress+CoreDataClass.swift"; sourceTree = "<group>"; };
-		63CBCB022A4097ED0069B433 /* CDProgress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProgress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDStep+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -64,7 +59,6 @@
 		C20140F12A2F6126001EEDFE /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		C20140F32A2F614C001EEDFE /* IngredientGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientGroup.swift; sourceTree = "<group>"; };
 		C20140F52A2F615D001EEDFE /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
-		C20140F72A2F6162001EEDFE /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		C20140F92A2F616C001EEDFE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C20140FB2A2F6173001EEDFE /* RecipeBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,8 +104,6 @@
 				63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */,
 				63CBCAFF2A4097EC0069B433 /* CDRecipeBook+CoreDataClass.swift */,
 				63CBCB002A4097EC0069B433 /* CDRecipeBook+CoreDataProperties.swift */,
-				63CBCB012A4097ED0069B433 /* CDProgress+CoreDataClass.swift */,
-				63CBCB022A4097ED0069B433 /* CDProgress+CoreDataProperties.swift */,
 				63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */,
 				63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */,
 				63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */,
@@ -164,7 +156,6 @@
 				C20140FB2A2F6173001EEDFE /* RecipeBook.swift */,
 				C20140F32A2F614C001EEDFE /* IngredientGroup.swift */,
 				C20140F12A2F6126001EEDFE /* Ingredient.swift */,
-				C20140F72A2F6162001EEDFE /* Progress.swift */,
 				C20140F52A2F615D001EEDFE /* Step.swift */,
 				C20140EF2A2F60E3001EEDFE /* Unit.swift */,
 			);
@@ -247,7 +238,6 @@
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
 				63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */,
 				63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */,
-				C20140F82A2F6162001EEDFE /* Progress.swift in Sources */,
 				63CBCB0B2A4097ED0069B433 /* CDIngredient+CoreDataClass.swift in Sources */,
 				63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */,
 				C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */,
@@ -264,9 +254,7 @@
 				63CBCB0D2A4097ED0069B433 /* CDRecipeBook+CoreDataClass.swift in Sources */,
 				63CBCB0A2A4097ED0069B433 /* CDIngredientGroup+CoreDataProperties.swift in Sources */,
 				C20140FA2A2F616C001EEDFE /* Recipe.swift in Sources */,
-				63CBCB0F2A4097ED0069B433 /* CDProgress+CoreDataClass.swift in Sources */,
 				63CBCB092A4097ED0069B433 /* CDIngredientGroup+CoreDataClass.swift in Sources */,
-				63CBCB102A4097ED0069B433 /* CDProgress+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
