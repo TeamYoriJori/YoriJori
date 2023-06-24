@@ -49,11 +49,11 @@ final class CoreDataProvider {
     
     func fetch<T: NSManagedObject>(
         request: NSFetchRequest<T>,
-        predicate: NSPredicate? = nil
+        predicate: NSPredicate? = nil,
+        sortDiscriptors: [NSSortDescriptor]? = nil
     ) throws -> [T] {
-        if let predicate = predicate {
-            request.predicate = predicate
-        }
+        request.predicate = predicate
+        request.sortDescriptors = sortDiscriptors
         
         do {
             return try self.context.fetch(request)
