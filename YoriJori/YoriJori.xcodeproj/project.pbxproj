@@ -91,6 +91,17 @@
 		63CBCAEB2A3EB7280069B433 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				63CBCB152A4098360069B433 /* Entity */,
+				63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */,
+				63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */,
+				63CBCAF22A4080DF0069B433 /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		63CBCB152A4098360069B433 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
 				63CBCAF92A4097EC0069B433 /* CDRecipe+CoreDataClass.swift */,
 				63CBCAFA2A4097EC0069B433 /* CDRecipe+CoreDataProperties.swift */,
 				63CBCAFB2A4097EC0069B433 /* CDIngredientGroup+CoreDataClass.swift */,
@@ -105,17 +116,6 @@
 				63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */,
 				63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */,
 				63CBCB062A4097ED0069B433 /* CDStep+CoreDataProperties.swift */,
-				63CBCB152A4098360069B433 /* Entity */,
-				63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */,
-				63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */,
-				63CBCAF22A4080DF0069B433 /* DataModel.xcdatamodeld */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		63CBCB152A4098360069B433 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Entity;
 			sourceTree = "<group>";
