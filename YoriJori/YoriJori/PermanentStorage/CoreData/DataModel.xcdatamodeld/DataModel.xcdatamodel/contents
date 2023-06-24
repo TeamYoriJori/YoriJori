@@ -28,7 +28,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CDRecipe"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDRecipe"/>
     </entity>
     <entity name="CDStep" representedClassName="CDStep" syncable="YES">
         <attribute name="descriptions" optional="YES" attributeType="String"/>
