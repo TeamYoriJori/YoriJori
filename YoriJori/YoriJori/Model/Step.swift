@@ -9,8 +9,8 @@ import Foundation
 
 struct Step {
     let index: Int
-    let description: String
-    let image: Data
-    let time: Int
-    let ingredients: [Ingredient]
+    let description: String?
+    let image: Data?
+    let time: Int?
+    let ingredients: [Ingredient]?
 }

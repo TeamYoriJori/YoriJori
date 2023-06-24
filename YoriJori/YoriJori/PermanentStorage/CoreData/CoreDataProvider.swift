@@ -107,6 +107,6 @@ final class CoreDataProvider {
 
 protocol Model {
     
-    func toDictionary() -> [String: Any]
+    func toDictionary() -> [String: Any?]
     
 }

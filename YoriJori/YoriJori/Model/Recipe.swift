@@ -9,16 +9,16 @@ import Foundation
 
 struct Recipe {
     let id: UUID
-    let title: String
-    let subTitle: String
-    let tag: [Tag]
-    let ingredientsGroups: [IngreidentGroup]
-    let cookingTime: Int
-    let progress: [Step]
-    let description: String
-    let note: String
-    let serving: Int
-    let image: Data
-    let createdAt: Date
-    let updatedAt: Date
+    let title: String?
+    let subTitle: String?
+    let tag: [Tag]?
+    let ingredientsGroups: [IngreidentGroup]?
+    let cookingTime: Int?
+    let progress: [Step]?
+    let description: String?
+    let note: String?
+    let serving: Int?
+    let image: Data?
+    let createdAt: Date?
+    let updatedAt: Date?
 }
