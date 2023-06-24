@@ -11,7 +11,7 @@ struct Recipe {
     let id: UUID
     let title: String
     let subTitle: String
-    let tag: [String]
+    let tag: [Tag]
     let ingredientsGroups: [IngreidentGroup]
     let cookingTime: Int
     let progress: [Step]

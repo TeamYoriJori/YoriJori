@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63C521BB2A47035D00F730C5 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C521BA2A47035D00F730C5 /* Tag.swift */; };
 		63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */; };
 		63CBCAF12A3F1A3B0069B433 /* CoreDataProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */; };
 		63CBCAF42A4080DF0069B433 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAF22A4080DF0069B433 /* DataModel.xcdatamodeld */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63C521BA2A47035D00F730C5 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 		63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProviderError.swift; sourceTree = "<group>"; };
 		63CBCAF32A4080DF0069B433 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				C20140F12A2F6126001EEDFE /* Ingredient.swift */,
 				C20140F52A2F615D001EEDFE /* Step.swift */,
 				C20140EF2A2F60E3001EEDFE /* Unit.swift */,
+				63C521BA2A47035D00F730C5 /* Tag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C521BB2A47035D00F730C5 /* Tag.swift in Sources */,
 				C20140F42A2F614C001EEDFE /* IngredientGroup.swift in Sources */,
 				C20140F22A2F6126001EEDFE /* Ingredient.swift in Sources */,
 				C20140F02A2F60E3001EEDFE /* Unit.swift in Sources */,
