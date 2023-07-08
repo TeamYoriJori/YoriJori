@@ -2,7 +2,7 @@
 //  CDRecipe+CoreDataClass.swift
 //  YoriJori
 //
-//  Created by Moon Yeji on 2023/06/24.
+//  Created by forest on 2023/07/08.
 //
 //
 

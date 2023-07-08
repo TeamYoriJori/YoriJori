@@ -8,6 +8,5 @@
 import Foundation
 
 struct Tag {
-    let id: UUID
     let name: String
 }

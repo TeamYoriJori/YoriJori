@@ -25,7 +25,7 @@ final class CoreDataProvider {
         return container
     }()
     
-    private lazy var context: NSManagedObjectContext = {
+    lazy var context: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
     

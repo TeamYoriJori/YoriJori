@@ -20,7 +20,7 @@ extension CDStep {
     @NSManaged public var descriptions: String?
     @NSManaged public var image: Data?
     @NSManaged public var time: Int64
-    @NSManaged public var ingredients: NSSet?
+    @NSManaged public var groceries: NSSet?
 
 }
 
@@ -43,4 +43,17 @@ extension CDStep {
 
 extension CDStep : Identifiable {
 
+}
+
+extension CDStep {
+    func toDomain() -> Step {
+        let a = self.groceries?.allObjects as! [CDGrocery]
+        return Step(
+            index: Int(self.index),
+            description: self.descriptions,
+            image: self.image,
+            time: Int(self.time),
+            groceries: a.map { $0.toDomain() }
+        )
+    }
 }

@@ -16,11 +16,17 @@ extension CDTag {
         return NSFetchRequest<CDTag>(entityName: "CDTag")
     }
 
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
     @NSManaged public var recipes: CDRecipe?
 
 }
 
 extension CDTag : Identifiable {
 
+}
+
+extension CDTag {
+    func toDomain() -> Tag {
+        return Tag(name: self.title)
+    }
 }

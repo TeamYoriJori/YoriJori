@@ -9,6 +9,6 @@ import Foundation
 
 struct Ingredient {
     let title: String?
-    let amount: Int?
-    let unit: Unit?
+    let amount: Double?
+    let unit: Unit
 }

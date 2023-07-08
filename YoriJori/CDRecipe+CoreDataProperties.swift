@@ -2,7 +2,7 @@
 //  CDRecipe+CoreDataProperties.swift
 //  YoriJori
 //
-//  Created by Moon Yeji on 2023/06/24.
+//  Created by forest on 2023/07/08.
 //
 //
 
@@ -27,8 +27,8 @@ extension CDRecipe {
     @NSManaged public var title: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var ingredientGroups: NSSet?
-    @NSManaged public var tags: CDTag?
     @NSManaged public var progress: NSSet?
+    @NSManaged public var tags: NSSet?
 
 }
 
@@ -66,6 +66,43 @@ extension CDRecipe {
 
 }
 
+// MARK: Generated accessors for tags
+extension CDRecipe {
+
+    @objc(addTagsObject:)
+    @NSManaged public func addToTags(_ value: CDTag)
+
+    @objc(removeTagsObject:)
+    @NSManaged public func removeFromTags(_ value: CDTag)
+
+    @objc(addTags:)
+    @NSManaged public func addToTags(_ values: NSSet)
+
+    @objc(removeTags:)
+    @NSManaged public func removeFromTags(_ values: NSSet)
+
+}
+
 extension CDRecipe : Identifiable {
 
+}
+
+extension CDRecipe {
+    func toDomain() -> Recipe {
+        Recipe(
+            id: self.id ?? UUID(),
+            title: self.title,
+            subTitle: self.subTitle,
+            tag: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
+            ingredientsGroups: nil,
+            cookingTime: Int(self.cookingTime),
+            progress: self.progress?.compactMap { $0 as? CDStep }.map { $0.toDomain()},
+            description: self.descriptions,
+            note: self.note,
+            serving: Int(self.serving),
+            image: self.image,
+            createdAt: self.createdAt,
+            updatedAt: self.updatedAt
+        )
+    }
 }
