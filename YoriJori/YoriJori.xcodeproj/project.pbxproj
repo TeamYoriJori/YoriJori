@@ -110,6 +110,8 @@
 		63CBCB152A4098360069B433 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */,
+				C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */,
 				63C521BE2A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift */,
 				63C521BF2A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift */,
 				63CBCAFB2A4097EC0069B433 /* CDIngredientGroup+CoreDataClass.swift */,
@@ -129,8 +131,6 @@
 		C20140D42A2F5EA3001EEDFE = {
 			isa = PBXGroup;
 			children = (
-				C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */,
-				C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */,
 				C20140DF2A2F5EA4001EEDFE /* YoriJori */,
 				C20140DE2A2F5EA4001EEDFE /* Products */,
 			);
