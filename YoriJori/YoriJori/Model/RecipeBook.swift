@@ -9,7 +9,7 @@ import Foundation
 
 struct RecipeBook {
     let id: UUID
-    let title: String
-    let image: Data
-    let recipes: [Recipe]
+    let title: String?
+    let image: Data?
+    let recipes: [Recipe]?
 }

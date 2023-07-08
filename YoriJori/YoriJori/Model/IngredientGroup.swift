@@ -8,6 +8,6 @@
 import Foundation
 
 struct IngreidentGroup {
-    let title: String
-    let ingredients: [Ingredient]
+    let title: String?
+    let ingredients: [Ingredient]?
 }
