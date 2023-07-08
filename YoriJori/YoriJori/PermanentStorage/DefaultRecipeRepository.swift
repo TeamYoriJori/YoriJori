@@ -49,6 +49,7 @@ class RecipeRepository: RecipeRepositoryProtocol {
         let progress = model.progress?.compactMap { createStep($0) }
         var tags: [CDTag]? = model.tag?.map { tagModel in
             let tag = self.fetchTag(tagModel.name) ?? self.createTag(tagModel)
+            return tag
         }
         
         recipe.id = model.id
@@ -72,6 +73,7 @@ class RecipeRepository: RecipeRepositoryProtocol {
         var ingridientGroup = CDIngredientGroup(context: self.coreDataProvider.context)
         ingridientGroup.title = model.title
         ingridientGroup.ingredients = model.ingredients?.compactMap { createIngredient($0) } as? NSSet
+        return ingridientGroup
     }
     
     func createIngredient(_ model: Ingredient) -> CDIngredient {
