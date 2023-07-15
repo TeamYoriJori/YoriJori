@@ -19,7 +19,7 @@ extension CDRecipe {
     @NSManaged public var cookingTime: Int64
     @NSManaged public var createdAt: Date?
     @NSManaged public var descriptions: String?
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var image: Data?
     @NSManaged public var note: String?
     @NSManaged public var serving: Int64

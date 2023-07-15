@@ -11,7 +11,7 @@ import Foundation
 extension CDRecipe {
     func toDomain() -> Recipe {
         Recipe(
-            id: self.id ?? UUID(),
+            id: self.id,
             title: self.title,
             subTitle: self.subTitle,
             tag: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
