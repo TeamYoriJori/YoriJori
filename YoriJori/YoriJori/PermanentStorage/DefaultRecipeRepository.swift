@@ -102,7 +102,7 @@ class RecipeRepository: RecipeRepositoryProtocol {
     
     func createTag(_ model: Tag) -> CDTag {
         let tag = CDTag(context: self.coreDataProvider.context)
-        tag.title  = model.name
+        tag.name  = model.name
         return tag
     }
     

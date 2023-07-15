@@ -16,7 +16,7 @@ extension CDTag {
         return NSFetchRequest<CDTag>(entityName: "CDTag")
     }
 
-    @NSManaged public var title: String
+    @NSManaged public var name: String
     @NSManaged public var recipes: CDRecipe?
 
 }

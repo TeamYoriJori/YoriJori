@@ -10,14 +10,14 @@ import Foundation
 
 extension CDTag {
     func toDomain() -> Tag {
-        return Tag(name: self.title)
+        return Tag(name: self.name)
     }
 }
 
 extension Tag {
     func toEntity(context: NSManagedObjectContext) throws -> CDTag {
         let request = CDTag.fetchRequest()
-        request.predicate = NSPredicate(format: "title == %@", self.name)
+        request.predicate = NSPredicate(format: "name == %@", self.name)
         let fetchedTags = try CoreDataProvider.shared.fetch(request: request)
 
         if let fetchedTag = fetchedTags.first {
@@ -25,7 +25,7 @@ extension Tag {
         }
        
         let tag = CDTag(context: context)
-        tag.title = self.name
+        tag.name = self.name
         return tag
     }
 }
