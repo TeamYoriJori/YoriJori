@@ -47,7 +47,7 @@ class RecipeRepository: RecipeRepositoryProtocol {
         let recipe = CDRecipe(context: self.coreDataProvider.context)
         let ingredientGroups = model.ingredientsGroups?.compactMap { createIngredientGroup($0) }
         let progress = model.progress?.compactMap { createStep($0) }
-        var tags: [CDTag]? = model.tag?.map { tagModel in
+        var tags: [CDTag]? = model.tags?.map { tagModel in
             let tag = self.fetchTag(tagModel.name) ?? self.createTag(tagModel)
             return tag
         }

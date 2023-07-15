@@ -14,7 +14,7 @@ extension CDRecipe {
             id: self.id,
             title: self.title,
             subTitle: self.subTitle,
-            tag: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
+            tags: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
             ingredientsGroups: self.ingredientGroups?.compactMap { $0 as? CDIngredientGroup }
                 .compactMap { $0.toDomain() },
             cookingTime: Int(self.cookingTime),
@@ -36,7 +36,7 @@ extension Recipe {
         recipe.title = self.title
         recipe.subTitle = self.subTitle
         recipe.tags = NSSet(
-            array: self.tag?.compactMap { try! $0.toEntity(context: context) } ?? [])
+            array: self.tags?.compactMap { try! $0.toEntity(context: context) } ?? [])
         return recipe
     }
 }
