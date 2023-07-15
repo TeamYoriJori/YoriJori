@@ -8,10 +8,11 @@
 import Foundation
 
 protocol RecipeRepositoryProtocol {
-    func fetchRecipe() throws -> [Recipe]
-    func fetchRecipe(by name: String) throws -> [Recipe]
-    func fetchRecipe(by bookdId: UUID) throws -> [Recipe]
+    func fetchAllRecipes() throws -> [Recipe]
+    func fetchRecipes(by name: String) throws -> [Recipe]
+    func fetchRecipes(by bookdId: UUID) throws -> [Recipe]
+    func fetchRecipes(by tag: Tag) throws -> [Recipe]
     func createRecipe(_ model: Recipe) throws
-    func updateRecipe(recipe: Recipe) throws
-    func deleteRecipe(recipe: Recipe) throws
+    func updateRecipe(_ recipe: Recipe) throws
+    func deleteRecipe(_ recipe: Recipe) throws
 }

@@ -22,7 +22,7 @@ extension CDStep {
 }
 
 extension Step {
-    func toEntiy(context: NSManagedObjectContext) -> CDStep {
+    func toEntity(context: NSManagedObjectContext) -> CDStep {
         let step = CDStep(context: context)
         step.index = Int64(self.index)
         step.descriptions = self.description ?? ""
