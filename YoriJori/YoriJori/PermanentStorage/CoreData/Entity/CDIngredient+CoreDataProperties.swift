@@ -25,14 +25,3 @@ extension CDIngredient {
 extension CDIngredient : Identifiable {
 
 }
-
-extension CDIngredient {
-    func toDomain() -> Ingredient? {
-        
-        guard let unitString = self.unit,
-              let unit = Unit(rawValue: unitString) else {
-            return Ingredient(title: self.title, amount: self.amount , unit: .none)
-        }
-        return Ingredient(title: self.title, amount: self.amount , unit: unit)
-    }
-}

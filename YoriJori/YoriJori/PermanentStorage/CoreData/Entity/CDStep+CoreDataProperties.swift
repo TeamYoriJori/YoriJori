@@ -44,16 +44,3 @@ extension CDStep {
 extension CDStep : Identifiable {
 
 }
-
-extension CDStep {
-    func toDomain() -> Step {
-        let a = self.groceries?.allObjects as! [CDGrocery]
-        return Step(
-            index: Int(self.index),
-            description: self.descriptions,
-            image: self.image,
-            time: Int(self.time),
-            groceries: a.map { $0.toDomain() }
-        )
-    }
-}

@@ -23,9 +23,3 @@ extension CDGrocery {
 extension CDGrocery : Identifiable {
 
 }
-
-extension CDGrocery {
-    func toDomain() -> Grocery {
-        return Grocery(name: self.name)
-    }
-}

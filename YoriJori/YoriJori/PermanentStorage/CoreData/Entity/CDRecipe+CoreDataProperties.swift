@@ -86,23 +86,3 @@ extension CDRecipe {
 extension CDRecipe : Identifiable {
 
 }
-
-extension CDRecipe {
-    func toDomain() -> Recipe {
-        Recipe(
-            id: self.id ?? UUID(),
-            title: self.title,
-            subTitle: self.subTitle,
-            tag: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
-            ingredientsGroups: nil,
-            cookingTime: Int(self.cookingTime),
-            progress: self.progress?.compactMap { $0 as? CDStep }.map { $0.toDomain()},
-            description: self.descriptions,
-            note: self.note,
-            serving: Int(self.serving),
-            image: self.image,
-            createdAt: self.createdAt,
-            updatedAt: self.updatedAt
-        )
-    }
-}

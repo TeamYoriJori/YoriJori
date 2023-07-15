@@ -24,9 +24,3 @@ extension CDTag {
 extension CDTag : Identifiable {
 
 }
-
-extension CDTag {
-    func toDomain() -> Tag {
-        return Tag(name: self.title)
-    }
-}

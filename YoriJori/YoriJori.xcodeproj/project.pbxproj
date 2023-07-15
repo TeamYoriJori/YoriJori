@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63246F332A596B2000239A9A /* Recipe+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F322A596B2000239A9A /* Recipe+DTO.swift */; };
+		63246F352A596BE700239A9A /* Tag+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F342A596BE700239A9A /* Tag+DTO.swift */; };
+		63246F372A596C3C00239A9A /* Step+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F362A596C3C00239A9A /* Step+DTO.swift */; };
+		63246F392A596C7800239A9A /* Grocery+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F382A596C7800239A9A /* Grocery+DTO.swift */; };
+		63246F3B2A596CE000239A9A /* Ingredient+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F3A2A596CE000239A9A /* Ingredient+DTO.swift */; };
+		63246F3D2A596D2600239A9A /* RecipeBook+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F3C2A596D2600239A9A /* RecipeBook+DTO.swift */; };
+		63246F3F2A596E9000239A9A /* IngredientGroup+DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246F3E2A596E9000239A9A /* IngredientGroup+DTO.swift */; };
 		63C521BB2A47035D00F730C5 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C521BA2A47035D00F730C5 /* Tag.swift */; };
 		63C521C02A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C521BE2A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift */; };
 		63C521C12A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C521BF2A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift */; };
@@ -41,6 +48,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63246F322A596B2000239A9A /* Recipe+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+DTO.swift"; sourceTree = "<group>"; };
+		63246F342A596BE700239A9A /* Tag+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+DTO.swift"; sourceTree = "<group>"; };
+		63246F362A596C3C00239A9A /* Step+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step+DTO.swift"; sourceTree = "<group>"; };
+		63246F382A596C7800239A9A /* Grocery+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grocery+DTO.swift"; sourceTree = "<group>"; };
+		63246F3A2A596CE000239A9A /* Ingredient+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+DTO.swift"; sourceTree = "<group>"; };
+		63246F3C2A596D2600239A9A /* RecipeBook+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeBook+DTO.swift"; sourceTree = "<group>"; };
+		63246F3E2A596E9000239A9A /* IngredientGroup+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngredientGroup+DTO.swift"; sourceTree = "<group>"; };
 		63C521BA2A47035D00F730C5 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		63C521BE2A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipeBook+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63C521BF2A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipeBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -86,6 +100,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63246F312A596AF600239A9A /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				63246F322A596B2000239A9A /* Recipe+DTO.swift */,
+				63246F342A596BE700239A9A /* Tag+DTO.swift */,
+				63246F362A596C3C00239A9A /* Step+DTO.swift */,
+				63246F382A596C7800239A9A /* Grocery+DTO.swift */,
+				63246F3A2A596CE000239A9A /* Ingredient+DTO.swift */,
+				63246F3E2A596E9000239A9A /* IngredientGroup+DTO.swift */,
+				63246F3C2A596D2600239A9A /* RecipeBook+DTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +127,7 @@
 		63CBCAEB2A3EB7280069B433 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				63246F312A596AF600239A9A /* DTO */,
 				63CBCB152A4098360069B433 /* Entity */,
 				63CBCAEC2A3EB7640069B433 /* CoreDataProvider.swift */,
 				63CBCAF02A3F1A3B0069B433 /* CoreDataProviderError.swift */,
@@ -258,19 +287,26 @@
 				63C521C02A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift in Sources */,
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
 				C21FA1622A482997001B3C0E /* RecipeRepository.swift in Sources */,
+				63246F3D2A596D2600239A9A /* RecipeBook+DTO.swift in Sources */,
 				63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */,
 				63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */,
 				63CBCB0B2A4097ED0069B433 /* CDIngredient+CoreDataClass.swift in Sources */,
 				63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */,
 				C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */,
 				63CBCAF12A3F1A3B0069B433 /* CoreDataProviderError.swift in Sources */,
+				63246F3B2A596CE000239A9A /* Ingredient+DTO.swift in Sources */,
+				63246F352A596BE700239A9A /* Tag+DTO.swift in Sources */,
 				C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */,
+				63246F332A596B2000239A9A /* Recipe+DTO.swift in Sources */,
 				63CBCAF42A4080DF0069B433 /* DataModel.xcdatamodeld in Sources */,
 				63C521CE2A48274400F730C5 /* CDGrocery+CoreDataClass.swift in Sources */,
 				63CBCB0C2A4097ED0069B433 /* CDIngredient+CoreDataProperties.swift in Sources */,
 				C20140F62A2F615D001EEDFE /* Step.swift in Sources */,
 				63CBCB142A4097ED0069B433 /* CDStep+CoreDataProperties.swift in Sources */,
+				63246F3F2A596E9000239A9A /* IngredientGroup+DTO.swift in Sources */,
 				63CBCB122A4097ED0069B433 /* CDTag+CoreDataProperties.swift in Sources */,
+				63246F372A596C3C00239A9A /* Step+DTO.swift in Sources */,
+				63246F392A596C7800239A9A /* Grocery+DTO.swift in Sources */,
 				63C521CB2A48238C00F730C5 /* Grocery.swift in Sources */,
 				C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */,
 				63CBCB0A2A4097ED0069B433 /* CDIngredientGroup+CoreDataProperties.swift in Sources */,
