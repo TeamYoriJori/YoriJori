@@ -38,11 +38,15 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", bookdId as CVarArg)
         
-        let result = try coreDataProvider.fetch(
+        let fetchedRecipeBooks = try coreDataProvider.fetch(
             request: request,
             predicate: predicate)
         
-        return []
+        guard let recipes = fetchedRecipeBooks.first?.recipes as? [CDRecipe] else {
+            return  []
+        }
+        
+        return recipes.map { $0.toDomain() }
     }
     
     func fetchRecipes(by tag: Tag) throws -> [Recipe] {
@@ -50,8 +54,11 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         guard let tagEntity = try? tag.toEntity(context: coreDataProvider.context) else {
             return []
         }
-        let predicate = NSPredicate(format: "%K CONTAINS %@", "tags", tagEntity)
-        return []
+        let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name as CVarArg)
+        
+        let result = try coreDataProvider.fetch(request: request, predicate: predicate)
+        
+        return result.map { $0.toDomain() }
     }
     
     func createRecipe(_ model: Recipe) throws {
@@ -122,7 +129,11 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func deleteRecipe(_ recipe: Recipe) throws {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
-        guard let recipeEntity = try? coreDataProvider.fetch(request: request, predicate: predicate).first else { return }
+        guard let recipeEntity = try? coreDataProvider.fetch(
+            request: request,
+            predicate: predicate).first else {
+            return
+        }
         
         try self.coreDataProvider.delete(object: recipeEntity)
     }
