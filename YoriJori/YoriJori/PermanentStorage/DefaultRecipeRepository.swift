@@ -5,8 +5,8 @@
 //  Created by forest on 2023/06/25.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 final class RecipeRepository: RecipeRepositoryProtocol {
     
@@ -23,9 +23,9 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by name: String) throws -> [Recipe] {
+    func fetchRecipes(by title: String) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "title == %@", name)
+        let predicate = NSPredicate(format: "title contains[cd] %@", title)
         
         let result = try coreDataProvider.fetch(
             request: request,
@@ -55,6 +55,20 @@ final class RecipeRepository: RecipeRepositoryProtocol {
             return []
         }
         let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name as CVarArg)
+        
+        let result = try coreDataProvider.fetch(request: request, predicate: predicate)
+        
+        return result.map { $0.toDomain() }
+    }
+   
+    func fetchRecipes(by grocery: Grocery) throws -> [Recipe] {
+        let request = CDRecipe.fetchRequest()
+        guard let groceryEntity = try? grocery.toEntity(context: coreDataProvider.context) else {
+            return []
+        }
+        let predicate = NSPredicate(
+            format: "ingredientGroups.ingredients.grocery.name contains[cd] %@",
+            grocery.name as CVarArg)
         
         let result = try coreDataProvider.fetch(request: request, predicate: predicate)
         
