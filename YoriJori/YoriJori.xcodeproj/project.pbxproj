@@ -45,7 +45,18 @@
 		C21FA1642A4829A7001B3C0E /* DefaultRecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */; };
 		C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */; };
 		C28F419B2A5959B800445B90 /* CDRecipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */; };
+		D1C233F92A63C77800CE7492 /* YoriJoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D1C233FA2A63C77800CE7492 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C20140D52A2F5EA3001EEDFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C20140DC2A2F5EA3001EEDFE;
+			remoteInfo = YoriJori;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		63246F322A596B2000239A9A /* Recipe+DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+DTO.swift"; sourceTree = "<group>"; };
@@ -87,10 +98,19 @@
 		C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeRepository.swift; sourceTree = "<group>"; };
 		C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D1C233F62A63C77800CE7492 /* YoriJoriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoriJoriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoriJoriTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C20140DA2A2F5EA3001EEDFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C233F32A63C77800CE7492 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -159,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				C20140DF2A2F5EA4001EEDFE /* YoriJori */,
+				D1C233F72A63C77800CE7492 /* YoriJoriTests */,
 				C20140DE2A2F5EA4001EEDFE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C20140DD2A2F5EA4001EEDFE /* YoriJori.app */,
+				D1C233F62A63C77800CE7492 /* YoriJoriTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,6 +247,14 @@
 			path = Recipe;
 			sourceTree = "<group>";
 		};
+		D1C233F72A63C77800CE7492 /* YoriJoriTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */,
+			);
+			path = YoriJoriTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,6 +275,24 @@
 			productReference = C20140DD2A2F5EA4001EEDFE /* YoriJori.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D1C233F52A63C77800CE7492 /* YoriJoriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1C233FC2A63C77800CE7492 /* Build configuration list for PBXNativeTarget "YoriJoriTests" */;
+			buildPhases = (
+				D1C233F22A63C77800CE7492 /* Sources */,
+				D1C233F32A63C77800CE7492 /* Frameworks */,
+				D1C233F42A63C77800CE7492 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1C233FB2A63C77800CE7492 /* PBXTargetDependency */,
+			);
+			name = YoriJoriTests;
+			productName = YoriJoriTests;
+			productReference = D1C233F62A63C77800CE7492 /* YoriJoriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -252,11 +300,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					C20140DC2A2F5EA3001EEDFE = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					D1C233F52A63C77800CE7492 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = C20140DC2A2F5EA3001EEDFE;
 					};
 				};
 			};
@@ -274,6 +326,7 @@
 			projectRoot = "";
 			targets = (
 				C20140DC2A2F5EA3001EEDFE /* YoriJori */,
+				D1C233F52A63C77800CE7492 /* YoriJoriTests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,6 +338,13 @@
 			files = (
 				C20140E82A2F5EA5001EEDFE /* Preview Assets.xcassets in Resources */,
 				C20140E52A2F5EA5001EEDFE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C233F42A63C77800CE7492 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +394,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1C233F22A63C77800CE7492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1C233F92A63C77800CE7492 /* YoriJoriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D1C233FB2A63C77800CE7492 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C20140DC2A2F5EA3001EEDFE /* YoriJori */;
+			targetProxy = D1C233FA2A63C77800CE7492 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C20140E92A2F5EA5001EEDFE /* Debug */ = {
@@ -509,6 +585,44 @@
 			};
 			name = Release;
 		};
+		D1C233FD2A63C77800CE7492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3LTF5F2YL4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.someotherplace.findingmate.YoriJoriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoriJori.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/YoriJori";
+			};
+			name = Debug;
+		};
+		D1C233FE2A63C77800CE7492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3LTF5F2YL4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.someotherplace.findingmate.YoriJoriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoriJori.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/YoriJori";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -526,6 +640,15 @@
 			buildConfigurations = (
 				C20140EC2A2F5EA5001EEDFE /* Debug */,
 				C20140ED2A2F5EA5001EEDFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1C233FC2A63C77800CE7492 /* Build configuration list for PBXNativeTarget "YoriJoriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1C233FD2A63C77800CE7492 /* Debug */,
+				D1C233FE2A63C77800CE7492 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
