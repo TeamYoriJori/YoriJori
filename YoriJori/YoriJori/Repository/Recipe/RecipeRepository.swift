@@ -9,6 +9,7 @@ import Foundation
 
 protocol RecipeRepositoryProtocol {
     func fetchAllRecipes() throws -> [Recipe]
+    func fetchRecipes(by id: UUID) throws -> Recipe?
     func fetchRecipes(by tilte: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe]
     func fetchRecipes(by bookdId: UUID, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe]
     func fetchRecipes(by tag: Tag, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe]

@@ -23,6 +23,17 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
+    func fetchRecipes(by id: UUID) throws -> Recipe? {
+        let request = CDRecipe.fetchRequest()
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let result = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate)
+        
+        return result.first?.toDomain()
+    }
+    
     func fetchRecipes(by title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
