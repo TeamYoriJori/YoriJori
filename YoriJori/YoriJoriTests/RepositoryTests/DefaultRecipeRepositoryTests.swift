@@ -76,7 +76,6 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         XCTAssertEqual(result?.first, recipe)
     }
     
-    // FIXME: - sorting 정상적으로 적용 안됨. 실행시마다 순서 랜덤 리턴
     func test_fetchRecipeByTitleWithCookingTimeSorting() throws {
         // Arrange
         let sushiRecipe = DummyRecipe.sushi
@@ -91,7 +90,6 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         XCTAssertEqual(result, [sakeDongRecipe, sushiRecipe])
     }
     
-    // FIXME: - sorting 정상적으로 적용 안됨. 실행시마다 순서 랜덤 리턴
     func test_fetchRecipesByKeywordWithUpdatedAtSorting() throws {
         // Arrange
         let sushiRecipe = DummyRecipe.sushi // 스시

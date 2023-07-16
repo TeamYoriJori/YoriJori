@@ -37,18 +37,18 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func fetchRecipes(byTitle title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
-        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let result = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate)
+            predicate: predicate,
+        sortDiscriptors: createSortDescriptor(with: sorts)
+        )
         
         return result.map { $0.toDomain() }
     }
     
     func fetchRecipes(by keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
-        request.sortDescriptors = createSortDescriptor(with: sorts)
         let titlePredicate = NSPredicate(format: "title contains[cd] %@", keyword)
         let tagPredicate = NSPredicate(format: "tags.name contains[cd] %@", keyword)
         let groceryPredicate = NSPredicate(
@@ -59,7 +59,9 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         
         let result = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate)
+            predicate: predicate,
+            sortDiscriptors: createSortDescriptor(with: sorts)
+        )
         
         return result.map { $0.toDomain() }
     }
@@ -67,11 +69,12 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func fetchRecipes(by bookdId: UUID, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", bookdId as CVarArg)
-        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let fetchedRecipeBooks = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate)
+            predicate: predicate,
+            sortDiscriptors: createSortDescriptor(with: sorts)
+        )
         
         guard let recipes = fetchedRecipeBooks.first?.recipes as? [CDRecipe] else {
             return  []
@@ -79,7 +82,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         
         return recipes.map { $0.toDomain() }
     }
-
+    
     func createRecipe(_ model: Recipe) throws {
         let recipe = CDRecipe(context: self.coreDataProvider.context)
         recipe.id = model.id
@@ -110,7 +113,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         
         try? self.coreDataProvider.context.save()
     }
-
+    
     func updateRecipe(_ recipe: Recipe) throws {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
