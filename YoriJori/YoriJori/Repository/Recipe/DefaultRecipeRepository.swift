@@ -53,9 +53,6 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     
     func fetchRecipes(by tag: Tag, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
-        guard let tagEntity = try? tag.toEntity(context: coreDataProvider.context) else {
-            return []
-        }
         let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name as CVarArg)
         request.sortDescriptors = createSortDescriptor(with: sorts)
         
@@ -66,9 +63,6 @@ final class RecipeRepository: RecipeRepositoryProtocol {
    
     func fetchRecipes(by grocery: Grocery, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
-        guard let groceryEntity = try? grocery.toEntity(context: coreDataProvider.context) else {
-            return []
-        }
         let predicate = NSPredicate(
             format: "ingredientGroups.ingredients.grocery.name contains[cd] %@",
             grocery.name as CVarArg)
