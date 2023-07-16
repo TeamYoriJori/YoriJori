@@ -12,8 +12,11 @@ final class CoreDataProvider {
     
     static let shared = CoreDataProvider()
     
+    private let persistentStoreDescriptions: [NSPersistentStoreDescription]!
+    
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
+        container.persistentStoreDescriptions = persistentStoreDescriptions
         
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
@@ -28,6 +31,12 @@ final class CoreDataProvider {
     lazy var context: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
+    
+    init(_ storeType: NSPersistentStore.StoreType = .sqlite) {
+        let persistentStoreDescription = NSPersistentStoreDescription()
+        persistentStoreDescription.type = storeType.rawValue
+        self.persistentStoreDescriptions = [persistentStoreDescription]
+    }
     
     func create(entityName: String, model: Model) throws {
         let savingContext = self.context
