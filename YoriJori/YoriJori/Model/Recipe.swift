@@ -19,8 +19,8 @@ struct Recipe {
     let note: String?
     let serving: Int?
     let image: Data?
-    let createdAt: Date?
-    let updatedAt: Date?
+    let createdAt: Date
+    let updatedAt: Date
 }
 
 extension Recipe: Equatable {

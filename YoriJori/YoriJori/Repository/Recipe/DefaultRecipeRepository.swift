@@ -23,7 +23,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by id: UUID) throws -> Recipe? {
+    func fetchRecipe(by id: UUID) throws -> Recipe? {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -34,10 +34,28 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.first?.toDomain()
     }
     
-    func fetchRecipes(by title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipes(byTitle title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
         request.sortDescriptors = createSortDescriptor(with: sorts)
+        
+        let result = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate)
+        
+        return result.map { $0.toDomain() }
+    }
+    
+    func fetchRecipes(by keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+        let request = CDRecipe.fetchRequest()
+        request.sortDescriptors = createSortDescriptor(with: sorts)
+        let titlePredicate = NSPredicate(format: "title contains[cd] %@", keyword)
+        let tagPredicate = NSPredicate(format: "tags.name contains[cd] %@", keyword)
+        let groceryPredicate = NSPredicate(
+            format: "ingredientGroups.ingredients.grocery.name contains[cd] %@", keyword)
+        let predicate = NSCompoundPredicate(
+            type: .or,
+            subpredicates: [titlePredicate, tagPredicate, groceryPredicate])
         
         let result = try coreDataProvider.fetch(
             request: request,
@@ -61,29 +79,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         
         return recipes.map { $0.toDomain() }
     }
-    
-    func fetchRecipes(by tag: Tag, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
-        let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name)
-        request.sortDescriptors = createSortDescriptor(with: sorts)
-        
-        let result = try coreDataProvider.fetch(request: request, predicate: predicate)
-        
-        return result.map { $0.toDomain() }
-    }
-   
-    func fetchRecipes(by grocery: Grocery, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
-        let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(
-            format: "ingredientGroups.ingredients.grocery.name contains[cd] %@",
-            grocery.name as CVarArg)
-        request.sortDescriptors = createSortDescriptor(with: sorts)
-        
-        let result = try coreDataProvider.fetch(request: request, predicate: predicate)
-        
-        return result.map { $0.toDomain() }
-    }
-    
+
     func createRecipe(_ model: Recipe) throws {
         let recipe = CDRecipe(context: self.coreDataProvider.context)
         recipe.id = model.id

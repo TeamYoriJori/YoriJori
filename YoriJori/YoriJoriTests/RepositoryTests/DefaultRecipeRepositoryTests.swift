@@ -36,7 +36,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         
         // Act
-        let expectedRecipe = try? sut.fetchRecipes(by: "햄버거", sorts: [:])
+        let expectedRecipe = try? sut.fetchRecipes(byTitle: "햄버거", sorts: [:])
         XCTAssertEqual(recipe, expectedRecipe?.first)
     }
     
@@ -48,25 +48,26 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         
         // Act
-        let result = try? sut.fetchRecipes(by: recipe.id)
+        let result = try? sut.fetchRecipe(by: recipe.id)
         XCTAssertEqual(result, recipe)
     }
     
-    func test_fetchRecipesByName() throws {
+    // FIXME: - sorting 정상적으로 적용 안됨. 실행시마다 순서 랜덤 리턴
+    func test_fetchRecipesByKeywordWithUpdatedAtSorting() throws {
         // Arrange
         let sushiRecipe = DummyRecipe.sushi // 스시
-        let sushiSakeDongRecipe = DummyRecipe.sakeDong // 스시로 만든 사케동
+        let sakeDongRecipe = DummyRecipe.sakeDong // 스시로 만든 사케동
         try sut.createRecipe(sushiRecipe)
-        try sut.createRecipe(sushiSakeDongRecipe)
+        try sut.createRecipe(sakeDongRecipe)
         
         // Assert
         let result = try sut.fetchRecipes(by: "스시", sorts: [.updatedAtAscending: false])
         
         // Act
-        XCTAssertEqual(result, [sushiSakeDongRecipe, sushiRecipe])
+        XCTAssertEqual(result, [sakeDongRecipe, sushiRecipe])
     }
     
-    func test_fetchRecipesByNameWithSorting() throws {
+    func test_fetchRecipesByKeywordWithTitleAscendingSorting() throws {
         // Arrange
         let sushiRecipe = DummyRecipe.sushi // 스시
         let creamSpaghetti = DummyRecipe.creamSpaghetti // 크림 스파게티

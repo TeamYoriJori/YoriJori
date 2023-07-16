@@ -10,7 +10,7 @@ import Foundation
 
 enum DummyRecipe {
     
-    static let baseDate = Date()
+    static let baseDate = Date.now
     
     static let hamburger = Recipe(
         id: UUID(),

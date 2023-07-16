@@ -17,7 +17,7 @@ extension CDRecipe {
     }
 
     @NSManaged public var cookingTime: Int64
-    @NSManaged public var createdAt: Date?
+    @NSManaged public var createdAt: Date
     @NSManaged public var descriptions: String?
     @NSManaged public var id: UUID
     @NSManaged public var image: Data?
@@ -25,7 +25,7 @@ extension CDRecipe {
     @NSManaged public var serving: Int64
     @NSManaged public var subTitle: String?
     @NSManaged public var title: String?
-    @NSManaged public var updatedAt: Date?
+    @NSManaged public var updatedAt: Date
     @NSManaged public var ingredientGroups: NSSet?
     @NSManaged public var progress: NSSet?
     @NSManaged public var tags: NSSet?
