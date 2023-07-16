@@ -59,7 +59,7 @@ enum DummyRecipe {
             title: "주재료",
             ingredients: [Ingredient(grocery: .init(name: "스시"), amount: 10, unit: .init(rawValue: "개")!),
                           Ingredient(grocery: .init(name: "양파"), amount: 1, unit: .init(rawValue: "개")!)])],
-        cookingTime: 800,
+        cookingTime: 120,
         progress: [Step(index: 1, description: "스시를 시킨다", image: nil, time: 300, groceries: [Grocery(name: "스시")])],
         description: "이타다끼마스🍣",
         note: nil,
@@ -87,6 +87,27 @@ enum DummyRecipe {
         cookingTime: 800,
         progress: [Step(index: 1, description: "면을 삼는다", image: nil, time: 300, groceries: [Grocery(name: "스파게티면")])],
         description: "본아쁘띠🍝",
+        note: nil,
+        serving: 1,
+        image: nil,
+        createdAt: Date(),
+        updatedAt: Date(timeInterval: 100, since: Date())
+    )
+    
+    static let mojito = Recipe(
+        id: UUID(),
+        title: "mojito",
+        subTitle: "모히토에서 몰디브 한잔",
+        tags: [.init(name: "칵테일")],
+        ingredientsGroups: [
+            IngreidentGroup(
+                title: "주재료",
+                ingredients: [Ingredient(grocery: .init(name: "민트"), amount: 500, unit: .init(rawValue: "g")!),
+                              Ingredient(grocery: .init(name: "라임"), amount: 1, unit: .init(rawValue: "개")!)])
+            ],
+        cookingTime: 800,
+        progress: [Step(index: 1, description: "민트를 빻는다", image: nil, time: 300, groceries: [Grocery(name: "민트")])],
+        description: nil,
         note: nil,
         serving: 1,
         image: nil,
