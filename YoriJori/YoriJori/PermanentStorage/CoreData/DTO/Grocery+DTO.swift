@@ -15,16 +15,16 @@ extension CDGrocery {
 }
 
 extension Grocery {
-    func toEntity(context: NSManagedObjectContext) throws -> CDGrocery {
+    func toEntity(coreDataProvider: CoreDataProvider) throws -> CDGrocery {
         let request = CDGrocery.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", self.name)
-        let fetchedGroceries = try CoreDataProvider.shared.fetch(request: request)
+        let fetchedGroceries = try coreDataProvider.fetch(request: request)
 
         if let fetchedGrocery = fetchedGroceries.first {
             return fetchedGrocery
         }
        
-        let grocery = CDGrocery(context: context)
+        let grocery = CDGrocery(context: coreDataProvider.context)
         grocery.name = self.name
         return grocery
     }

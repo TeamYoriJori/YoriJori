@@ -12,7 +12,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     
     let coreDataProvider: CoreDataProvider
     
-    init(coreDataProvider: CoreDataProvider) {
+    init(coreDataProvider: CoreDataProvider = CoreDataProvider.shared) {
         self.coreDataProvider = coreDataProvider
     }
     
@@ -88,17 +88,17 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         recipe.addToTags(
             NSSet(
                 array: model.tags?.map {
-                    try! $0.toEntity(context: coreDataProvider.context) } ?? [])
+                    try! $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         )
         recipe.addToIngredientGroups(
             NSSet(
                 array: model.ingredientsGroups?.map {
-                    $0.toEntity(context: coreDataProvider.context) } ?? [])
+                    $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         )
         recipe.addToProgress(
             NSSet(
                 array: model.progress?.map {
-                    $0.toEntity(context: coreDataProvider.context) } ?? [])
+                    $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         )
         
         try? self.coreDataProvider.context.save()
@@ -118,16 +118,16 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         recipeEntity.subTitle = recipe.subTitle
         recipeEntity.tags = NSSet(
             array: recipe.tags?.compactMap {
-                try! $0.toEntity(context: coreDataProvider.context) } ?? []
+                try! $0.toEntity(coreDataProvider: coreDataProvider) } ?? []
         )
         recipeEntity.ingredientGroups = NSSet(
             array: recipe.ingredientsGroups?.compactMap {
-                $0.toEntity(context: coreDataProvider.context) } ?? []
+                $0.toEntity(coreDataProvider: coreDataProvider) } ?? []
         )
         recipeEntity.cookingTime = Int64(recipe.cookingTime ?? -1)
         recipeEntity.progress = NSSet(
             array: recipe.progress?.compactMap {
-                $0.toEntity(context: coreDataProvider.context) } ?? []
+                $0.toEntity(coreDataProvider: coreDataProvider) } ?? []
         )
         recipeEntity.descriptions = recipe.description
         recipeEntity.note = recipe.note

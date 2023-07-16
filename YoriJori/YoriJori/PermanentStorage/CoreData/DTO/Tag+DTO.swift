@@ -15,16 +15,16 @@ extension CDTag {
 }
 
 extension Tag {
-    func toEntity(context: NSManagedObjectContext) throws -> CDTag {
+    func toEntity(coreDataProvider: CoreDataProvider) throws -> CDTag {
         let request = CDTag.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", self.name)
-        let fetchedTags = try CoreDataProvider.shared.fetch(request: request)
+        let fetchedTags = try coreDataProvider.fetch(request: request)
 
         if let fetchedTag = fetchedTags.first {
             return fetchedTag
         }
        
-        let tag = CDTag(context: context)
+        let tag = CDTag(context: coreDataProvider.context)
         tag.name = self.name
         return tag
     }

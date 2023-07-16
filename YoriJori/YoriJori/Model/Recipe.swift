@@ -22,3 +22,9 @@ struct Recipe {
     let createdAt: Date?
     let updatedAt: Date?
 }
+
+extension Recipe: Equatable {
+    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+        lhs.id == rhs.id
+    }
+}

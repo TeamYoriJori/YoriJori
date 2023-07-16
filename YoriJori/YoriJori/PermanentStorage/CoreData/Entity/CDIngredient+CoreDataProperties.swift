@@ -2,7 +2,7 @@
 //  CDIngredient+CoreDataProperties.swift
 //  YoriJori
 //
-//  Created by Moon Yeji on 2023/06/19.
+//  Created by moon Lily on 2023/07/16.
 //
 //
 
@@ -16,9 +16,10 @@ extension CDIngredient {
         return NSFetchRequest<CDIngredient>(entityName: "CDIngredient")
     }
 
-    @NSManaged public var title: String?
     @NSManaged public var amount: Double
     @NSManaged public var unit: String?
+    @NSManaged public var grocery: CDGrocery
+    @NSManaged public var ingredientGroup: CDIngredientGroup?
 
 }
 

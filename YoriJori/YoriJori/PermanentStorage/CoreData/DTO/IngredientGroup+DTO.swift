@@ -20,11 +20,11 @@ extension CDIngredientGroup {
 }
 
 extension IngreidentGroup {
-    func toEntity(context: NSManagedObjectContext) -> CDIngredientGroup {
-        let ingredientGroup = CDIngredientGroup(context: context)
+    func toEntity(coreDataProvider: CoreDataProvider) -> CDIngredientGroup {
+        let ingredientGroup = CDIngredientGroup(context: coreDataProvider.context)
         ingredientGroup.title = self.title
         ingredientGroup.ingredients = NSSet(
-            array: self.ingredients?.compactMap { $0.toEntity(context:context) } ?? [])
+            array: self.ingredients?.compactMap { $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         return ingredientGroup
     }
 }

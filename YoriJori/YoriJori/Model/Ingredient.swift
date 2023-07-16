@@ -8,7 +8,7 @@
 import Foundation
 
 struct Ingredient {
-    let title: String?
+    let grocery: Grocery
     let amount: Double?
-    let unit: Unit
+    let unit: Unit?
 }

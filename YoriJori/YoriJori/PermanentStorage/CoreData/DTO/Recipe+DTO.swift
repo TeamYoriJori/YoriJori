@@ -30,13 +30,13 @@ extension CDRecipe {
 }
 
 extension Recipe {
-    func toEntity(context: NSManagedObjectContext) -> CDRecipe {
-        let recipe = CDRecipe(context: context)
+    func toEntity(coreDataProvider: CoreDataProvider) -> CDRecipe {
+        let recipe = CDRecipe(context: coreDataProvider.context)
         recipe.id = self.id
         recipe.title = self.title
         recipe.subTitle = self.subTitle
         recipe.tags = NSSet(
-            array: self.tags?.compactMap { try! $0.toEntity(context: context) } ?? [])
+            array: self.tags?.compactMap { try! $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         return recipe
     }
 }

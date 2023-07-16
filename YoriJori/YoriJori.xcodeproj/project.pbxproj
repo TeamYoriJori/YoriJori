@@ -25,8 +25,6 @@
 		63CBCAF42A4080DF0069B433 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAF22A4080DF0069B433 /* DataModel.xcdatamodeld */; };
 		63CBCB092A4097ED0069B433 /* CDIngredientGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFB2A4097EC0069B433 /* CDIngredientGroup+CoreDataClass.swift */; };
 		63CBCB0A2A4097ED0069B433 /* CDIngredientGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFC2A4097EC0069B433 /* CDIngredientGroup+CoreDataProperties.swift */; };
-		63CBCB0B2A4097ED0069B433 /* CDIngredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFD2A4097EC0069B433 /* CDIngredient+CoreDataClass.swift */; };
-		63CBCB0C2A4097ED0069B433 /* CDIngredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */; };
 		63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */; };
 		63CBCB122A4097ED0069B433 /* CDTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */; };
 		63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */; };
@@ -45,7 +43,9 @@
 		C21FA1642A4829A7001B3C0E /* DefaultRecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */; };
 		C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */; };
 		C28F419B2A5959B800445B90 /* CDRecipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */; };
-		D1C233F92A63C77800CE7492 /* YoriJoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */; };
+		D1C233F92A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */; };
+		D1C234022A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C234002A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift */; };
+		D1C234032A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C234012A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +77,6 @@
 		63CBCAF32A4080DF0069B433 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		63CBCAFB2A4097EC0069B433 /* CDIngredientGroup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredientGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CBCAFC2A4097EC0069B433 /* CDIngredientGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredientGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		63CBCAFD2A4097EC0069B433 /* CDIngredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataClass.swift"; sourceTree = "<group>"; };
-		63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDStep+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -99,7 +97,9 @@
 		C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D1C233F62A63C77800CE7492 /* YoriJoriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoriJoriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoriJoriTests.swift; sourceTree = "<group>"; };
+		D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeRepositoryTests.swift; sourceTree = "<group>"; };
+		D1C234002A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D1C234012A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +163,8 @@
 				63C521BF2A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift */,
 				63CBCAFB2A4097EC0069B433 /* CDIngredientGroup+CoreDataClass.swift */,
 				63CBCAFC2A4097EC0069B433 /* CDIngredientGroup+CoreDataProperties.swift */,
-				63CBCAFD2A4097EC0069B433 /* CDIngredient+CoreDataClass.swift */,
-				63CBCAFE2A4097EC0069B433 /* CDIngredient+CoreDataProperties.swift */,
+				D1C234002A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift */,
+				D1C234012A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift */,
 				63CBCB032A4097ED0069B433 /* CDTag+CoreDataClass.swift */,
 				63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */,
 				63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */,
@@ -250,9 +250,17 @@
 		D1C233F72A63C77800CE7492 /* YoriJoriTests */ = {
 			isa = PBXGroup;
 			children = (
-				D1C233F82A63C77800CE7492 /* YoriJoriTests.swift */,
+				D1C233FF2A63C7C400CE7492 /* RepositoryTests */,
 			);
 			path = YoriJoriTests;
+			sourceTree = "<group>";
+		};
+		D1C233FF2A63C7C400CE7492 /* RepositoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */,
+			);
+			path = RepositoryTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +374,7 @@
 				63246F3D2A596D2600239A9A /* RecipeBook+DTO.swift in Sources */,
 				63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */,
 				63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */,
-				63CBCB0B2A4097ED0069B433 /* CDIngredient+CoreDataClass.swift in Sources */,
+				D1C234032A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift in Sources */,
 				63CBCAED2A3EB7640069B433 /* CoreDataProvider.swift in Sources */,
 				C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */,
 				63CBCAF12A3F1A3B0069B433 /* CoreDataProviderError.swift in Sources */,
@@ -376,7 +384,6 @@
 				63246F332A596B2000239A9A /* Recipe+DTO.swift in Sources */,
 				63CBCAF42A4080DF0069B433 /* DataModel.xcdatamodeld in Sources */,
 				63C521CE2A48274400F730C5 /* CDGrocery+CoreDataClass.swift in Sources */,
-				63CBCB0C2A4097ED0069B433 /* CDIngredient+CoreDataProperties.swift in Sources */,
 				C20140F62A2F615D001EEDFE /* Step.swift in Sources */,
 				63CBCB142A4097ED0069B433 /* CDStep+CoreDataProperties.swift in Sources */,
 				63246F3F2A596E9000239A9A /* IngredientGroup+DTO.swift in Sources */,
@@ -387,6 +394,7 @@
 				C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */,
 				63CBCB0A2A4097ED0069B433 /* CDIngredientGroup+CoreDataProperties.swift in Sources */,
 				C21FA1642A4829A7001B3C0E /* DefaultRecipeRepository.swift in Sources */,
+				D1C234022A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift in Sources */,
 				63C521C12A47169800F730C5 /* CDRecipeBook+CoreDataProperties.swift in Sources */,
 				C20140FA2A2F616C001EEDFE /* Recipe.swift in Sources */,
 				63CBCB092A4097ED0069B433 /* CDIngredientGroup+CoreDataClass.swift in Sources */,
@@ -398,7 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C233F92A63C77800CE7492 /* YoriJoriTests.swift in Sources */,
+				D1C233F92A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

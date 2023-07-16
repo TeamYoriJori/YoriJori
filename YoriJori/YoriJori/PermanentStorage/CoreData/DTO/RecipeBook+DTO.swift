@@ -21,16 +21,16 @@ extension CDRecipeBook {
 }
 
 extension RecipeBook {
-    func toEntity(context: NSManagedObjectContext) -> CDRecipeBook {
+    func toEntity(coreDataProvider: CoreDataProvider) -> CDRecipeBook {
         let request = CDRecipeBook.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", self.id as CVarArg)
-        let fetchedRecipeBooks = try? CoreDataProvider.shared.fetch(request: request)
+        let fetchedRecipeBooks = try? coreDataProvider.fetch(request: request)
 
         if let fetchedRecipeBook = fetchedRecipeBooks?.first {
             return fetchedRecipeBook
         }
        
-        let recipeBook = CDRecipeBook(context: context)
+        let recipeBook = CDRecipeBook(context: coreDataProvider.context)
         recipeBook.id = self.id
         recipeBook.title = self.title
         recipeBook.image = self.image
