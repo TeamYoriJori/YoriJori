@@ -46,6 +46,7 @@
 		D1C233F92A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */; };
 		D1C234022A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C234002A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift */; };
 		D1C234032A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C234012A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift */; };
+		D1C234052A63DF2E00CE7492 /* DummyRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C234042A63DF2E00CE7492 /* DummyRecipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeRepositoryTests.swift; sourceTree = "<group>"; };
 		D1C234002A63D90D00CE7492 /* CDIngredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D1C234012A63D90D00CE7492 /* CDIngredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDIngredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D1C234042A63DF2E00CE7492 /* DummyRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyRecipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				D1C233F82A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift */,
+				D1C234042A63DF2E00CE7492 /* DummyRecipe.swift */,
 			);
 			path = RepositoryTests;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1C234052A63DF2E00CE7492 /* DummyRecipe.swift in Sources */,
 				D1C233F92A63C77800CE7492 /* DefaultRecipeRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

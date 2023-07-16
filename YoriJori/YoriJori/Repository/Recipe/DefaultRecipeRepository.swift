@@ -64,7 +64,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     
     func fetchRecipes(by tag: Tag, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name as CVarArg)
+        let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name)
         request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let result = try coreDataProvider.fetch(request: request, predicate: predicate)

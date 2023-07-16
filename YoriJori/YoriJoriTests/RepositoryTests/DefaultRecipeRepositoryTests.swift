@@ -30,24 +30,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
     
     func test_createRecipe() throws {
         // Arrange
-        let recipe = Recipe(
-            id: UUID(),
-            title: "햄버거",
-            subTitle: "릴리의 소울푸드",
-            tags: [.init(name: "소울푸드")],
-            ingredientsGroups: [IngreidentGroup(
-                title: "주재료",
-                ingredients: [Ingredient(grocery: .init(name: "번"), amount: 2, unit: .init(rawValue: "개")!),
-                              Ingredient(grocery: .init(name: "소고기"), amount: 300, unit: .init(rawValue: "g")!)])],
-            cookingTime: 600,
-            progress: [Step(index: 1, description: "소고기로 패티를 만든다", image: nil, time: 300, groceries: [Grocery(name: "소고기")])],
-            description: "특제 레시피",
-            note: nil,
-            serving: 1,
-            image: nil,
-            createdAt: Date(),
-            updatedAt: Date()
-        )
+        let recipe = DummyRecipe.hamburger
         
         // Assert
         try sut.createRecipe(recipe)
@@ -55,5 +38,45 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Act
         let expectedRecipe = try? sut.fetchRecipes(by: "햄버거", sorts: [:])
         XCTAssertEqual(recipe, expectedRecipe?.first)
+    }
+    
+    func test_fetchRecipeByID() throws {
+        // Arrange
+        let recipe = DummyRecipe.hamburger
+        
+        // Assert
+        try sut.createRecipe(recipe)
+        
+        // Act
+        let result = try? sut.fetchRecipes(by: recipe.id)
+        XCTAssertEqual(result, recipe)
+    }
+    
+    func test_fetchRecipesByName() throws {
+        // Arrange
+        let sushiRecipe = DummyRecipe.sushi // 스시
+        let sushiSakeDongRecipe = DummyRecipe.sakeDong // 스시로 만든 사케동
+        try sut.createRecipe(sushiRecipe)
+        try sut.createRecipe(sushiSakeDongRecipe)
+        
+        // Assert
+        let result = try sut.fetchRecipes(by: "스시", sorts: [.updatedAtAscending: false])
+        
+        // Act
+        XCTAssertEqual(result, [sushiSakeDongRecipe, sushiRecipe])
+    }
+    
+    func test_fetchRecipesByNameWithSorting() throws {
+        // Arrange
+        let sushiRecipe = DummyRecipe.sushi // 스시
+        let creamSpaghetti = DummyRecipe.creamSpaghetti // 크림 스파게티
+        try sut.createRecipe(sushiRecipe)
+        try sut.createRecipe(creamSpaghetti)
+        
+        // Assert
+        let result = try sut.fetchRecipes(by: "스", sorts: [.titleAscending: true])
+        
+        // Act
+        XCTAssertEqual(result, [sushiRecipe, creamSpaghetti])
     }
 }
