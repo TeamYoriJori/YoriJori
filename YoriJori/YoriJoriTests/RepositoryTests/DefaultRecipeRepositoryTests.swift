@@ -32,10 +32,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let recipe = DummyRecipe.hamburger
         
-        // Assert
+        // Act
         try sut.createRecipe(recipe)
         
-        // Act
+        // Assert
         let expectedRecipe = try? sut.fetchRecipes(byTitle: "햄버거", sorts: [:])
         XCTAssertEqual(recipe, expectedRecipe?.first)
     }
@@ -44,10 +44,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let recipe = DummyRecipe.hamburger
         
-        // Assert
+        // Act
         try sut.createRecipe(recipe)
         
-        // Act
+        // Assert
         let result = try? sut.fetchRecipe(by: recipe.id)
         XCTAssertEqual(result, recipe)
     }
@@ -56,10 +56,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let recipe = DummyRecipe.hamburger
         
-        // Assert
+        // Act
         try sut.createRecipe(recipe)
         
-        // Act
+        // Assert
         let result = try? sut.fetchRecipes(byTitle: recipe.title!, sorts: [:])
         XCTAssertEqual(result?.first, recipe)
     }
@@ -68,10 +68,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let recipe = DummyRecipe.mojito
         
-        // Assert
+        // Act
         try sut.createRecipe(recipe)
         
-        // Act
+        // Assert
         let result = try? sut.fetchRecipes(byTitle: "Mojito", sorts: [:])
         XCTAssertEqual(result?.first, recipe)
     }
@@ -81,11 +81,11 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let sushiRecipe = DummyRecipe.sushi
         let sakeDongRecipe = DummyRecipe.sakeDong
         
-        // Assert
+        // Act
         try sut.createRecipe(sushiRecipe)
         try sut.createRecipe(sakeDongRecipe)
         
-        // Act
+        // Assert
         let result = try? sut.fetchRecipes(byTitle: "스시", sorts: [.cookingTimeAscending: true])
         XCTAssertEqual(result, [sakeDongRecipe, sushiRecipe])
     }
@@ -97,10 +97,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(sushiRecipe)
         try sut.createRecipe(sakeDongRecipe)
         
-        // Assert
+        // Act
         let result = try sut.fetchRecipes(by: "스시", sorts: [.updatedAtAscending: false])
         
-        // Act
+        // Assert
         XCTAssertEqual(result, [sakeDongRecipe, sushiRecipe])
     }
     
@@ -111,10 +111,10 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(sushiRecipe)
         try sut.createRecipe(creamSpaghetti)
         
-        // Assert
+        // Act
         let result = try sut.fetchRecipes(by: "스", sorts: [.titleAscending: true])
         
-        // Act
+        // Assert
         XCTAssertEqual(result, [sushiRecipe, creamSpaghetti])
     }
 }
