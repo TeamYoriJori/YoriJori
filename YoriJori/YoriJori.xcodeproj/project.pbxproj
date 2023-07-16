@@ -118,8 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				63CBCAEB2A3EB7280069B433 /* CoreData */,
-				C21FA1612A482997001B3C0E /* RecipeRepository.swift */,
-				C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */,
 			);
 			path = PermanentStorage;
 			sourceTree = "<group>";
@@ -176,6 +174,7 @@
 		C20140DF2A2F5EA4001EEDFE /* YoriJori */ = {
 			isa = PBXGroup;
 			children = (
+				D1C233E32A63C06E00CE7492 /* Repository */,
 				63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */,
 				C20140EE2A2F60D7001EEDFE /* Model */,
 				C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */,
@@ -207,6 +206,23 @@
 				63C521CA2A48238C00F730C5 /* Grocery.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D1C233E32A63C06E00CE7492 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D1C233E42A63C0E400CE7492 /* Recipe */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D1C233E42A63C0E400CE7492 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				C21FA1612A482997001B3C0E /* RecipeRepository.swift */,
+				C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */,
+			);
+			path = Recipe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
