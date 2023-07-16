@@ -23,9 +23,10 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by title: String) throws -> [Recipe] {
+    func fetchRecipes(by title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
+        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let result = try coreDataProvider.fetch(
             request: request,
@@ -34,9 +35,10 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by bookdId: UUID) throws -> [Recipe] {
+    func fetchRecipes(by bookdId: UUID, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", bookdId as CVarArg)
+        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let fetchedRecipeBooks = try coreDataProvider.fetch(
             request: request,
@@ -49,19 +51,20 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return recipes.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by tag: Tag) throws -> [Recipe] {
+    func fetchRecipes(by tag: Tag, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         guard let tagEntity = try? tag.toEntity(context: coreDataProvider.context) else {
             return []
         }
         let predicate = NSPredicate(format: "tags.name contains[cd] %@", tag.name as CVarArg)
+        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let result = try coreDataProvider.fetch(request: request, predicate: predicate)
         
         return result.map { $0.toDomain() }
     }
    
-    func fetchRecipes(by grocery: Grocery) throws -> [Recipe] {
+    func fetchRecipes(by grocery: Grocery, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         guard let groceryEntity = try? grocery.toEntity(context: coreDataProvider.context) else {
             return []
@@ -69,6 +72,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         let predicate = NSPredicate(
             format: "ingredientGroups.ingredients.grocery.name contains[cd] %@",
             grocery.name as CVarArg)
+        request.sortDescriptors = createSortDescriptor(with: sorts)
         
         let result = try coreDataProvider.fetch(request: request, predicate: predicate)
         
@@ -150,5 +154,14 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         }
         
         try self.coreDataProvider.delete(object: recipeEntity)
+    }
+    
+    private func createSortDescriptor(
+        with sortDescriptors: [RecipeSortDescriptor: Bool]
+    ) -> [NSSortDescriptor]
+    {
+        return sortDescriptors.map { (key: RecipeSortDescriptor, value: Bool) in
+            NSSortDescriptor(key: key.rawValue, ascending: value)
+        }
     }
 }
