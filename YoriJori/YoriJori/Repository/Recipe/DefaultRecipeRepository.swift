@@ -50,16 +50,16 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func fetchRecipes(by keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let titlePredicate = NSPredicate(format: "title contains[cd] %@", keyword)
-        let tagPredicate = NSPredicate(format: "tags.name contains[cd] %@", keyword)
+        let tagPredicate = NSPredicate(format: "ANY tags.name == %@", keyword)
         let groceryPredicate = NSPredicate(
             format: "ingredientGroups.ingredients.grocery.name contains[cd] %@", keyword)
         let predicate = NSCompoundPredicate(
             type: .or,
-            subpredicates: [titlePredicate, tagPredicate, groceryPredicate])
+            subpredicates: [tagPredicate])
         
         let result = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate,
+            predicate: tagPredicate,
             sortDiscriptors: createSortDescriptor(with: sorts)
         )
         

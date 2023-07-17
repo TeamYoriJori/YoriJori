@@ -117,4 +117,20 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Assert
         XCTAssertEqual(result, [sushiRecipe, creamSpaghetti])
     }
+    
+    func test_fetchRecipesByTagWithTitleAscendingSorting() throws {
+        // Arrange
+        let hamburgerRecipe = DummyRecipe.hamburger
+        let sushiRecipe = DummyRecipe.sushi
+        let creamSpaghettiRecipe = DummyRecipe.creamSpaghetti
+        try sut.createRecipe(hamburgerRecipe)
+        try sut.createRecipe(sushiRecipe)
+        try sut.createRecipe(creamSpaghettiRecipe)
+        
+        // Act
+        let result = try sut.fetchRecipes(by: "소울푸드", sorts: [.titleAscending: true])
+        
+        // Assert
+        XCTAssertEqual(result, [sushiRecipe, hamburgerRecipe])
+    }
 }
