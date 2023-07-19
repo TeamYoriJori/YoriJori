@@ -66,21 +66,24 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by bookdId: UUID, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipes(
+        by bookdId: UUID,
+        sorts: [RecipeSortDescriptor: Bool])
+    throws -> [Recipe]
+    {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", bookdId as CVarArg)
         
-        let fetchedRecipeBooks = try coreDataProvider.fetch(
+        guard let fetchedRecipeBook = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
-            sortDiscriptors: createSortDescriptor(with: sorts)
-        )
-        
-        guard let recipes = fetchedRecipeBooks.first?.recipes as? [CDRecipe] else {
-            return  []
+            sortDiscriptors: createSortDescriptor(with: sorts)).first,
+              let recipes = fetchedRecipeBook.recipes else {
+            return []
         }
-        
-        return recipes.map { $0.toDomain() }
+
+        return Array(Set(_immutableCocoaSet: recipes))
+            .map { (recipe: CDRecipe) in recipe.toDomain() }
     }
     
     func createRecipe(_ model: Recipe) throws {
