@@ -55,11 +55,11 @@ final class RecipeRepository: RecipeRepositoryProtocol {
             format: "ingredientGroups.ingredients.grocery.name contains[cd] %@", keyword)
         let predicate = NSCompoundPredicate(
             type: .or,
-            subpredicates: [tagPredicate])
+            subpredicates: [titlePredicate, tagPredicate, groceryPredicate])
         
         let result = try coreDataProvider.fetch(
             request: request,
-            predicate: tagPredicate,
+            predicate: predicate,
             sortDiscriptors: createSortDescriptor(with: sorts)
         )
         

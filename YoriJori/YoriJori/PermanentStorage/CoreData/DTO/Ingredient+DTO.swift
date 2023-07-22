@@ -23,8 +23,11 @@ extension Ingredient {
         let ingredient = CDIngredient(context: coreDataProvider.context)
         
         let groceryFetchRequest = CDGrocery.fetchRequest()
-        groceryFetchRequest.predicate = NSPredicate(format: "name == %@", self.grocery.name)
-        if let grocery = try? coreDataProvider.fetch(request: groceryFetchRequest).first {
+        let predicate = NSPredicate(format: "name == %@", self.grocery.name)
+        if let grocery = try? coreDataProvider.fetch(
+            request: groceryFetchRequest,
+            predicate: predicate,
+            sortDiscriptors: nil).first {
             ingredient.grocery = grocery
         } else {
             let grocery = CDGrocery(context: coreDataProvider.context)

@@ -17,8 +17,11 @@ extension CDTag {
 extension Tag {
     func toEntity(coreDataProvider: CoreDataProvider) throws -> CDTag {
         let request = CDTag.fetchRequest()
-        request.predicate = NSPredicate(format: "name == %@", self.name)
-        let fetchedTags = try coreDataProvider.fetch(request: request)
+        let predicate = NSPredicate(format: "name matches[cd] %@", self.name)
+        let fetchedTags = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate,
+            sortDiscriptors: nil)
 
         if let fetchedTag = fetchedTags.first {
             return fetchedTag
