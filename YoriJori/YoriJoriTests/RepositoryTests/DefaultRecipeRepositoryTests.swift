@@ -133,4 +133,65 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Assert
         XCTAssertEqual(result, [sushiRecipe, hamburgerRecipe])
     }
+    
+    func test_fetchRecipesByGrocery_RegardlessOfCase() throws {
+        // Arrange
+        let creamSpaghettiRecipe = Recipe(
+            id: UUID(),
+            title: "크림 스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [
+                IngreidentGroup(
+                    title: "주재료",
+                    ingredients: [Ingredient(grocery: .init(name: "스파게티면"), amount: 500, unit: .init(rawValue: "g")!)]
+                ),
+                IngreidentGroup(
+                    title: "소스",
+                    ingredients: [Ingredient(grocery: .init(name: "cream"), amount: 100, unit: .init(rawValue: "g")!),
+                                  Ingredient(grocery: .init(name: "페퍼론치노"), amount: 30, unit: .init(rawValue: "g")!)]
+                )],
+            cookingTime: 800,
+            progress: [Step(index: 1, description: "면을 삼는다", image: nil, time: 300, groceries: [Grocery(name: "스파게티면")])],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        
+        let risottoReceipe = Recipe(
+            id: UUID(),
+            title: "리조또",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [
+                IngreidentGroup(
+                    title: "주재료",
+                    ingredients: [Ingredient(grocery: .init(name: "스파게티면"), amount: 500, unit: .init(rawValue: "g")!)]
+                ),
+                IngreidentGroup(
+                    title: "소스",
+                    ingredients: [Ingredient(grocery: .init(name: "Cream"), amount: 100, unit: .init(rawValue: "g")!),
+                                  Ingredient(grocery: .init(name: "페퍼론치노"), amount: 30, unit: .init(rawValue: "g")!)]
+                )],
+            cookingTime: 800,
+            progress: [Step(index: 1, description: "면을 삼는다", image: nil, time: 300, groceries: [Grocery(name: "스파게티면")])],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(creamSpaghettiRecipe)
+        try sut.createRecipe(risottoReceipe)
+        
+        // Act
+        let result = try sut.fetchRecipes(by: "cream", sorts: [.titleAscending: true])
+        
+        // Assert
+        XCTAssertEqual(result, [risottoReceipe, creamSpaghettiRecipe])
+    }
 }

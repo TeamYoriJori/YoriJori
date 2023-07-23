@@ -41,7 +41,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         let result = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
-        sortDiscriptors: createSortDescriptor(with: sorts)
+            sortDiscriptors: createSortDescriptor(with: sorts)
         )
         
         return result.map { $0.toDomain() }
@@ -56,14 +56,35 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         let predicate = NSCompoundPredicate(
             type: .or,
             subpredicates: [titlePredicate, tagPredicate, groceryPredicate])
-        
-        let result = try coreDataProvider.fetch(
+        let fetchedRecipesByTitleOrTag = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate,
-            sortDiscriptors: createSortDescriptor(with: sorts)
+            predicate: predicate
         )
         
-        return result.map { $0.toDomain() }
+        let fetchedRecipesByGrocery = try fetchRecipesByGrocery(name: keyword)
+        
+        let result = (fetchedRecipesByTitleOrTag + fetchedRecipesByGrocery).removeDuplicate()
+        let sortedResult = sort(result, with: sorts)
+        return sortedResult.map { $0.toDomain() }
+    }
+    
+    private func fetchRecipesByGrocery(name: String) throws -> [CDRecipe] {
+        let request = CDGrocery.fetchRequest()
+        let predicate = NSPredicate(format: "name LIKE %@", name.lowercased())
+        
+        guard let fetchedGrocery = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate,
+            sortDiscriptors: nil).first,
+              let fetcehdIngredients: NSSet = fetchedGrocery.ingredients else {
+            return []
+        }
+        
+        let ingredients = Array<CDIngredient>(Set(_immutableCocoaSet: fetcehdIngredients))
+        let ingredientGroups = ingredients.map { $0.ingredientGroup }
+        let recipes = ingredientGroups.compactMap { $0?.recipe }
+        
+        return recipes
     }
     
     func fetchRecipes(
@@ -81,7 +102,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
               let recipes = fetchedRecipeBook.recipes else {
             return []
         }
-
+        
         return Array(Set(_immutableCocoaSet: recipes))
             .map { (recipe: CDRecipe) in recipe.toDomain() }
     }
@@ -170,5 +191,15 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return sortDescriptors.map { (key: RecipeSortDescriptor, value: Bool) in
             NSSortDescriptor(key: key.rawValue, ascending: value)
         }
+    }
+    
+    private func sort<T>(_ array: [T], with sortDescirptors: [RecipeSortDescriptor: Bool]) -> [T] {
+        let array = NSMutableArray(array: array)
+        let sortDescriptors = createSortDescriptor(with: sortDescirptors)
+        guard let sortedArray = array.sortedArray(using: sortDescriptors) as? [T] else {
+            return []
+        }
+        
+        return sortedArray
     }
 }

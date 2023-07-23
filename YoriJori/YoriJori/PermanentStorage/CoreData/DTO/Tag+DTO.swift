@@ -17,7 +17,7 @@ extension CDTag {
 extension Tag {
     func toEntity(coreDataProvider: CoreDataProvider) throws -> CDTag {
         let request = CDTag.fetchRequest()
-        let predicate = NSPredicate(format: "name matches[cd] %@", self.name)
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", self.name)
         let fetchedTags = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,

@@ -21,20 +21,7 @@ extension CDIngredient {
 extension Ingredient {
     func toEntity(coreDataProvider: CoreDataProvider) -> CDIngredient {
         let ingredient = CDIngredient(context: coreDataProvider.context)
-        
-        let groceryFetchRequest = CDGrocery.fetchRequest()
-        let predicate = NSPredicate(format: "name == %@", self.grocery.name)
-        if let grocery = try? coreDataProvider.fetch(
-            request: groceryFetchRequest,
-            predicate: predicate,
-            sortDiscriptors: nil).first {
-            ingredient.grocery = grocery
-        } else {
-            let grocery = CDGrocery(context: coreDataProvider.context)
-            grocery.name = self.grocery.name
-            ingredient.grocery = grocery
-        }
-        
+        ingredient.grocery = try! self.grocery.toEntity(coreDataProvider: coreDataProvider)
         ingredient.amount = Double(self.amount ?? -1)
         ingredient.unit = self.unit?.rawValue
         return ingredient

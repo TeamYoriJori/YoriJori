@@ -2,19 +2,19 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDGrocery" representedClassName="CDGrocery" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="ingredient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDIngredient" inverseName="grocery" inverseEntity="CDIngredient"/>
-        <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDStep" inverseName="groceries" inverseEntity="CDStep"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDIngredient" inverseName="grocery" inverseEntity="CDIngredient"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDStep" inverseName="groceries" inverseEntity="CDStep"/>
     </entity>
     <entity name="CDIngredient" representedClassName="CDIngredient" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="unit" optional="YES" attributeType="String"/>
-        <relationship name="grocery" maxCount="1" deletionRule="Nullify" destinationEntity="CDGrocery" inverseName="ingredient" inverseEntity="CDGrocery"/>
+        <relationship name="grocery" maxCount="1" deletionRule="Nullify" destinationEntity="CDGrocery" inverseName="ingredients" inverseEntity="CDGrocery"/>
         <relationship name="ingredientGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDIngredientGroup" inverseName="ingredients" inverseEntity="CDIngredientGroup"/>
     </entity>
     <entity name="CDIngredientGroup" representedClassName="CDIngredientGroup" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredient" inverseName="ingredientGroup" inverseEntity="CDIngredient"/>
-        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRecipe" inverseName="ingredientGroups" inverseEntity="CDRecipe"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRecipe" inverseName="ingredientGroups" inverseEntity="CDRecipe"/>
     </entity>
     <entity name="CDRecipe" representedClassName="CDRecipe" syncable="YES">
         <attribute name="cookingTime" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -27,7 +27,7 @@
         <attribute name="subTitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="ingredientGroups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredientGroup" inverseName="recipes" inverseEntity="CDIngredientGroup"/>
+        <relationship name="ingredientGroups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredientGroup" inverseName="recipe" inverseEntity="CDIngredientGroup"/>
         <relationship name="progress" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDStep" inverseName="recipes" inverseEntity="CDStep"/>
         <relationship name="recipeBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRecipeBook" inverseName="recipes" inverseEntity="CDRecipeBook"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="recipes" inverseEntity="CDTag"/>
@@ -43,7 +43,7 @@
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="groceries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGrocery" inverseName="step" inverseEntity="CDGrocery"/>
+        <relationship name="groceries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGrocery" inverseName="steps" inverseEntity="CDGrocery"/>
         <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRecipe" inverseName="progress" inverseEntity="CDRecipe"/>
     </entity>
     <entity name="CDTag" representedClassName="CDTag" syncable="YES">

@@ -35,8 +35,19 @@ extension Recipe {
         recipe.id = self.id
         recipe.title = self.title
         recipe.subTitle = self.subTitle
+        recipe.cookingTime = Int64(self.cookingTime ?? -1)
+        recipe.descriptions = self.description
+        recipe.note = self.note
+        recipe.serving = Int64(self.serving ?? -1)
+        recipe.image = self.image
+        recipe.createdAt = self.createdAt
+        recipe.updatedAt = self.updatedAt
         recipe.tags = NSSet(
             array: self.tags?.compactMap { try! $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
+        recipe.ingredientGroups = NSSet(
+            array: self.ingredientsGroups?.compactMap { $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
+        recipe.progress =  NSSet(
+            array: self.progress?.compactMap { $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         return recipe
     }
 }

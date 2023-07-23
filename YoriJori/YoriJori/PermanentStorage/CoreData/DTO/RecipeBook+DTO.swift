@@ -23,8 +23,8 @@ extension CDRecipeBook {
 extension RecipeBook {
     func toEntity(coreDataProvider: CoreDataProvider) -> CDRecipeBook {
         let request = CDRecipeBook.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", self.id as CVarArg)
-        let fetchedRecipeBooks = try? coreDataProvider.fetch(request: request)
+        let predicate = NSPredicate(format: "id == %@", self.id as CVarArg)
+        let fetchedRecipeBooks = try? coreDataProvider.fetch(request: request, predicate: predicate)
 
         if let fetchedRecipeBook = fetchedRecipeBooks?.first {
             return fetchedRecipeBook

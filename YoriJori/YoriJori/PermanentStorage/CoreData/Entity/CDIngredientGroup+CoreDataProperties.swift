@@ -18,6 +18,7 @@ extension CDIngredientGroup {
 
     @NSManaged public var title: String?
     @NSManaged public var ingredients: NSSet?
+    @NSManaged public var recipe: CDRecipe?
 
 }
 
