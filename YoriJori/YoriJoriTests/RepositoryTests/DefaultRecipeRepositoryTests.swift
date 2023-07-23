@@ -176,6 +176,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         XCTAssertEqual(result, [shuCreamReceipe, creamSpaghettiRecipe, creamSpaghettiRecipe2])
     }
     
+    // FIXME: - Array 일관성있게 순서대로 작동하지 않음
     func test_fetchRecipesByTitle_whenSortsDescriptorsCountIsThree() throws {
         // Arrange
         let date = Date()
@@ -394,5 +395,184 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         
         // Assert
         XCTAssertEqual(result, [risottoReceipe, shuCreamReceipe, creamSpaghettiRecipe])
+    }
+    
+    func test_updateRecipeTitle() throws {
+        // Arrange
+        let id = UUID()
+        let recipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        let newRecipe = Recipe(
+            id: id,
+            title: "크림 빵",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        
+        // Act
+        try sut.updateRecipe(newRecipe)
+        
+        // Assert
+        let result = try sut.fetchRecipeByID(id)
+        XCTAssertEqual(result, newRecipe)
+    }
+    
+    func test_updateRecipeTag() throws {
+        // Arrange
+        let id = UUID()
+        let recipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        let newRecipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        
+        // Act
+        try sut.updateRecipe(newRecipe)
+        
+        // Assert
+        let result = try sut.fetchRecipeByID(id)
+        XCTAssertEqual(result, newRecipe)
+    }
+    
+    func test_updateRecipeIngredient() throws {
+        // Arrange
+        let id = UUID()
+        let recipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [.init(title: "주재료", ingredients: [.init(grocery: .init(name: "바닐라빈"), amount: 600, unit: .g)])],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        let newRecipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        
+        // Act
+        try sut.updateRecipe(newRecipe)
+        
+        // Assert
+        let result = try sut.fetchRecipeByID(id)
+        XCTAssertEqual(result, newRecipe)
+    }
+    
+    func test_updateRecipeProgress() throws {
+        // Arrange
+        let id = UUID()
+        let recipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [.init(title: "주재료", ingredients: [.init(grocery: .init(name: "바닐라빈"), amount: 600, unit: .g)])],
+            cookingTime: 800,
+            progress: [Step(index: 0, description: "바닐라빈을 준비한다", image: nil, time: 50, groceries: [.init(name: "바닐라빈")])],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        let newRecipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [
+                Step(index: 0, description: "바닐라빈을 준비한다", image: nil, time: 50, groceries: [.init(name: "바닐라빈")]),
+                Step(index: 1, description: "계량한다", image: nil, time: 60, groceries: nil)
+            ],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(recipe)
+        
+        // Act
+        try sut.updateRecipe(newRecipe)
+        
+        // Assert
+        let result = try sut.fetchRecipeByID(id)
+        XCTAssertEqual(result, newRecipe)
     }
 }
