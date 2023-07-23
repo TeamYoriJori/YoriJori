@@ -23,9 +23,6 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         sut = nil
     }
 
-    // MARK: - RecipeBook을 지정하는 케이스 테스트
-
-    
     // MARK: - RecipeBook을 지정하지 않는 케이스 테스트
     
     func test_createRecipe() throws {
@@ -602,4 +599,8 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let fetchedRecipe = try sut.fetchRecipeByID(id)
         XCTAssertNil(fetchedRecipe)
     }
+    
+    // MARK: - RecipeBook을 지정하는 케이스 테스트
+
+    // TODO: - fetchRecipesByBookID 테스트
 }
