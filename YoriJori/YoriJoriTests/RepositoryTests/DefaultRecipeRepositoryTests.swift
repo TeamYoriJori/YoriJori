@@ -575,4 +575,31 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let result = try sut.fetchRecipeByID(id)
         XCTAssertEqual(result, newRecipe)
     }
+    
+    func test_deleteRecipe() throws {
+        // Arrnage
+        let id = UUID()
+        let recipe = Recipe(
+            id: id,
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "디저트")],
+            ingredientsGroups: [.init(title: "주재료", ingredients: [.init(grocery: .init(name: "바닐라빈"), amount: 600, unit: .g)])],
+            cookingTime: 800,
+            progress: [Step(index: 0, description: "바닐라빈을 준비한다", image: nil, time: 50, groceries: [.init(name: "바닐라빈")])],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        
+        // Act
+        try sut.deleteRecipe(recipe)
+        
+        // Assert
+        let fetchedRecipe = try sut.fetchRecipeByID(id)
+        XCTAssertNil(fetchedRecipe)
+    }
 }
