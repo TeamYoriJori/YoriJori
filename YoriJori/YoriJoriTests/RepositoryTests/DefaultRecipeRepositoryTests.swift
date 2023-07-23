@@ -118,6 +118,140 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         XCTAssertEqual(result, [sushiRecipe, creamSpaghetti])
     }
     
+    func test_fetchRecipesByTitle_whenSortsDescriptorsCountIsTwo() throws {
+        // Arrange
+        let creamSpaghettiRecipe = Recipe(
+            id: UUID(),
+            title: "크림 스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        let creamSpaghettiRecipe2 = Recipe(
+            id: UUID(),
+            title: "크림 스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [],
+            cookingTime: 900,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        let shuCreamReceipe = Recipe(
+            id: UUID(),
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(creamSpaghettiRecipe)
+        try sut.createRecipe(creamSpaghettiRecipe2)
+        try sut.createRecipe(shuCreamReceipe)
+        
+        // Act
+        let result = try sut.fetchRecipesByTitle("크림", sorts: [.titleAscending: true, .cookingTimeAscending: true])
+        
+        // Assert
+        XCTAssertEqual(result, [shuCreamReceipe, creamSpaghettiRecipe, creamSpaghettiRecipe2])
+    }
+    
+    func test_fetchRecipesByTitle_whenSortsDescriptorsCountIsThree() throws {
+        // Arrange
+        let date = Date()
+        let creamSpaghettiRecipe = Recipe(
+            id: UUID(),
+            title: "크림스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: date)
+        )
+        let creamSpaghettiRecipe2 = Recipe(
+            id: UUID(),
+            title: "크림스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [],
+            cookingTime: 900,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 300, since: date)
+        )
+        let shuCreamReceipe = Recipe(
+            id: UUID(),
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 300, since: date)
+        )
+        let creamSoupReceipe = Recipe(
+            id: UUID(),
+            title: "크림수프",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: date)
+        )
+        try sut.createRecipe(creamSpaghettiRecipe)
+        try sut.createRecipe(creamSpaghettiRecipe2)
+        try sut.createRecipe(shuCreamReceipe)
+        try sut.createRecipe(creamSoupReceipe)
+        
+        // Act
+        // HINT: Array 내 나타나는 순서대로 정렬이 실행됨
+        let result = try sut.fetchRecipesByTitle("크림", sorts: [.updatedAtAscending: true ,.titleAscending: true, .cookingTimeAscending: true])
+        
+        // Assert
+        XCTAssertEqual(result, [creamSoupReceipe, creamSpaghettiRecipe, shuCreamReceipe, creamSpaghettiRecipe2])
+    }
+    
     func test_fetchRecipesByTagWithTitleAscendingSorting() throws {
         // Arrange
         let hamburgerRecipe = DummyRecipe.hamburger
@@ -193,5 +327,72 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         
         // Assert
         XCTAssertEqual(result, [risottoReceipe, creamSpaghettiRecipe])
+    }
+    
+    func test_fetchRecipesByKeyword_whenKeywordIsTitleOrTagOrGrocery() throws {
+        // Arrange
+        let creamSpaghettiRecipe = Recipe(
+            id: UUID(),
+            title: "크림 스파게티",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        let risottoReceipe = Recipe(
+            id: UUID(),
+            title: "리조또",
+            subTitle: "냠냠",
+            tags: [.init(name: "양식")],
+            ingredientsGroups: [
+                IngreidentGroup(
+                    title: "주재료",
+                    ingredients: [Ingredient(grocery: .init(name: "스파게티면"), amount: 500, unit: .init(rawValue: "g")!)]
+                ),
+                IngreidentGroup(
+                    title: "소스",
+                    ingredients: [Ingredient(grocery: .init(name: "크림"), amount: 100, unit: .init(rawValue: "g")!),
+                                  Ingredient(grocery: .init(name: "페퍼론치노"), amount: 30, unit: .init(rawValue: "g")!)]
+                )],
+            cookingTime: 800,
+            progress: [Step(index: 1, description: "면을 삼는다", image: nil, time: 300, groceries: [Grocery(name: "스파게티면")])],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        let shuCreamReceipe = Recipe(
+            id: UUID(),
+            title: "슈크림",
+            subTitle: "냠냠",
+            tags: [.init(name: "크림")],
+            ingredientsGroups: [],
+            cookingTime: 800,
+            progress: [],
+            description: "본아쁘띠🍝",
+            note: nil,
+            serving: 1,
+            image: nil,
+            createdAt: Date(),
+            updatedAt: Date(timeInterval: 100, since: Date())
+        )
+        try sut.createRecipe(creamSpaghettiRecipe)
+        try sut.createRecipe(risottoReceipe)
+        try sut.createRecipe(shuCreamReceipe)
+        
+        // Act
+        let result = try sut.fetchRecipesByKeyword("크림", sorts: [.titleAscending: true])
+        
+        // Assert
+        XCTAssertEqual(result, [risottoReceipe, shuCreamReceipe, creamSpaghettiRecipe])
     }
 }
