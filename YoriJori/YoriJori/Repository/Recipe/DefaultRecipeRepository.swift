@@ -23,7 +23,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipe(by id: UUID) throws -> Recipe? {
+    func fetchRecipeByID(_ id: UUID) throws -> Recipe? {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -34,7 +34,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.first?.toDomain()
     }
     
-    func fetchRecipes(byTitle title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipesByTitle(_ title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
         
@@ -47,7 +47,7 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipes(by keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipesByKeyword(_ keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let titlePredicate = NSPredicate(format: "title contains[cd] %@", keyword)
         let tagPredicate = NSPredicate(format: "ANY tags.name == %@", keyword)
@@ -87,8 +87,8 @@ final class RecipeRepository: RecipeRepositoryProtocol {
         return recipes
     }
     
-    func fetchRecipes(
-        by bookdId: UUID,
+    func fetchRecipesByBookID(
+        _ bookdId: UUID,
         sorts: [RecipeSortDescriptor: Bool])
     throws -> [Recipe]
     {
