@@ -15,6 +15,7 @@ extension CDRecipeBook {
             id: self.id ?? UUID(),
             title: self.title,
             image: self.image,
+            updatedAt: self.updatedAt,
             recipes: recipeEntities?.map{ $0.toDomain() }
         )
     }
@@ -34,6 +35,7 @@ extension RecipeBook {
         recipeBook.id = self.id
         recipeBook.title = self.title
         recipeBook.image = self.image
+        recipeBook.updatedAt = self.updatedAt
         return recipeBook
     }
 }

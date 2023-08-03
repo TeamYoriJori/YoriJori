@@ -19,6 +19,7 @@ extension CDRecipeBook {
     @NSManaged public var id: UUID?
     @NSManaged public var image: Data?
     @NSManaged public var title: String?
+    @NSManaged public var updatedAt: Date
     @NSManaged public var recipes: NSSet?
 
 }
