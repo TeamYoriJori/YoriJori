@@ -146,6 +146,15 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
+		63B561C62A9207AB00626E90 /* RecipeBook */ = {
+			isa = PBXGroup;
+			children = (
+				C21E3DA42A7BA98A001E91DA /* RecipeBookRepositoryProtocol.swift */,
+				C21E3DA62A7BB575001E91DA /* DefaultRecipeBookRepository.swift */,
+			);
+			path = RecipeBook;
+			sourceTree = "<group>";
+		};
 		63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +255,7 @@
 		D1C233E32A63C06E00CE7492 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				63B561C62A9207AB00626E90 /* RecipeBook */,
 				D1C233E42A63C0E400CE7492 /* Recipe */,
 			);
 			path = Repository;
@@ -256,8 +266,6 @@
 			children = (
 				C21FA1612A482997001B3C0E /* RecipeRepositoryProtocol.swift */,
 				C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */,
-				C21E3DA42A7BA98A001E91DA /* RecipeBookRepositoryProtocol.swift */,
-				C21E3DA62A7BB575001E91DA /* DefaultRecipeBookRepository.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
