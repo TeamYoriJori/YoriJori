@@ -139,11 +139,11 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func updateRecipe(_ recipe: Recipe) throws {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
-        guard let recipeEntity = try? coreDataProvider.fetch(
+        guard let recipeEntity = try coreDataProvider.fetch(
             request: request,
             predicate: predicate)
             .first else {
-            return
+            throw RecipeRepositoryError.RecipeFetchError
         }
         
         recipeEntity.title = recipe.title
@@ -173,10 +173,10 @@ final class RecipeRepository: RecipeRepositoryProtocol {
     func deleteRecipe(_ recipe: Recipe) throws {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
-        guard let recipeEntity = try? coreDataProvider.fetch(
+        guard let recipeEntity = try coreDataProvider.fetch(
             request: request,
             predicate: predicate).first else {
-            return
+            throw RecipeRepositoryError.RecipeFetchError
         }
         
         try self.coreDataProvider.delete(object: recipeEntity)

@@ -24,3 +24,7 @@ enum RecipeSortDescriptor: String {
     case updatedAtAscending = "updatedAt"
     case cookingTimeAscending = "cookingTime"
 }
+
+enum RecipeRepositoryError: Error {
+    case RecipeFetchError
+}
