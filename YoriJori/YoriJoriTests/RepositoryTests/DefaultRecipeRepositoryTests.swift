@@ -594,6 +594,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
             createdAt: Date(),
             updatedAt: Date(timeInterval: 100, since: Date())
         )
+        try sut.createRecipe(recipe)
         
         // Act
         try sut.deleteRecipe(recipe)
