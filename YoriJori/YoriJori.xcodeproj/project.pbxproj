@@ -39,7 +39,7 @@
 		C21E3DA72A7BB575001E91DA /* DefaultRecipeBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21E3DA62A7BB575001E91DA /* DefaultRecipeBookRepository.swift */; };
 		C21E3DA92A7BBAD9001E91DA /* DummyRecipeBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21E3DA82A7BBAD9001E91DA /* DummyRecipeBook.swift */; };
 		C21E3DAB2A7BBBE5001E91DA /* DefaultRecipeBookRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21E3DAA2A7BBBE5001E91DA /* DefaultRecipeBookRepositoryTests.swift */; };
-		C21FA1622A482997001B3C0E /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA1612A482997001B3C0E /* RecipeRepository.swift */; };
+		C21FA1622A482997001B3C0E /* RecipeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA1612A482997001B3C0E /* RecipeRepositoryProtocol.swift */; };
 		C21FA1642A4829A7001B3C0E /* DefaultRecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */; };
 		C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */; };
 		C28F419B2A5959B800445B90 /* CDRecipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */; };
@@ -98,7 +98,7 @@
 		C21E3DA62A7BB575001E91DA /* DefaultRecipeBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeBookRepository.swift; sourceTree = "<group>"; };
 		C21E3DA82A7BBAD9001E91DA /* DummyRecipeBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyRecipeBook.swift; sourceTree = "<group>"; };
 		C21E3DAA2A7BBBE5001E91DA /* DefaultRecipeBookRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeBookRepositoryTests.swift; sourceTree = "<group>"; };
-		C21FA1612A482997001B3C0E /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
+		C21FA1612A482997001B3C0E /* RecipeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRecipeRepository.swift; sourceTree = "<group>"; };
 		C28F41982A5959B800445B90 /* CDRecipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C28F41992A5959B800445B90 /* CDRecipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDRecipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		D1C233E42A63C0E400CE7492 /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
-				C21FA1612A482997001B3C0E /* RecipeRepository.swift */,
+				C21FA1612A482997001B3C0E /* RecipeRepositoryProtocol.swift */,
 				C21FA1632A4829A7001B3C0E /* DefaultRecipeRepository.swift */,
 				C21E3DA42A7BA98A001E91DA /* RecipeBookRepositoryProtocol.swift */,
 				C21E3DA62A7BB575001E91DA /* DefaultRecipeBookRepository.swift */,
@@ -398,7 +398,7 @@
 				C20140F02A2F60E3001EEDFE /* Unit.swift in Sources */,
 				63C521C02A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift in Sources */,
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
-				C21FA1622A482997001B3C0E /* RecipeRepository.swift in Sources */,
+				C21FA1622A482997001B3C0E /* RecipeRepositoryProtocol.swift in Sources */,
 				63246F3D2A596D2600239A9A /* RecipeBook+DTO.swift in Sources */,
 				63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */,
 				63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */,
