@@ -77,11 +77,11 @@ final class DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     func updateRecipeBook(_ recipeBook: RecipeBook) throws {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipeBook.id as CVarArg)
-        guard let recipeBookEntity = try? coreDataProvider.fetch(
+        guard let recipeBookEntity = try coreDataProvider.fetch(
             request: request,
             predicate: predicate)
             .first else {
-            return
+            throw RecipeBookRepositoryError.RecipeBookFetchError
         }
         
         recipeBookEntity.title = recipeBook.title
@@ -99,13 +99,13 @@ final class DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     func deleteRecipeBook(_ recipeBook: RecipeBook) throws {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", recipeBook.id as CVarArg)
-        guard let recipeEntity = try? coreDataProvider.fetch(
+        guard let recipeBookEntity = try coreDataProvider.fetch(
             request: request,
             predicate: predicate).first else {
-            return
+            throw RecipeBookRepositoryError.RecipeBookFetchError
         }
         
-        try self.coreDataProvider.delete(object: recipeEntity)
+        try self.coreDataProvider.delete(object: recipeBookEntity)
     }
     
     private func createSortDescriptor(
