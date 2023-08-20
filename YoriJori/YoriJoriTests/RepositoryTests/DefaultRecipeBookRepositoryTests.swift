@@ -31,8 +31,8 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         try sut.createRecipeBook(recipeBook)
         
         // Assert
-        let expectedRecipe = try? sut.fetchRecipeBooksByTitle("한식", sorts: [:])
-        XCTAssertEqual(recipeBook, expectedRecipe?.first)
+        let expectedRecipeBook = try? sut.fetchRecipeBooksByTitle("한식", sorts: [:])
+        XCTAssertEqual(recipeBook, expectedRecipeBook?.first)
     }
     
     func test_deleteRecipeBook()  throws {
@@ -44,8 +44,8 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         try sut.deleteRecipeBook(recipeBook)
         
         // Assert
-        let expectedRecipe = try? sut.fetchRecipeBooksByTitle("한식", sorts: [:])
-        XCTAssertNil(expectedRecipe?.first)
+        let expectedRecipeBook = try? sut.fetchRecipeBooksByTitle("한식", sorts: [:])
+        XCTAssertNil(expectedRecipeBook?.first)
     }
     
     func test_updateRecipeBook() throws {
@@ -63,8 +63,8 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         try sut.updateRecipeBook(recipeBookUpdatedName)
         
         // Assert
-        let expectedRecipe = try? sut.fetchRecipeBookByID(recipeBookUpdatedName.id)
-        XCTAssertEqual(recipeBookUpdatedName.title, expectedRecipe?.title)
+        let expectedRecipeBook = try? sut.fetchRecipeBookByID(recipeBookUpdatedName.id)
+        XCTAssertEqual(recipeBookUpdatedName.title, expectedRecipeBook?.title)
     }
     
     func test_fetchAllRecipeBook() throws {
