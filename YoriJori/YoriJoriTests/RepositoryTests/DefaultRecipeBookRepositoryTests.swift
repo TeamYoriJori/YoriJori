@@ -59,7 +59,7 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
             recipes: []
         )
         // Act
-        try sut.createRecipeBook(recipeBookUpdatedName)
+        try sut.createRecipeBook(recipeBook)
         try sut.updateRecipeBook(recipeBookUpdatedName)
         
         // Assert
