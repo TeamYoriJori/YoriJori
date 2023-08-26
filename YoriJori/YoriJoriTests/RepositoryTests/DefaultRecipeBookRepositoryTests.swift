@@ -11,16 +11,19 @@ import XCTest
 final class DefaultRecipeBookRepositoryTests: XCTestCase {
 
     private var sut: DefaultRecipeBookRepository!
+    private var sut2: DefaultRecipeRepository!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         let inMemroyCoreDataProvider = CoreDataProvider(.inMemory)
         sut = DefaultRecipeBookRepository(coreDataProvider: inMemroyCoreDataProvider)
+        sut2 = DefaultRecipeRepository(coreDataProvider: inMemroyCoreDataProvider)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         sut = nil
+        sut2 = nil
     }
     
     func test_createRecipeBook()  throws {
@@ -110,5 +113,20 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         
         // Assert
         XCTAssertEqual(result, [japaneseRecipeBook, koreanRecipeBook])
+    }
+    
+    func test_addRecipeToRecipeBook() throws {
+        // Arrange
+        let recipe = DummyRecipe.sushi
+        let recipeBook = DummyRecipeBook.japanese
+        try sut2.createRecipe(recipe)
+        try sut.createRecipeBook(recipeBook)
+        
+        // Act
+        try sut.addRecipe(recipe, to: recipeBook)
+        
+        // Assert
+        let updatedRecipeBook = try sut.fetchRecipeBookByID(recipeBook.id)
+        XCTAssertEqual(updatedRecipeBook?.recipes, [recipe])
     }
 }
