@@ -129,4 +129,20 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         let updatedRecipeBook = try sut.fetchRecipeBookByID(recipeBook.id)
         XCTAssertEqual(updatedRecipeBook?.recipes, [recipe])
     }
+    
+    func test_removeRecipeFromRecipeBook() throws {
+        // Arrange
+        let recipe = DummyRecipe.sushi
+        let recipeBook = DummyRecipeBook.japanese
+        try sut2.createRecipe(recipe)
+        try sut.createRecipeBook(recipeBook)
+        try sut.addRecipe(recipe, to: recipeBook)
+        
+        // Act
+        try sut.removeRecipe(recipe, from: recipeBook)
+        
+        // Assert
+        let updatedRecipeBook = try sut.fetchRecipeBookByID(recipeBook.id)
+        XCTAssertEqual(updatedRecipeBook?.recipes?.count, 0)
+    }
 }
