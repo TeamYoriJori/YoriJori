@@ -51,6 +51,25 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         XCTAssertNil(expectedRecipeBook?.first)
     }
     
+    func test_deleteRecipeBookDeletesAllRecipes()  throws {
+        // Arrange
+        let recipeBook = DummyRecipeBook.korean
+        let recipe1 = DummyRecipe.sushi
+        let recipe2 = DummyRecipe.sakeDong
+        try sut.createRecipeBook(recipeBook)
+        try sut2.createRecipe(recipe1)
+        try sut2.createRecipe(recipe2)
+        try sut.addRecipe(recipe1, to: recipeBook)
+        try sut.addRecipe(recipe2, to: recipeBook)
+        
+        // Act
+        try sut.deleteRecipeBook(recipeBook)
+        
+        // Assert
+        let fetchedRecipes = try sut2.fetchAllRecipes()
+        XCTAssertEqual(fetchedRecipes.count, 0)
+    }
+    
     func test_updateRecipeBook() throws {
         // Arrange
         let recipeBook = DummyRecipeBook.korean
