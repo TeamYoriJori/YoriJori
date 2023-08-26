@@ -618,7 +618,6 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.deleteRecipe(recipe)
         
         // Assert
-        let fetchedRecipe = try sut.fetchRecipeByID(id)
-        XCTAssertNil(fetchedRecipe)
+        XCTAssertThrowsError(try sut.fetchRecipeByID(id))
     }
 }
