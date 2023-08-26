@@ -105,10 +105,8 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func addRecipe(_ recipe: Recipe, to recipeBook: RecipeBook) throws {
-        guard let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(id: recipe.id) else {
-            throw RecipeRepositoryError.RecipeFetchError
-        }
-        
+        let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(
+            id: recipe.id)
         let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         recipeBookEntity.addToRecipes(recipeEntity)
         
@@ -116,10 +114,8 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func removeRecipe(_ recipe: Recipe, from recipeBook: RecipeBook) throws {
-        guard let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(id: recipe.id) else {
-            throw RecipeRepositoryError.RecipeFetchError
-        }
-        
+        let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(
+            id: recipe.id)
         let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         recipeBookEntity.removeFromRecipes(recipeEntity)
         
