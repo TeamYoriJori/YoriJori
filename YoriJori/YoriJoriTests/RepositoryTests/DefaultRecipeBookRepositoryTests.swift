@@ -108,7 +108,8 @@ final class DefaultRecipeBookRepositoryTests: XCTestCase {
         // Arrange
         let firstRecipeBook = DummyRecipeBook.korean
         let secondRecipeBook = DummyRecipeBook.japanese
-        
+        print(firstRecipeBook.updatedAt)
+        print(secondRecipeBook.updatedAt)
         try sut.createRecipeBook(firstRecipeBook)
         try sut.createRecipeBook(secondRecipeBook)
         
