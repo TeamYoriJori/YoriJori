@@ -7,13 +7,40 @@
 
 import Foundation
 
-final class DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
+final class DefaultRecipeBookRepository {
     let coreDataProvider: CoreDataProvider
+    
+    private let defaultRecipeRepository: DefaultRecipeRepository
     
     init(coreDataProvider: CoreDataProvider = CoreDataProvider.shared) {
         self.coreDataProvider = coreDataProvider
+        self.defaultRecipeRepository = DefaultRecipeRepository(
+            coreDataProvider: coreDataProvider)
     }
     
+    func fetchRecipeBookEntity(id: UUID) throws -> CDRecipeBook? {
+        let request = CDRecipeBook.fetchRequest()
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let result = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate
+        )
+        
+        return result.first
+    }
+    
+    private func createSortDescriptor(
+        with sortDescriptors: [RecipeBookSortDescriptor: Bool]
+    ) -> [NSSortDescriptor]
+    {
+        return sortDescriptors.map { (key: RecipeBookSortDescriptor, value: Bool) in
+            NSSortDescriptor(key: key.rawValue, ascending: value)
+        }
+    }
+}
+
+extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     func fetchAllRecipeBooks() throws -> [RecipeBook] {
         let request = CDRecipeBook.fetchRequest()
         let result = try coreDataProvider.fetch(request: request)
@@ -34,15 +61,7 @@ final class DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func fetchRecipeBookByID(_ id: UUID) throws -> RecipeBook? {
-        let request = CDRecipeBook.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        let result = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate
-        )
-        
-        return result.first?.toDomain()
+        return try fetchRecipeBookEntity(id: id)?.toDomain()
     }
     
     func fetchRecipeBooksByTitle(_ title: String, sorts: [RecipeBookSortDescriptor : Bool]) throws -> [RecipeBook] {
@@ -108,12 +127,17 @@ final class DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
         try self.coreDataProvider.delete(object: recipeBookEntity)
     }
     
-    private func createSortDescriptor(
-        with sortDescriptors: [RecipeBookSortDescriptor: Bool]
-    ) -> [NSSortDescriptor]
-    {
-        return sortDescriptors.map { (key: RecipeBookSortDescriptor, value: Bool) in
-            NSSortDescriptor(key: key.rawValue, ascending: value)
+    func addRecipe(_ recipe: Recipe, to recipeBook: RecipeBook) throws {
+        guard let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(id: recipe.id) else {
+            throw RecipeRepositoryError.RecipeFetchError
         }
+        
+        guard let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id) else {
+            throw RecipeBookRepositoryError.RecipeBookFetchError
+        }
+        
+        recipeBookEntity.addToRecipes(recipeEntity)
+        
+        try self.coreDataProvider.context.save()
     }
 }

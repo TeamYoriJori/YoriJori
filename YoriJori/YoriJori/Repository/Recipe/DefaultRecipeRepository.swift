@@ -8,14 +8,37 @@
 import CoreData
 import Foundation
 
-final class DefaultRecipeRepository: RecipeRepositoryProtocol {
+final class DefaultRecipeRepository {
     
     let coreDataProvider: CoreDataProvider
     
     init(coreDataProvider: CoreDataProvider = CoreDataProvider.shared) {
         self.coreDataProvider = coreDataProvider
     }
+   
+    func fetchRecipeEntity(id: UUID) throws -> CDRecipe? {
+        let request = CDRecipe.fetchRequest()
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let result = try coreDataProvider.fetch(
+            request: request,
+            predicate: predicate)
+        
+        return result.first
+    }
     
+    private func sort<T>(_ array: [T], with sortDescirptors: [RecipeSortDescriptor: Bool]) -> [T] {
+        let array = NSMutableArray(array: array)
+        let sortDescriptors = createSortDescriptor(with: sortDescirptors)
+        guard let sortedArray = array.sortedArray(using: sortDescriptors) as? [T] else {
+            return []
+        }
+        
+        return sortedArray
+    }
+}
+
+extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     func fetchAllRecipes() throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let result = try coreDataProvider.fetch(request: request)
@@ -24,14 +47,7 @@ final class DefaultRecipeRepository: RecipeRepositoryProtocol {
     }
     
     func fetchRecipeByID(_ id: UUID) throws -> Recipe? {
-        let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        let result = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate)
-        
-        return result.first?.toDomain()
+        return try fetchRecipeEntity(id: id)?.toDomain()
     }
     
     func fetchRecipesByTitle(_ title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
@@ -189,15 +205,5 @@ final class DefaultRecipeRepository: RecipeRepositoryProtocol {
         return sortDescriptors.map { (key: RecipeSortDescriptor, value: Bool) in
             NSSortDescriptor(key: key.rawValue, ascending: value)
         }
-    }
-    
-    private func sort<T>(_ array: [T], with sortDescirptors: [RecipeSortDescriptor: Bool]) -> [T] {
-        let array = NSMutableArray(array: array)
-        let sortDescriptors = createSortDescriptor(with: sortDescirptors)
-        guard let sortedArray = array.sortedArray(using: sortDescriptors) as? [T] else {
-            return []
-        }
-        
-        return sortedArray
     }
 }

@@ -15,6 +15,7 @@ protocol RecipeBookRepositoryProtocol {
     func createRecipeBook(_ model: RecipeBook) throws
     func updateRecipeBook(_ recipeBook: RecipeBook) throws
     func deleteRecipeBook(_ recipeBook: RecipeBook) throws
+    func addRecipe(_ recipe: Recipe, to recipeBook: RecipeBook) throws
 }
 
 enum RecipeBookSortDescriptor: String {
