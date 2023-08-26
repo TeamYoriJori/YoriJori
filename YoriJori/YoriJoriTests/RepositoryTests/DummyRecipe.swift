@@ -14,6 +14,7 @@ enum DummyRecipe {
     
     static let hamburger = Recipe(
         id: UUID(),
+        recipeBookID: nil,
         title: "햄버거",
         subTitle: "릴리의 소울푸드",
         tags: [.init(name: "소울푸드")],
@@ -33,6 +34,7 @@ enum DummyRecipe {
     
     static let sushi = Recipe(
         id: UUID(),
+        recipeBookID: nil,
         title: "스시",
         subTitle: "초간단 스시 레시피",
         tags: [.init(name: "소울푸드"), .init(name: "일식")],
@@ -52,6 +54,7 @@ enum DummyRecipe {
     
     static let sakeDong = Recipe(
         id: UUID(),
+        recipeBookID: nil,
         title: "스시로 만든 사케동",
         subTitle: "초간단 사케동 레시피",
         tags: [.init(name: "일식")],
@@ -71,6 +74,7 @@ enum DummyRecipe {
     
     static let creamSpaghetti = Recipe(
         id: UUID(),
+        recipeBookID: nil,
         title: "크림 스파게티",
         subTitle: "냠냠",
         tags: [.init(name: "양식")],
@@ -96,6 +100,7 @@ enum DummyRecipe {
     
     static let mojito = Recipe(
         id: UUID(),
+        recipeBookID: nil,
         title: "mojito",
         subTitle: "모히토에서 몰디브 한잔",
         tags: [.init(name: "칵테일")],

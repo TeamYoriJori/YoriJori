@@ -12,6 +12,7 @@ extension CDRecipe {
     func toDomain() -> Recipe {
         Recipe(
             id: self.id,
+            recipeBookID: self.recipeBook?.id,
             title: self.title,
             subTitle: self.subTitle,
             tags: self.tags?.compactMap { $0 as? CDTag }.compactMap { $0.toDomain() },
@@ -33,6 +34,7 @@ extension Recipe {
     func toEntity(coreDataProvider: CoreDataProvider) -> CDRecipe {
         let recipe = CDRecipe(context: coreDataProvider.context)
         recipe.id = self.id
+        recipe.recipeBookID = self.recipeBookID
         recipe.title = self.title
         recipe.subTitle = self.subTitle
         recipe.cookingTime = Int64(self.cookingTime ?? -1)

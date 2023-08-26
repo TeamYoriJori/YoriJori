@@ -36,6 +36,8 @@ extension RecipeBook {
         recipeBook.title = self.title
         recipeBook.image = self.image
         recipeBook.updatedAt = self.updatedAt
+        recipeBook.recipes = NSSet(
+            array: self.recipes?.compactMap { $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
         return recipeBook
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 struct Recipe {
     let id: UUID
+    let recipeBookID: UUID?
     let title: String?
     let subTitle: String?
     let tags: [Tag]?

@@ -122,6 +122,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let creamSpaghettiRecipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림 스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -137,6 +138,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let creamSpaghettiRecipe2 = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림 스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -152,6 +154,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let shuCreamReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -182,6 +185,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let date = Date()
         let creamSpaghettiRecipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -197,6 +201,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let creamSpaghettiRecipe2 = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -212,6 +217,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let shuCreamReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -227,6 +233,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let creamSoupReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림수프",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -273,6 +280,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let creamSpaghettiRecipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림 스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -298,6 +306,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         
         let risottoReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "리조또",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -334,6 +343,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Arrange
         let creamSpaghettiRecipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "크림 스파게티",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -349,6 +359,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let risottoReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "리조또",
             subTitle: "냠냠",
             tags: [.init(name: "양식")],
@@ -373,6 +384,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
         let shuCreamReceipe = Recipe(
             id: UUID(),
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -402,6 +414,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let id = UUID()
         let recipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -418,6 +431,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         let newRecipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "크림 빵",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -446,6 +460,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let id = UUID()
         let recipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "크림")],
@@ -462,6 +477,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         let newRecipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -490,6 +506,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let id = UUID()
         let recipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -506,6 +523,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         let newRecipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -534,6 +552,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let id = UUID()
         let recipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -550,6 +569,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         try sut.createRecipe(recipe)
         let newRecipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -581,6 +601,7 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         let id = UUID()
         let recipe = Recipe(
             id: id,
+            recipeBookID: nil,
             title: "슈크림",
             subTitle: "냠냠",
             tags: [.init(name: "디저트")],
@@ -620,7 +641,6 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         )
 
         // Act
-        try sut.createRecipe(recipe)
         try sut2.createRecipeBook(recipeBook)
         
         // Assert

@@ -16,6 +16,8 @@ extension CDRecipe {
         return NSFetchRequest<CDRecipe>(entityName: "CDRecipe")
     }
 
+    @NSManaged public var recipeBook: CDRecipeBook?
+    @NSManaged public var recipeBookID: UUID?
     @NSManaged public var cookingTime: Int64
     @NSManaged public var createdAt: Date
     @NSManaged public var descriptions: String?
