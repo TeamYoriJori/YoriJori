@@ -18,16 +18,18 @@ final class DefaultRecipeBookRepository {
             coreDataProvider: coreDataProvider)
     }
     
-    func fetchRecipeBookEntity(id: UUID) throws -> CDRecipeBook? {
+    func fetchRecipeBookEntity(id: UUID) throws -> CDRecipeBook {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
-        let result = try coreDataProvider.fetch(
+        guard let recipeBook = try coreDataProvider.fetch(
             request: request,
             predicate: predicate
-        )
+        ).first else {
+            throw RecipeBookRepositoryError.RecipeBookFetchError
+        }
         
-        return result.first
+        return recipeBook
     }
     
     private func createSortDescriptor(
@@ -61,7 +63,7 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func fetchRecipeBookByID(_ id: UUID) throws -> RecipeBook? {
-        return try fetchRecipeBookEntity(id: id)?.toDomain()
+        return try fetchRecipeBookEntity(id: id).toDomain()
     }
     
     func fetchRecipeBooksByTitle(_ title: String, sorts: [RecipeBookSortDescriptor : Bool]) throws -> [RecipeBook] {
@@ -88,15 +90,7 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func updateRecipeBook(_ recipeBook: RecipeBook) throws {
-        let request = CDRecipeBook.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", recipeBook.id as CVarArg)
-        guard let recipeBookEntity = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate)
-            .first else {
-            throw RecipeBookRepositoryError.RecipeBookFetchError
-        }
-        
+        let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         recipeBookEntity.title = recipeBook.title
         recipeBookEntity.image = recipeBook.image
         recipeBookEntity.updatedAt = Date()
@@ -105,13 +99,7 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     }
     
     func deleteRecipeBook(_ recipeBook: RecipeBook) throws {
-        let request = CDRecipeBook.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", recipeBook.id as CVarArg)
-        guard let recipeBookEntity = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate).first else {
-            throw RecipeBookRepositoryError.RecipeBookFetchError
-        }
+        let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         
         try self.coreDataProvider.delete(object: recipeBookEntity)
     }
@@ -121,10 +109,7 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
             throw RecipeRepositoryError.RecipeFetchError
         }
         
-        guard let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id) else {
-            throw RecipeBookRepositoryError.RecipeBookFetchError
-        }
-        
+        let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         recipeBookEntity.addToRecipes(recipeEntity)
         
         try self.coreDataProvider.context.save()
@@ -135,10 +120,7 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
             throw RecipeRepositoryError.RecipeFetchError
         }
         
-        guard let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id) else {
-            throw RecipeBookRepositoryError.RecipeBookFetchError
-        }
-        
+        let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id)
         recipeBookEntity.removeFromRecipes(recipeEntity)
         
         try self.coreDataProvider.context.save()
