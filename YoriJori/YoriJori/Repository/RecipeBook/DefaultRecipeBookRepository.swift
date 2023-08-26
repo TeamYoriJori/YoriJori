@@ -84,12 +84,6 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
         recipeBook.image = model.image
         recipeBook.updatedAt = model.updatedAt
         
-        recipeBook.addToRecipes(
-            NSSet(
-                array: model.recipes?.map {
-                    $0.toEntity(coreDataProvider: coreDataProvider) } ?? [])
-        )
-        
         try? self.coreDataProvider.context.save()
     }
     
@@ -106,11 +100,6 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
         recipeBookEntity.title = recipeBook.title
         recipeBookEntity.image = recipeBook.image
         recipeBookEntity.updatedAt = Date()
-        
-        recipeBookEntity.recipes = NSSet(
-            array: recipeBook.recipes?.compactMap {
-                $0.toEntity(coreDataProvider: coreDataProvider) } ?? []
-        )
         
         try self.coreDataProvider.context.save()
     }

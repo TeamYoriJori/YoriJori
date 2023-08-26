@@ -639,12 +639,14 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
             updatedAt: Date(),
             recipes: [recipe]
         )
+        try sut.createRecipe(recipe)
+        try sut2.createRecipeBook(recipeBook)
+        try sut2.addRecipe(recipe, to: recipeBook)
 
         // Act
-        try sut2.createRecipeBook(recipeBook)
+        let expectedRecipe = try? sut.fetchRecipesByBookID(recipeBook.id, sorts: [:])
         
         // Assert
-        let expectedRecipe = try? sut.fetchRecipesByBookID(recipeBook.id, sorts: [:])
         XCTAssertEqual(recipe, expectedRecipe?.first)
     }
 }
