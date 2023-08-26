@@ -129,4 +129,18 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
         
         try self.coreDataProvider.context.save()
     }
+    
+    func removeRecipe(_ recipe: Recipe, from recipeBook: RecipeBook) throws {
+        guard let recipeEntity = try defaultRecipeRepository.fetchRecipeEntity(id: recipe.id) else {
+            throw RecipeRepositoryError.RecipeFetchError
+        }
+        
+        guard let recipeBookEntity = try fetchRecipeBookEntity(id: recipeBook.id) else {
+            throw RecipeBookRepositoryError.RecipeBookFetchError
+        }
+        
+        recipeBookEntity.removeFromRecipes(recipeEntity)
+        
+        try self.coreDataProvider.context.save()
+    }
 }
