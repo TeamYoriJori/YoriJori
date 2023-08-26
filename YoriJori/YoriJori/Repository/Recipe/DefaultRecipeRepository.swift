@@ -5,7 +5,6 @@
 //  Created by forest on 2023/06/25.
 //
 
-import CoreData
 import Foundation
 
 final class DefaultRecipeRepository {
@@ -19,7 +18,6 @@ final class DefaultRecipeRepository {
     func fetchRecipeEntity(id: UUID) throws -> CDRecipe {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
         guard let result = try coreDataProvider.fetch(
             request: request,
             predicate: predicate).first else {
@@ -29,10 +27,15 @@ final class DefaultRecipeRepository {
         return result
     }
     
-    private func sort<T>(_ array: [T], with sortDescirptors: [RecipeSortDescriptor: Bool]) -> [T] {
+    private func sort<T>(
+        _ array: [T],
+        with sortDescirptors: [RecipeSortDescriptor: Bool]
+    ) -> [T]
+    {
         let array = NSMutableArray(array: array)
         let sortDescriptors = createSortDescriptor(with: sortDescirptors)
-        guard let sortedArray = array.sortedArray(using: sortDescriptors) as? [T] else {
+        guard let sortedArray = array
+            .sortedArray(using: sortDescriptors) as? [T] else {
             return []
         }
         
@@ -44,7 +47,6 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     func fetchAllRecipes() throws -> [Recipe] {
         let request = CDRecipe.fetchRequest()
         let result = try coreDataProvider.fetch(request: request)
-        
         return result.map { $0.toDomain() }
     }
     
@@ -52,20 +54,26 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
         return try fetchRecipeEntity(id: id).toDomain()
     }
     
-    func fetchRecipesByTitle(_ title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipesByTitle(
+        _ title: String,
+        sorts: [RecipeSortDescriptor: Bool]
+    ) throws -> [Recipe]
+    {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
-        
         let result = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
             sortDiscriptors: createSortDescriptor(with: sorts)
         )
-        
         return result.map { $0.toDomain() }
     }
     
-    func fetchRecipesByKeyword(_ keyword: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
+    func fetchRecipesByKeyword(
+        _ keyword: String,
+        sorts: [RecipeSortDescriptor: Bool]
+    ) throws -> [Recipe]
+    {
         let request = CDRecipe.fetchRequest()
         let titlePredicate = NSPredicate(format: "title contains[cd] %@", keyword)
         let tagPredicate = NSPredicate(format: "ANY tags.name == %@", keyword)
@@ -79,7 +87,8 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
         
         let fetchedRecipesByGrocery = try fetchRecipesByGrocery(name: keyword)
         
-        let result = (fetchedRecipesByTitleOrTag + fetchedRecipesByGrocery).removeDuplicate()
+        let result = (fetchedRecipesByTitleOrTag + fetchedRecipesByGrocery)
+            .removeDuplicate()
         let sortedResult = sort(result, with: sorts)
         return sortedResult.map { $0.toDomain() }
     }
@@ -87,7 +96,6 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     private func fetchRecipesByGrocery(name: String) throws -> [CDRecipe] {
         let request = CDGrocery.fetchRequest()
         let predicate = NSPredicate(format: "name LIKE %@", name.lowercased())
-        
         guard let fetchedGrocery = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
@@ -95,7 +103,6 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
               let fetcehdIngredients: NSSet = fetchedGrocery.ingredients else {
             return []
         }
-        
         let ingredients = Array<CDIngredient>(Set(_immutableCocoaSet: fetcehdIngredients))
         let ingredientGroups = ingredients.map { $0.ingredientGroup }
         let recipes = ingredientGroups.compactMap { $0?.recipe }
@@ -110,7 +117,6 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", bookdId as CVarArg)
-        
         guard let fetchedRecipeBook = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
@@ -192,8 +198,8 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
         with sortDescriptors: [RecipeSortDescriptor: Bool]
     ) -> [NSSortDescriptor]
     {
-        return sortDescriptors.map { (key: RecipeSortDescriptor, value: Bool) in
-            NSSortDescriptor(key: key.rawValue, ascending: value)
-        }
+        return sortDescriptors
+            .map { (key: RecipeSortDescriptor, value: Bool) in
+                NSSortDescriptor(key: key.rawValue, ascending: value) }
     }
 }

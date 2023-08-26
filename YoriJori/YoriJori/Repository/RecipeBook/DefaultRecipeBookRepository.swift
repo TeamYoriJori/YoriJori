@@ -36,9 +36,9 @@ final class DefaultRecipeBookRepository {
         with sortDescriptors: [RecipeBookSortDescriptor: Bool]
     ) -> [NSSortDescriptor]
     {
-        return sortDescriptors.map { (key: RecipeBookSortDescriptor, value: Bool) in
-            NSSortDescriptor(key: key.rawValue, ascending: value)
-        }
+        return sortDescriptors
+            .map { (key: RecipeBookSortDescriptor, value: Bool) in
+                NSSortDescriptor(key: key.rawValue, ascending: value) }
     }
 }
 
@@ -46,19 +46,19 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
     func fetchAllRecipeBooks() throws -> [RecipeBook] {
         let request = CDRecipeBook.fetchRequest()
         let result = try coreDataProvider.fetch(request: request)
-        
         return result.map { $0.toDomain() }
     }
     
-    func fetchAllRecipeBooks(by sorts: [RecipeBookSortDescriptor : Bool]) throws -> [RecipeBook] {
+    func fetchAllRecipeBooks(
+        by sorts: [RecipeBookSortDescriptor : Bool]
+    ) throws -> [RecipeBook]
+    {
         let request = CDRecipeBook.fetchRequest()
-        
         let result = try coreDataProvider.fetch(
             request: request,
             predicate: nil,
             sortDiscriptors: createSortDescriptor(with: sorts)
         )
-        
         return result.map { $0.toDomain() }
     }
     
@@ -66,10 +66,13 @@ extension DefaultRecipeBookRepository: RecipeBookRepositoryProtocol {
         return try fetchRecipeBookEntity(id: id).toDomain()
     }
     
-    func fetchRecipeBooksByTitle(_ title: String, sorts: [RecipeBookSortDescriptor : Bool]) throws -> [RecipeBook] {
+    func fetchRecipeBooksByTitle(
+        _ title: String,
+        sorts: [RecipeBookSortDescriptor : Bool]
+    ) throws -> [RecipeBook]
+    {
         let request = CDRecipeBook.fetchRequest()
         let predicate = NSPredicate(format: "title contains[cd] %@", title)
-        
         let result = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
