@@ -15,16 +15,18 @@ final class DefaultRecipeRepository {
     init(coreDataProvider: CoreDataProvider = CoreDataProvider.shared) {
         self.coreDataProvider = coreDataProvider
     }
-   
-    func fetchRecipeEntity(id: UUID) throws -> CDRecipe? {
+    
+    func fetchRecipeEntity(id: UUID) throws -> CDRecipe {
         let request = CDRecipe.fetchRequest()
         let predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
-        let result = try coreDataProvider.fetch(
+        guard let result = try coreDataProvider.fetch(
             request: request,
-            predicate: predicate)
+            predicate: predicate).first else {
+            throw RecipeRepositoryError.RecipeFetchError
+        }
         
-        return result.first
+        return result
     }
     
     private func sort<T>(_ array: [T], with sortDescirptors: [RecipeSortDescriptor: Bool]) -> [T] {
@@ -47,7 +49,7 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     }
     
     func fetchRecipeByID(_ id: UUID) throws -> Recipe? {
-        return try fetchRecipeEntity(id: id)?.toDomain()
+        return try fetchRecipeEntity(id: id).toDomain()
     }
     
     func fetchRecipesByTitle(_ title: String, sorts: [RecipeSortDescriptor: Bool]) throws -> [Recipe] {
@@ -112,13 +114,16 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
         guard let fetchedRecipeBook = try coreDataProvider.fetch(
             request: request,
             predicate: predicate,
-            sortDiscriptors: createSortDescriptor(with: sorts)).first,
-              let recipes = fetchedRecipeBook.recipes else {
+            sortDiscriptors: nil).first,
+              let fetchedRecipes = fetchedRecipeBook.recipes else {
             return []
         }
         
-        return Array(Set(_immutableCocoaSet: recipes))
-            .map { (recipe: CDRecipe) in recipe.toDomain() }
+        let sortDescriptors = createSortDescriptor(with: sorts)
+        let sortedRecipes = (fetchedRecipes.allObjects as NSArray)
+            .sortedArray(using: sortDescriptors)
+            .compactMap{ $0 as? Recipe }
+        return sortedRecipes
     }
     
     func createRecipe(_ model: Recipe) throws {
@@ -153,15 +158,7 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     }
     
     func updateRecipe(_ recipe: Recipe) throws {
-        let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
-        guard let recipeEntity = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate)
-            .first else {
-            throw RecipeRepositoryError.RecipeFetchError
-        }
-        
+        let recipeEntity = try fetchRecipeEntity(id: recipe.id)
         recipeEntity.title = recipe.title
         recipeEntity.subTitle = recipe.subTitle
         recipeEntity.tags = NSSet(
@@ -187,14 +184,7 @@ extension DefaultRecipeRepository: RecipeRepositoryProtocol {
     }
     
     func deleteRecipe(_ recipe: Recipe) throws {
-        let request = CDRecipe.fetchRequest()
-        let predicate = NSPredicate(format: "id == %@", recipe.id as CVarArg)
-        guard let recipeEntity = try coreDataProvider.fetch(
-            request: request,
-            predicate: predicate).first else {
-            throw RecipeRepositoryError.RecipeFetchError
-        }
-        
+        let recipeEntity = try fetchRecipeEntity(id: recipe.id)
         try self.coreDataProvider.delete(object: recipeEntity)
     }
     

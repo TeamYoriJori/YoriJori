@@ -11,19 +11,16 @@ import XCTest
 final class DefaultRecipeRepositoryTests: XCTestCase {
     
     private var sut: DefaultRecipeRepository!
-    private var sut2: DefaultRecipeBookRepository!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         let inMemroyCoreDataProvider = CoreDataProvider(.inMemory)
         sut = DefaultRecipeRepository(coreDataProvider: inMemroyCoreDataProvider)
-        sut2 = DefaultRecipeBookRepository(coreDataProvider: inMemroyCoreDataProvider)
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         sut = nil
-        sut2 = nil
     }
 
     // MARK: - RecipeBook을 지정하지 않는 케이스 테스트
@@ -623,30 +620,5 @@ final class DefaultRecipeRepositoryTests: XCTestCase {
         // Assert
         let fetchedRecipe = try sut.fetchRecipeByID(id)
         XCTAssertNil(fetchedRecipe)
-    }
-    
-    // MARK: - RecipeBook을 지정하는 케이스 테스트
-
-    // TODO: - fetchRecipesByBookID 테스트
-    
-    func test_test_createRecipeWithRecipeBook() throws {
-        // Arrange
-        let recipe = DummyRecipe.hamburger
-        let recipeBook = RecipeBook(
-            id: UUID(),
-            title: "양식",
-            image: nil,
-            updatedAt: Date(),
-            recipes: [recipe]
-        )
-        try sut.createRecipe(recipe)
-        try sut2.createRecipeBook(recipeBook)
-        try sut2.addRecipe(recipe, to: recipeBook)
-
-        // Act
-        let expectedRecipe = try? sut.fetchRecipesByBookID(recipeBook.id, sorts: [:])
-        
-        // Assert
-        XCTAssertEqual(recipe, expectedRecipe?.first)
     }
 }
