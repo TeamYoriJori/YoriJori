@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-final class RecipeRepository: RecipeRepositoryProtocol {
+final class DefaultRecipeRepository: RecipeRepositoryProtocol {
     
     let coreDataProvider: CoreDataProvider
     

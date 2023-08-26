@@ -10,13 +10,13 @@ import XCTest
 
 final class DefaultRecipeRepositoryTests: XCTestCase {
     
-    private var sut: RecipeRepository!
+    private var sut: DefaultRecipeRepository!
     private var sut2: DefaultRecipeBookRepository!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         let inMemroyCoreDataProvider = CoreDataProvider(.inMemory)
-        sut = RecipeRepository(coreDataProvider: inMemroyCoreDataProvider)
+        sut = DefaultRecipeRepository(coreDataProvider: inMemroyCoreDataProvider)
         sut2 = DefaultRecipeBookRepository(coreDataProvider: inMemroyCoreDataProvider)
     }
 
