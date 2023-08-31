@@ -38,8 +38,8 @@ extension Recipe {
             request: request,
             predicate: predicate,
             sortDiscriptors: nil).first {
-                return fetchedRecipe
-            }
+            return fetchedRecipe
+        }
 
         let recipe = CDRecipe(context: coreDataProvider.context)
         recipe.id = self.id
