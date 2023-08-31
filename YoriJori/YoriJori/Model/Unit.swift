@@ -7,6 +7,9 @@
 
 import Foundation
 
-enum Unit {
-    
+enum Unit: String {
+    case kg
+    case g
+    case 개
+    case none
 }
