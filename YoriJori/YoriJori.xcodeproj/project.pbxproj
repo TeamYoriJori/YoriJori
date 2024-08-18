@@ -196,6 +196,15 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		B8E969B52C7235AF00C97EF7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D1C233E32A63C06E00CE7492 /* Repository */,
+				C20140EE2A2F60D7001EEDFE /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		C20140D42A2F5EA3001EEDFE = {
 			isa = PBXGroup;
 			children = (
@@ -217,10 +226,9 @@
 		C20140DF2A2F5EA4001EEDFE /* YoriJori */ = {
 			isa = PBXGroup;
 			children = (
+				B8E969B52C7235AF00C97EF7 /* Domain */,
 				D1EFBEB72A6C270C0017A359 /* Extensions */,
-				D1C233E32A63C06E00CE7492 /* Repository */,
 				63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */,
-				C20140EE2A2F60D7001EEDFE /* Model */,
 				C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */,
 				C20140E22A2F5EA4001EEDFE /* ContentView.swift */,
 				C20140E42A2F5EA5001EEDFE /* Assets.xcassets */,
