@@ -25,6 +25,8 @@
 		63CBCB122A4097ED0069B433 /* CDTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */; };
 		63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */; };
 		63CBCB142A4097ED0069B433 /* CDStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB062A4097ED0069B433 /* CDStep+CoreDataProperties.swift */; };
+		B8E969B72C7E090400C97EF7 /* WriteRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */; };
+		B8E969BC2C7E0BCC00C97EF7 /* RecipeBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */; };
 		C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */; };
 		C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E22A2F5EA4001EEDFE /* ContentView.swift */; };
 		C20140E52A2F5EA5001EEDFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20140E42A2F5EA5001EEDFE /* Assets.xcassets */; };
@@ -83,6 +85,8 @@
 		63CBCB042A4097ED0069B433 /* CDTag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CBCB052A4097ED0069B433 /* CDStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CBCB062A4097ED0069B433 /* CDStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteRecipeView.swift; sourceTree = "<group>"; };
+		B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBookListView.swift; sourceTree = "<group>"; };
 		C20140DD2A2F5EA4001EEDFE /* YoriJori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoriJori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoriJoriApp.swift; sourceTree = "<group>"; };
 		C20140E22A2F5EA4001EEDFE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -205,6 +209,31 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		B8E969B82C7E0B8300C97EF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B8E969BA2C7E0BA200C97EF7 /* RecipeBook */,
+				B8E969B92C7E0B8C00C97EF7 /* Write */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8E969B92C7E0B8C00C97EF7 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		B8E969BA2C7E0BA200C97EF7 /* RecipeBook */ = {
+			isa = PBXGroup;
+			children = (
+				B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */,
+			);
+			path = RecipeBook;
+			sourceTree = "<group>";
+		};
 		C20140D42A2F5EA3001EEDFE = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +255,7 @@
 		C20140DF2A2F5EA4001EEDFE /* YoriJori */ = {
 			isa = PBXGroup;
 			children = (
+				B8E969B82C7E0B8300C97EF7 /* View */,
 				B8E969B52C7235AF00C97EF7 /* Domain */,
 				D1EFBEB72A6C270C0017A359 /* Extensions */,
 				63B8D92E2A3D9B5100C6D0E8 /* PermanentStorage */,
@@ -351,7 +381,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					C20140DC2A2F5EA3001EEDFE = {
 						CreatedOnToolsVersion = 14.2;
@@ -409,8 +439,10 @@
 				63C521BB2A47035D00F730C5 /* Tag.swift in Sources */,
 				C21E3DA72A7BB575001E91DA /* DefaultRecipeBookRepository.swift in Sources */,
 				D1EFBEB62A6C26B00017A359 /* CDIngredientGroup+CoreDataProperties.swift in Sources */,
+				B8E969BC2C7E0BCC00C97EF7 /* RecipeBookListView.swift in Sources */,
 				C20140F42A2F614C001EEDFE /* IngredientGroup.swift in Sources */,
 				C20140F22A2F6126001EEDFE /* Ingredient.swift in Sources */,
+				B8E969B72C7E090400C97EF7 /* WriteRecipeView.swift in Sources */,
 				C20140F02A2F60E3001EEDFE /* Unit.swift in Sources */,
 				63C521C02A47169800F730C5 /* CDRecipeBook+CoreDataClass.swift in Sources */,
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
@@ -505,6 +537,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -565,6 +598,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
