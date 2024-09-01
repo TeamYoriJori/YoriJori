@@ -200,6 +200,21 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		B831FD652C8460F100B5E276 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B831FD672C84616000B5E276 /* WriteRecipe */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B831FD672C84616000B5E276 /* WriteRecipe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WriteRecipe;
+			sourceTree = "<group>";
+		};
 		B8E969B52C7235AF00C97EF7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,17 +228,17 @@
 			isa = PBXGroup;
 			children = (
 				B8E969BA2C7E0BA200C97EF7 /* RecipeBook */,
-				B8E969B92C7E0B8C00C97EF7 /* Write */,
+				B8E969B92C7E0B8C00C97EF7 /* WriteRecipe */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		B8E969B92C7E0B8C00C97EF7 /* Write */ = {
+		B8E969B92C7E0B8C00C97EF7 /* WriteRecipe */ = {
 			isa = PBXGroup;
 			children = (
 				B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */,
 			);
-			path = Write;
+			path = WriteRecipe;
 			sourceTree = "<group>";
 		};
 		B8E969BA2C7E0BA200C97EF7 /* RecipeBook */ = {
@@ -255,6 +270,7 @@
 		C20140DF2A2F5EA4001EEDFE /* YoriJori */ = {
 			isa = PBXGroup;
 			children = (
+				B831FD652C8460F100B5E276 /* ViewModel */,
 				B8E969B82C7E0B8300C97EF7 /* View */,
 				B8E969B52C7235AF00C97EF7 /* Domain */,
 				D1EFBEB72A6C270C0017A359 /* Extensions */,
