@@ -19,37 +19,59 @@ struct RecipeInformationView: View {
     }
     
     var body: some View {
-        VStack(content: {
-            VStack(content: {
+        VStack(spacing: 28, content: {
+            VStack(alignment: .leading, content: {
                 Text("레시피 이름")
-                TextField("", text: $name, prompt: Text("요리 이름을 입력해주세요"))
-                    .focused($focusedField, equals: .name)
-                    .onSubmit { focusedField = .nickname }
+                VStack(content: {
+                    TextField("", text: $name, prompt: Text("요리 이름을 입력해주세요"))
+                        .focused($focusedField, equals: .name)
+                        .onSubmit { focusedField = .nickname }
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.gray)
+                })
             })
-            VStack(content: {
+            VStack(alignment: .leading, content: {
                 Text("레시피 별명")
-                TextField("", text: $name, prompt: Text("요리 별명을 만들어주세요"))
-                    .focused($focusedField, equals: .nickname)
-                    .onSubmit { focusedField = .tag }
+                VStack(content: {
+                    TextField("", text: $name, prompt: Text("#5분요리"))
+                        .focused($focusedField, equals: .tag)
+                        .onSubmit { focusedField = .recipeBook }
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.gray)
+                })
             })
-            VStack(content: {
+            VStack(alignment: .leading, content: {
                 Text("태그")
-                TextField("", text: $name, prompt: Text("#5분요리"))
-                    .focused($focusedField, equals: .tag)
-                    .onSubmit { focusedField = .recipeBook }
+                VStack(content: {
+                    TextField("", text: $name, prompt: Text("요리 별명을 만들어주세요"))
+                        .focused($focusedField, equals: .nickname)
+                        .onSubmit { focusedField = .tag }
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.gray)
+                })
             })
-            VStack(content: {
+            VStack(alignment: .leading, content: {
                 Text("레시피 북")
-                TextField("", text: $name, prompt: Text("아침"))
-                    .focused($focusedField, equals: .recipeBook)
+                VStack(content: {
+                    TextField("", text: $name, prompt: Text("아침"))
+                        .focused($focusedField, equals: .recipeBook)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.gray)
+                })
             })
-            VStack(content: {
+            VStack(alignment: .leading, content: {
                 Text("대표 이미지")
                 TextField("", text: $name, prompt: Text("요리 이름을 입력해주세요"))
             })
         })
+        .padding(.horizontal, 20)
     }
 }
+
 
 #Preview {
     RecipeInformationView()
