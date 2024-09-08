@@ -27,6 +27,8 @@
 		63CBCB142A4097ED0069B433 /* CDStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCB062A4097ED0069B433 /* CDStep+CoreDataProperties.swift */; };
 		B831FD692C849B7F00B5E276 /* RecipeInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B831FD682C849B7F00B5E276 /* RecipeInformationViewModel.swift */; };
 		B831FD6B2C84A25900B5E276 /* RecipeInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B831FD6A2C84A25900B5E276 /* RecipeInformationView.swift */; };
+		B89E34D62C8B1BDF0082D88A /* PickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E34D52C8B1BDF0082D88A /* PickableImageView.swift */; };
+		B89E34D82C8B1C580082D88A /* PickableImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E34D72C8B1C580082D88A /* PickableImageModel.swift */; };
 		B8E969B72C7E090400C97EF7 /* WriteRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */; };
 		B8E969BC2C7E0BCC00C97EF7 /* RecipeBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */; };
 		C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */; };
@@ -89,6 +91,8 @@
 		63CBCB062A4097ED0069B433 /* CDStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B831FD682C849B7F00B5E276 /* RecipeInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInformationViewModel.swift; sourceTree = "<group>"; };
 		B831FD6A2C84A25900B5E276 /* RecipeInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInformationView.swift; sourceTree = "<group>"; };
+		B89E34D52C8B1BDF0082D88A /* PickableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableImageView.swift; sourceTree = "<group>"; };
+		B89E34D72C8B1C580082D88A /* PickableImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableImageModel.swift; sourceTree = "<group>"; };
 		B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteRecipeView.swift; sourceTree = "<group>"; };
 		B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBookListView.swift; sourceTree = "<group>"; };
 		C20140DD2A2F5EA4001EEDFE /* YoriJori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoriJori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				B831FD682C849B7F00B5E276 /* RecipeInformationViewModel.swift */,
+				B89E34D72C8B1C580082D88A /* PickableImageModel.swift */,
 			);
 			path = WriteRecipe;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 			children = (
 				B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */,
 				B831FD6A2C84A25900B5E276 /* RecipeInformationView.swift */,
+				B89E34D52C8B1BDF0082D88A /* PickableImageView.swift */,
 			);
 			path = WriteRecipe;
 			sourceTree = "<group>";
@@ -471,6 +477,8 @@
 				B831FD6B2C84A25900B5E276 /* RecipeInformationView.swift in Sources */,
 				C20140FC2A2F6173001EEDFE /* RecipeBook.swift in Sources */,
 				C21FA1622A482997001B3C0E /* RecipeRepositoryProtocol.swift in Sources */,
+				B89E34D82C8B1C580082D88A /* PickableImageModel.swift in Sources */,
+				B89E34D62C8B1BDF0082D88A /* PickableImageView.swift in Sources */,
 				63246F3D2A596D2600239A9A /* RecipeBook+DTO.swift in Sources */,
 				63CBCB112A4097ED0069B433 /* CDTag+CoreDataClass.swift in Sources */,
 				63CBCB132A4097ED0069B433 /* CDStep+CoreDataClass.swift in Sources */,
@@ -649,7 +657,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"YoriJori/Preview Content\"";
-				DEVELOPMENT_TEAM = 9K85CQF659;
+				DEVELOPMENT_TEAM = 3LTF5F2YL4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -657,6 +665,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -678,7 +687,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"YoriJori/Preview Content\"";
-				DEVELOPMENT_TEAM = 9K85CQF659;
+				DEVELOPMENT_TEAM = 3LTF5F2YL4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -686,6 +695,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
