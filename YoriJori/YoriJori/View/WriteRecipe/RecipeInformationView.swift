@@ -13,7 +13,7 @@ struct RecipeInformationView: View {
     @State private var nickname: String = ""
     @State private var tag: String = ""
     @State private var recipeBook: String = ""
-    @ObservedObject var image: PickableImageModel
+    @ObservedObject var image: PickableImageModel = PickableImageModel()
     
     @FocusState private var focusedField: Field?
     
