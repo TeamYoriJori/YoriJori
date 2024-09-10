@@ -9,6 +9,7 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct RecipeInformationView: View {
+    
     @State private var name: String = ""
     @State private var nickname: String = ""
     @State private var tag: String = ""
@@ -94,6 +95,7 @@ struct RecipeInformationView: View {
             }
         })
     }
+    
 }
 
 

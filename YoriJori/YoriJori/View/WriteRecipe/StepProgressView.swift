@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StepProgressView: View {
+    
     private var totalStepCount: Int
     private var currentStep: Int
     private var stepPassedStatus: [Bool]
@@ -28,9 +29,11 @@ struct StepProgressView: View {
             }
         })
     }
+    
 }
 
 struct StepBorderView: View {
+    
     @State private var passed: Bool
     
     init(passed: Bool) {
@@ -42,6 +45,7 @@ struct StepBorderView: View {
             .fill(passed ? .orange : .gray)
             .frame(height: 8)
     }
+    
 }
 
 #Preview {

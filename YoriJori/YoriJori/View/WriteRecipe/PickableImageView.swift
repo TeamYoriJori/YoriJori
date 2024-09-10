@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PhotoPickerImagePresenterView: View {
+    
     let imageState: PickableImageModel.ImageState
     
     var body: some View {
@@ -26,6 +27,7 @@ struct PhotoPickerImagePresenterView: View {
                 .foregroundColor(.white)
         }
     }
+    
 }
 
 #Preview {
