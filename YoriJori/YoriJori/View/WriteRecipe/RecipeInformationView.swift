@@ -100,6 +100,18 @@ struct RecipeInformationView: View {
                     Text("다음")
                 }
             })
+            .navigationTitle("요리 정보 작성")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        // todo: 이전 화면으로 돌아가기 구현
+                    }, label: {
+                        Text("닫기")
+                            .foregroundStyle(.black)
+                    })
+                }
+            }
         }
     }
     
