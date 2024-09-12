@@ -10,6 +10,8 @@ import _PhotosUI_SwiftUI
 
 struct RecipeInformationView: View {
     
+    @Binding var isOpen: Bool
+    
     @State private var name: String = ""
     @State private var nickname: String = ""
     @State private var tag: String = ""
@@ -105,7 +107,7 @@ struct RecipeInformationView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        // todo: 이전 화면으로 돌아가기 구현
+                        isOpen.toggle()
                     }, label: {
                         Text("닫기")
                             .foregroundStyle(.black)
@@ -119,5 +121,5 @@ struct RecipeInformationView: View {
 
 
 #Preview {
-    RecipeInformationView(image: PickableImageModel())
+    RecipeInformationView(isOpen: .constant(false))
 }

@@ -19,7 +19,7 @@ struct WriteRecipeView: View {
         }
         .fullScreenCover(isPresented: $isPresentingWriteRecipe,
                          onDismiss: didDismiss) {
-            RecipeInformationView()
+            RecipeInformationView(isOpen: $isPresentingWriteRecipe)
         }
     }
     
