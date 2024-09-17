@@ -16,10 +16,14 @@ final class Router : ObservableObject {
         navigationPath.append(destination)
     }
     
-    func view(of route: Route) -> some View {
+}
+
+extension Router {
+    
+    static func view(of route: Route, _ router: Router) -> some View {
         switch route {
         case .writeIngredients:
-            return WriteIngredientsView()
+            return WriteIngredientsView(router: router)
         }
     }
     

@@ -112,7 +112,7 @@ struct WriteRecipeInformationView: View {
             })
             .edgesIgnoringSafeArea(.bottom)
             .navigationDestination(for: Route.self) { route in
-                WriteIngredientsView()
+                Router.view(of: route, router)
             }
             .navigationTitle("요리 정보 작성")
             .navigationBarTitleDisplayMode(.inline)

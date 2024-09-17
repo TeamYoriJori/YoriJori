@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct WriteIngredientsView: View {
+    // TODO: Environmnet로 주입
+    @ObservedObject var router : Router = Router()
     
     var body: some View {
-        VStack {
-            StepProgressView(totalStepCount: 4, currnetStep: 2)
+        NavigationStack(path: $router.navigationPath) {
+            VStack {
+                StepProgressView(totalStepCount: 4, currnetStep: 2)
+            }
+            .navigationTitle("재료 작성")
         }
     }
     
 }
 
 #Preview {
+    // TODO: Preview용 Router Initialilzer 구현
     WriteIngredientsView()
 }
