@@ -11,6 +11,7 @@ import _PhotosUI_SwiftUI
 struct RecipeInformationView: View {
     
     @Binding var isOpen: Bool
+    @StateObject private var router = Router()
     
     @State private var name: String = ""
     @State private var nickname: String = ""
@@ -28,8 +29,8 @@ struct RecipeInformationView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20, content: {
+        NavigationStack(path: $router.navigationPath) {
+            VStack(spacing: 0, content: {
                 StepProgressView(totalStepCount: 4, currnetStep: 1)
                 ScrollView {
                     VStack(spacing: 28, content: {
@@ -87,6 +88,7 @@ struct RecipeInformationView: View {
                                         .foregroundColor(.orange)
                                 }
                             }
+                            // TODO: AutoLayout으로 리팩터링
                             GeometryReader(content: { geometry in
                                 PhotoPickerImagePresenterView(imageState: image.imageState)
                                     .frame(width: geometry.size.width, height: geometry.size.width * 3/4)
@@ -94,14 +96,24 @@ struct RecipeInformationView: View {
                             })
                         })
                     })
-                    .padding(.horizontal, 20)
+                    .padding([.horizontal, .top], 20)
                 }
-                NavigationLink {
-                    WriteIngredientsView()
+                Button {
+                    router.navigate(to: .writeIngredients)
                 } label: {
-                    Text("다음")
+                    ZStack {
+                        Rectangle()
+                            .fill(.orange)
+                            .frame(height: 64)
+                        Text("요리 재료 작성")
+                            .foregroundStyle(.white)
+                    }
                 }
             })
+            .edgesIgnoringSafeArea(.bottom)
+            .navigationDestination(for: Route.self) { route in
+                WriteIngredientsView()
+            }
             .navigationTitle("요리 정보 작성")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

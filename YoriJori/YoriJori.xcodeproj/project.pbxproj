@@ -32,6 +32,8 @@
 		B89E34D62C8B1BDF0082D88A /* PickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E34D52C8B1BDF0082D88A /* PickableImageView.swift */; };
 		B89E34D82C8B1C580082D88A /* PickableImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E34D72C8B1C580082D88A /* PickableImageModel.swift */; };
 		B89E34DA2C8DE9D40082D88A /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E34D92C8DE9D30082D88A /* StepProgressView.swift */; };
+		B8AD76DB2C99BF5A00BD7362 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD76DA2C99BF5A00BD7362 /* Route.swift */; };
+		B8AD76E02C99C19000BD7362 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD76DF2C99C19000BD7362 /* Router.swift */; };
 		B8E969B72C7E090400C97EF7 /* WriteRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */; };
 		B8E969BC2C7E0BCC00C97EF7 /* RecipeBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */; };
 		C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */; };
@@ -99,6 +101,8 @@
 		B89E34D52C8B1BDF0082D88A /* PickableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableImageView.swift; sourceTree = "<group>"; };
 		B89E34D72C8B1C580082D88A /* PickableImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableImageModel.swift; sourceTree = "<group>"; };
 		B89E34D92C8DE9D30082D88A /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
+		B8AD76DA2C99BF5A00BD7362 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B8AD76DF2C99C19000BD7362 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteRecipeView.swift; sourceTree = "<group>"; };
 		B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBookListView.swift; sourceTree = "<group>"; };
 		C20140DD2A2F5EA4001EEDFE /* YoriJori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoriJori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,15 @@
 			path = WriteRecipe;
 			sourceTree = "<group>";
 		};
+		B8AD76E32C99CA3300BD7362 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B8AD76DA2C99BF5A00BD7362 /* Route.swift */,
+				B8AD76DF2C99C19000BD7362 /* Router.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		B8E969B52C7235AF00C97EF7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +257,7 @@
 		B8E969B82C7E0B8300C97EF7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8AD76E32C99CA3300BD7362 /* Navigation */,
 				B8E969BA2C7E0BA200C97EF7 /* RecipeBook */,
 				B8E969B92C7E0B8C00C97EF7 /* WriteRecipe */,
 			);
@@ -474,6 +488,7 @@
 			files = (
 				B831FD692C849B7F00B5E276 /* RecipeInformationViewModel.swift in Sources */,
 				C21E3DA52A7BA98A001E91DA /* RecipeBookRepositoryProtocol.swift in Sources */,
+				B8AD76E02C99C19000BD7362 /* Router.swift in Sources */,
 				63C521BB2A47035D00F730C5 /* Tag.swift in Sources */,
 				C21E3DA72A7BB575001E91DA /* DefaultRecipeBookRepository.swift in Sources */,
 				D1EFBEB62A6C26B00017A359 /* CDIngredientGroup+CoreDataProperties.swift in Sources */,
@@ -512,6 +527,7 @@
 				63246F372A596C3C00239A9A /* Step+DTO.swift in Sources */,
 				63246F392A596C7800239A9A /* Grocery+DTO.swift in Sources */,
 				B89E34DA2C8DE9D40082D88A /* StepProgressView.swift in Sources */,
+				B8AD76DB2C99BF5A00BD7362 /* Route.swift in Sources */,
 				63C521CB2A48238C00F730C5 /* Grocery.swift in Sources */,
 				D1EFBEC12A6CCE7E0017A359 /* CDGrocery+CoreDataProperties.swift in Sources */,
 				C28F419A2A5959B800445B90 /* CDRecipe+CoreDataClass.swift in Sources */,
