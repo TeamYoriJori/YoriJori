@@ -8,7 +8,7 @@
 import SwiftUI
 import _PhotosUI_SwiftUI
 
-struct RecipeInformationView: View {
+struct WriteRecipeInformationView: View {
     
     @Binding var isOpen: Bool
     @StateObject private var router = Router()
@@ -133,5 +133,5 @@ struct RecipeInformationView: View {
 
 
 #Preview {
-    RecipeInformationView(isOpen: .constant(false))
+    WriteRecipeInformationView(isOpen: .constant(false))
 }
