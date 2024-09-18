@@ -16,4 +16,8 @@ final class Router : ObservableObject {
         navigationPath.append(destination)
     }
     
+    func goBack() -> Void {
+        navigationPath.removeLast()
+    }
+    
 }

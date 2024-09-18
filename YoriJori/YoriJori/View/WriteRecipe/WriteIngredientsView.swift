@@ -16,7 +16,34 @@ struct WriteIngredientsView: View {
         NavigationStack(path: $router.navigationPath) {
             VStack {
                 StepProgressView(totalStepCount: 4, currnetStep: 2)
+                Spacer()
+                HStack(content: {
+                    Button { router.goBack()
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .fill(.orange)
+                                .frame(height: 64)
+                            Text("정보 작성")
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .fill(.orange)
+                                .frame(height: 64)
+                            Text("스텝 작성")
+                                .foregroundStyle(.white)
+                        }
+                    }
+
+
+                })
             }
+            .edgesIgnoringSafeArea(.bottom)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { isOpen.toggle() },
