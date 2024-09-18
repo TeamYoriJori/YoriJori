@@ -111,8 +111,8 @@ struct WriteRecipeInformationView: View {
                 }
             })
             .edgesIgnoringSafeArea(.bottom)
-            .navigationDestination(for: Route.self) { route in
-                Router.view(of: route, router)
+            .navigationDestination(for: WriteRecipeRoute.self) { route in
+                WriteRecipeRoute.view(of: route, isOpen: $isOpen, router)
             }
             .navigationTitle("요리 정보 작성")
             .navigationBarTitleDisplayMode(.inline)

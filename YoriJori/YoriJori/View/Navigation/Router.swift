@@ -12,19 +12,8 @@ final class Router : ObservableObject {
     
     @Published var navigationPath = NavigationPath()
     
-    func navigate(to destination: Route) -> Void {
+    func navigate(to destination: WriteRecipeRoute) -> Void {
         navigationPath.append(destination)
-    }
-    
-}
-
-extension Router {
-    
-    static func view(of route: Route, _ router: Router) -> some View {
-        switch route {
-        case .writeIngredients:
-            return WriteIngredientsView(router: router)
-        }
     }
     
 }
