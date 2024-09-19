@@ -12,11 +12,39 @@ struct WriteIngredientsView: View {
     @ObservedObject var router : Router = Router()
     @Binding var isOpen: Bool 
     
+    @State private var isPresentingWriteIngredient: Bool = false
+    @State private var serving : Int = 1
+    private let range = 1...100
+    
     var body: some View {
         NavigationStack(path: $router.navigationPath) {
             VStack {
                 StepProgressView(totalStepCount: 4, currnetStep: 2)
-                Spacer()
+                VStack {
+                    HStack {
+                        Text(String(serving))
+                            .foregroundStyle(.gray)
+                            .bold()
+                        Text("명을 위한 요리")
+                        Spacer()
+                        Stepper("", value: $serving, in: range)
+                    }
+                    Spacer()
+                    Button {
+                        isPresentingWriteIngredient.toggle()
+                    } label: {
+                        ZStack(content: {
+                            RoundedRectangle(cornerRadius: 22.5)
+                                .fill(.orange)
+                                .frame(width: 160, height: 40)
+                            Text("재료 추가")
+                                .foregroundStyle(.white)
+                        })
+                    }
+
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 8)
                 HStack(content: {
                     Button { router.goBack()
                     } label: {
@@ -39,8 +67,6 @@ struct WriteIngredientsView: View {
                                 .foregroundStyle(.white)
                         }
                     }
-
-
                 })
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -52,7 +78,14 @@ struct WriteIngredientsView: View {
             }
             .navigationTitle("재료 작성")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $isPresentingWriteIngredient, onDismiss: didDismiss, content: {
+                WriteIngredientView(isPresenting: $isPresentingWriteIngredient)
+            })
         }
+    }
+    
+    private func didDismiss() -> Void {
+        isPresentingWriteIngredient = false
     }
     
 }
