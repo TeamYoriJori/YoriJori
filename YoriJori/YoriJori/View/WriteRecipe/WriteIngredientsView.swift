@@ -14,6 +14,15 @@ struct WriteIngredientsView: View {
     
     @State private var isPresentingWriteIngredient: Bool = false
     @State private var serving : Int = 1
+    @State private var ingredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: nil, unit: .개)]
+    // TODO: Util로 리팩토링
+    private let numberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }()
     private let range = 1...100
     
     var body: some View {
@@ -29,6 +38,14 @@ struct WriteIngredientsView: View {
                         Spacer()
                         Stepper("", value: $serving, in: range)
                     }
+                    List {
+                        ForEach(ingredients, id: \.grocery.name){ ingredient in
+                            let amount = numberFormatter.string(from: NSNumber(value: ingredient.amount ?? 0)) ?? ""
+                            return Text("\(ingredient.grocery.name) \(amount)\(String(describing: ingredient.unit!.rawValue))")
+                                .listRowInsets(EdgeInsets())
+                        }
+                    }
+                    .listStyle(.plain)
                     Spacer()
                     Button {
                         isPresentingWriteIngredient.toggle()
