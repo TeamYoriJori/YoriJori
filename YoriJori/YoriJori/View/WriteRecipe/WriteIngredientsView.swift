@@ -41,7 +41,7 @@ struct WriteIngredientsView: View {
                     List {
                         ForEach(ingredients, id: \.grocery.name){ ingredient in
                             let amount = numberFormatter.string(from: NSNumber(value: ingredient.amount ?? 0)) ?? ""
-                            return Text("\(ingredient.grocery.name) \(amount)\(String(describing: ingredient.unit!.rawValue))")
+                            Text("\(ingredient.grocery.name) \(amount)\(String(describing: ingredient.unit!.rawValue))")
                                 .listRowInsets(EdgeInsets())
                         }
                     }
@@ -74,7 +74,7 @@ struct WriteIngredientsView: View {
                         }
                     }
                     Button {
-                        
+                        router.navigate(to: .writeSteps)
                     } label: {
                         ZStack {
                             Rectangle()
@@ -87,6 +87,15 @@ struct WriteIngredientsView: View {
                 })
             }
             .edgesIgnoringSafeArea(.bottom)
+            .navigationDestination(for: WriteRecipeRoute.self) { route in
+                switch route
+                {
+                case .writeSteps:
+                    WriteStepsView(router: router, isOpen: $isOpen)
+                default:
+                    WriteStepsView(isOpen: $isOpen)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { isOpen.toggle() },
