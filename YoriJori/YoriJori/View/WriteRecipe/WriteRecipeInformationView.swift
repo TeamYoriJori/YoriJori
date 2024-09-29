@@ -104,8 +104,8 @@ struct WriteRecipeInformationView: View {
                     ZStack {
                         Rectangle()
                             .fill(.orange)
-                        Text("요리 재료 작성")
                             .frame(height: 64)
+                        Text("요리 재료 작성")
                             .foregroundStyle(.white)
                     }
                 }
