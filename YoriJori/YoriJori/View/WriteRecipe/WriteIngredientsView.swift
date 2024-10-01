@@ -10,7 +10,7 @@ import SwiftUI
 struct WriteIngredientsView: View {
     // TODO: Environmnet로 주입
     @ObservedObject var router : Router = Router()
-    @Binding var isOpen: Bool 
+    @Binding var isOpen: Bool
     
     @State private var isPresentingWriteIngredient: Bool = false
     @State private var serving : Int = 1
@@ -26,88 +26,77 @@ struct WriteIngredientsView: View {
     private let range = 1...100
     
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
+        VStack {
+            StepProgressView(totalStepCount: 4, currnetStep: 2)
             VStack {
-                StepProgressView(totalStepCount: 4, currnetStep: 2)
-                VStack {
-                    HStack {
-                        Text(String(serving))
-                            .foregroundStyle(.gray)
-                            .bold()
-                        Text("명을 위한 요리")
-                        Spacer()
-                        Stepper("", value: $serving, in: range)
-                    }
-                    List {
-                        ForEach(ingredients, id: \.grocery.name){ ingredient in
-                            let amount = numberFormatter.string(from: NSNumber(value: ingredient.amount ?? 0)) ?? ""
-                            Text("\(ingredient.grocery.name) \(amount)\(String(describing: ingredient.unit!.rawValue))")
-                                .listRowInsets(EdgeInsets())
-                        }
-                    }
-                    .listStyle(.plain)
+                HStack {
+                    Text(String(serving))
+                        .foregroundStyle(.gray)
+                        .bold()
+                    Text("명을 위한 요리")
                     Spacer()
-                    Button {
-                        isPresentingWriteIngredient.toggle()
-                    } label: {
-                        ZStack(content: {
-                            RoundedRectangle(cornerRadius: 22.5)
-                                .fill(.orange)
-                                .frame(width: 160, height: 40)
-                            Text("재료 추가")
-                                .foregroundStyle(.white)
-                        })
-                    }
-
+                    Stepper("", value: $serving, in: range)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 8)
-                HStack(content: {
-                    Button { router.goBack()
-                    } label: {
-                        ZStack {
-                            Rectangle()
-                                .fill(.orange)
-                                .frame(height: 64)
-                            Text("정보 작성")
-                                .foregroundStyle(.white)
-                        }
+                List {
+                    ForEach(ingredients, id: \.grocery.name){ ingredient in
+                        let amount = numberFormatter.string(from: NSNumber(value: ingredient.amount ?? 0)) ?? ""
+                        Text("\(ingredient.grocery.name) \(amount)\(String(describing: ingredient.unit!.rawValue))")
+                            .listRowInsets(EdgeInsets())
                     }
-                    Button {
-                        router.navigate(to: .writeSteps)
-                    } label: {
-                        ZStack {
-                            Rectangle()
-                                .fill(.orange)
-                                .frame(height: 64)
-                            Text("스텝 작성")
-                                .foregroundStyle(.white)
-                        }
+                }
+                .listStyle(.plain)
+                Spacer()
+                Button {
+                    isPresentingWriteIngredient.toggle()
+                } label: {
+                    ZStack(content: {
+                        RoundedRectangle(cornerRadius: 22.5)
+                            .fill(.orange)
+                            .frame(width: 160, height: 40)
+                        Text("재료 추가")
+                            .foregroundStyle(.white)
+                    })
+                }
+                
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 8)
+            HStack(content: {
+                Button { router.goBack()
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .fill(.orange)
+                            .frame(height: 64)
+                        Text("정보 작성")
+                            .foregroundStyle(.white)
                     }
-                })
-            }
-            .edgesIgnoringSafeArea(.bottom)
-            .navigationDestination(for: WriteRecipeRoute.self) { route in
-                switch route
-                {
-                case .writeSteps:
-                    WriteStepsView(router: router, isOpen: $isOpen)
-                default:
-                    WriteStepsView(isOpen: $isOpen)
                 }
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { isOpen.toggle() },
-                           label: { Text("닫기").foregroundStyle(.black) })
+                Button {
+                    router.navigate(to: .writeSteps)
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .fill(.orange)
+                            .frame(height: 64)
+                        Text("스텝 작성")
+                            .foregroundStyle(.white)
+                    }
                 }
-            }
-            .navigationTitle("재료 작성")
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $isPresentingWriteIngredient, onDismiss: didDismiss, content: {
-                WriteIngredientView(isPresenting: $isPresentingWriteIngredient)
             })
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: { isOpen.toggle() },
+                       label: { Text("닫기").foregroundStyle(.black) })
+            }
+        }
+        .navigationTitle("재료 작성")
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isPresentingWriteIngredient, onDismiss: didDismiss, content: {
+            WriteIngredientView(isPresenting: $isPresentingWriteIngredient)
+        })
     }
     
     private func didDismiss() -> Void {
