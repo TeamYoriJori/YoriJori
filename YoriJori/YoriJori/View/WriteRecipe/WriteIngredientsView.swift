@@ -94,6 +94,7 @@ struct WriteIngredientsView: View {
         }
         .navigationTitle("재료 작성")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .sheet(isPresented: $isPresentingWriteIngredient, onDismiss: didDismiss, content: {
             WriteIngredientView(isPresenting: $isPresentingWriteIngredient)
         })

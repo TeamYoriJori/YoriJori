@@ -55,6 +55,7 @@ struct WriteStepsView: View {
         .edgesIgnoringSafeArea(.bottom)
         .navigationTitle("요리 과정 작성")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: { isOpen.toggle() },
