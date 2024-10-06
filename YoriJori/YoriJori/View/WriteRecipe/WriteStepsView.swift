@@ -63,7 +63,7 @@ struct WriteStepsView: View {
             }
         }
         .sheet(isPresented: $isPresentingWriteStep, onDismiss: didDismiss, content: {
-            WriteIngredientView(isPresenting: $isPresentingWriteStep)
+            WriteStepView(isPresenting: $isPresentingWriteStep, index: 1)
         })
     }
     

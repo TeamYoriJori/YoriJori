@@ -45,6 +45,7 @@ struct WriteRecipeInformationView: View {
                                     .foregroundColor(.gray)
                             })
                         })
+                        // TODO: 레시피 별명 태그 Component로 구현
                         VStack(alignment: .leading, content: {
                             Text("레시피 별명")
                             VStack(content: {
