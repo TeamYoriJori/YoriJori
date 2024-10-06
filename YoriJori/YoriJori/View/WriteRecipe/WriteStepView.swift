@@ -48,9 +48,9 @@ struct WriteStepView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("요리 시간")
                         HStack(alignment: .bottom, spacing: 4) {
-                            TimeView(numericTime: $hour, timeUnit: "시간")
-                            TimeView(numericTime: $hour, timeUnit: "분")
-                            TimeView(numericTime: $hour, timeUnit: "초")
+                            TimeInputView(numericTime: $hour, timeUnit: "시간")
+                            TimeInputView(numericTime: $hour, timeUnit: "분")
+                            TimeInputView(numericTime: $hour, timeUnit: "초")
                         }
                     }
                 }
@@ -80,12 +80,13 @@ struct WriteStepView: View {
 
 extension WriteStepView {
     
-    struct TimeView: View {
-        @Binding var numericValue: String
+    struct TimeInputView: View {
+        @Binding var inputValue: String
+        // TODO: Measurement로 리팩터링
         var timeUnit: String = ""
         
         init(numericTime: Binding<String>, timeUnit: String) {
-            self._numericValue = numericTime
+            self._inputValue = numericTime
             self.timeUnit = timeUnit
         }
         
@@ -93,14 +94,13 @@ extension WriteStepView {
             HStack(alignment: .bottom){
                 HStack(alignment: .center, spacing: 6, content: {
                     VStack(content: {
-                        TextField("", text: $numericValue)
+                        TextField("", text: $inputValue)
                             .multilineTextAlignment(.center)
                             .keyboardType(.numberPad)
                         Rectangle()
                             .frame(height: 1)
                             .foregroundColor(.gray)
                     })
-                    // TODO: Measurement로 리팩터링
                     Text(timeUnit)
                 })
             }
