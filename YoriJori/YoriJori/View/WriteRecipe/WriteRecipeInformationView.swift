@@ -16,13 +16,13 @@ struct WriteRecipeInformationView: View {
     
     @State private var name: String = ""
     @State private var nickname: String = ""
-    @State private var tags: [String] = ["소주와 어울리는", "가벼운", "봄음식", "10분 요리"]
+    @State private var tags: [Tag] = [emptyTag, Tag("소주와 어울리는"), Tag("가벼운"), Tag("봄음식"), Tag("10분 요리")]
     @State private var recipeBook: String = ""
     @ObservedObject var image: PickableImageModel = PickableImageModel()
     
     @FocusState private var focusedField: Field?
     
-    private static let emptyTag = Tag(name: "")
+    private static let emptyTag = Tag(.empty)
     
     enum Field: Hashable {
         case name
@@ -48,7 +48,6 @@ struct WriteRecipeInformationView: View {
                                     .foregroundColor(.gray)
                             })
                         })
-                        // TODO: 레시피 별명 태그 Component로 구현
                         VStack(alignment: .leading, content: {
                             Text("레시피 별명")
                             VStack(content: {
@@ -67,10 +66,10 @@ struct WriteRecipeInformationView: View {
 //                                    .focused($focusedField, equals: .tag)
 //                                    .onSubmit { focusedField = .recipeBook }
                                 WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
-                                    if (tag == .empty) {
+                                    if (tag.name == .empty) {
                                         AddTagView(onTapped: addTag)
                                     } else {
-                                        TagView(name: tag, onClosed: deleteTag(name:))
+                                        TagView(name: tag.name, onClosed: deleteTag(name:))
                                     }
                                 }
                                 Rectangle()

@@ -8,5 +8,14 @@
 import Foundation
 
 struct Tag {
+    
     let name: String
+    
+    init(_ name: String) {
+        self.name = name
+    }
+    
+    init(name: String) {
+        self.name = name
+    }
 }
