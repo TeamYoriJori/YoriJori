@@ -20,6 +20,7 @@ struct WriteStepView: View {
     @State private var hour: String = "0"
     // TODO: 재료는 한 번만 선택 가능하고, 선택하면 후보에서 사라진다.
     @State private var ingredients: [Ingredient] = [emptyIngredient, Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
+    @State private var description: String = "dddd"
     
     private static let emptyIngredient = Ingredient(grocery: Grocery(name: ""), amount: nil, unit: nil)
     
@@ -42,7 +43,7 @@ struct WriteStepView: View {
                             }
                         }
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("재료 선택")
+                            Text("필요한 재료")
                             WrappingHStack(ingredients, id:\.self, spacing: .constant(6), lineSpacing: 6) { ingredient in
                                 if (ingredient == WriteStepView.emptyIngredient) {
                                     AddIngredientView(onTapped: addIngredient)
@@ -51,6 +52,10 @@ struct WriteStepView: View {
                                                    onClosed: deleteIngredient(name:))
                                 }
                             }
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("요리 방법")
+                            TextEditor(text: $description)
                         }
                         VStack(alignment: .leading, spacing: 8, content: {
                             HStack {
