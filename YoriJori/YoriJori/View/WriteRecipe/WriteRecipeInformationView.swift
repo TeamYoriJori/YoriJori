@@ -81,6 +81,7 @@ struct WriteRecipeInformationView: View {
                         VStack(alignment: .leading, content: {
                             Text("레시피 북")
                             VStack(content: {
+                                // TODO: 레시피 북 리스트에서 선택 가능하도록 변경
                                 TextField("", text: $recipeBook, prompt: Text("아침"))
                                     .focused($focusedField, equals: .recipeBook)
                                 Rectangle()
