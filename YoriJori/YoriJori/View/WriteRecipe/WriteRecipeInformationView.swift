@@ -7,6 +7,7 @@
 
 import SwiftUI
 import _PhotosUI_SwiftUI
+import WrappingHStack
 
 struct WriteRecipeInformationView: View {
     
@@ -15,11 +16,13 @@ struct WriteRecipeInformationView: View {
     
     @State private var name: String = ""
     @State private var nickname: String = ""
-    @State private var tag: String = ""
+    @State private var tags: [String] = ["소주와 어울리는", "가벼운", "봄음식", "10분 요리"]
     @State private var recipeBook: String = ""
     @ObservedObject var image: PickableImageModel = PickableImageModel()
     
     @FocusState private var focusedField: Field?
+    
+    private static let emptyTag = Tag(name: "")
     
     enum Field: Hashable {
         case name
@@ -49,7 +52,7 @@ struct WriteRecipeInformationView: View {
                         VStack(alignment: .leading, content: {
                             Text("레시피 별명")
                             VStack(content: {
-                                TextField("", text: $nickname, prompt: Text("#5분요리"))
+                                TextField("", text: $nickname, prompt: Text("요리의 별명을 만들어주세요"))
                                     .focused($focusedField, equals: .nickname)
                                     .onSubmit { focusedField = .tag }
                                 Rectangle()
@@ -60,9 +63,16 @@ struct WriteRecipeInformationView: View {
                         VStack(alignment: .leading, content: {
                             Text("태그")
                             VStack(content: {
-                                TextField("", text: $tag, prompt: Text("요리 별명을 만들어주세요"))
-                                    .focused($focusedField, equals: .tag)
-                                    .onSubmit { focusedField = .recipeBook }
+//                                TextField("", text: $tag, prompt: Text("요리 별명을 만들어주세요"))
+//                                    .focused($focusedField, equals: .tag)
+//                                    .onSubmit { focusedField = .recipeBook }
+                                WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
+                                    if (tag == String()) {
+                                        AddTagView(onTapped: addTag)
+                                    } else {
+                                        TagView(name: tag, onClosed: deleteTag(name:))
+                                    }
+                                }
                                 Rectangle()
                                     .frame(height: 1)
                                     .foregroundColor(.gray)
@@ -131,6 +141,50 @@ struct WriteRecipeInformationView: View {
                             .foregroundStyle(.black)
                     })
                 }
+            }
+        }
+    }
+    
+    private func addTag() -> Void {
+        
+    }
+    
+    private func deleteTag(name: String) -> Void {
+        
+    }
+}
+
+extension WriteRecipeInformationView {
+    
+    struct TagView: View {
+        let name: String
+        let onClosed: (String) -> Void
+        
+        var body: some View {
+            HStack(alignment: .center, spacing: 4) {
+                Text("#\(name)")
+                Button(action: {onClosed(name)}, label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.black)
+                })
+            }
+        }
+    }
+    
+    struct AddTagView: View {
+        let onTapped: () -> Void
+        
+        var body: some View {
+            ZStack {
+                HStack(alignment: .center, spacing: 4) {
+                    Text("추가하기")
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(RoundedRectangle(cornerRadius: 14).foregroundColor(.orange))
+                .onTapGesture(perform: { onTapped() })
             }
         }
     }

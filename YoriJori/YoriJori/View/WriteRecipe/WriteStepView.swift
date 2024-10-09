@@ -162,7 +162,7 @@ extension WriteStepView {
         let onTapped: () -> Void
         
         var body: some View {
-            ZStack {
+        ZStack {
                 HStack(alignment: .center, spacing: 4) {
                     Text("추가하기")
                     Image(systemName: "plus")
