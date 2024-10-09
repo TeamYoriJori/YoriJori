@@ -7,6 +7,7 @@
 
 import SwiftUI
 import _PhotosUI_SwiftUI
+import WrappingHStack
 
 struct WriteStepView: View {
     
@@ -30,42 +31,40 @@ struct WriteStepView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                VStack(alignment: .leading, spacing: 28) {
-                    VStack(alignment: .leading, spacing: 8, content: {
-                        HStack {
-                            Text("사진")
-                            Spacer()
-                            PhotosPicker(selection: $image.imageSelection,
-                                         matching: .images,
-                                         photoLibrary: .shared()) {
-                                Text( image.imageSelection == nil ? "선택하기": "다시 선택하기")
-                                    .foregroundColor(.orange)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 28) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("요리 시간")
+                            HStack(alignment: .bottom, spacing: 4) {
+                                TimeInputView(numericTime: $hour, timeUnit: "시간")
+                                TimeInputView(numericTime: $hour, timeUnit: "분")
+                                TimeInputView(numericTime: $hour, timeUnit: "초")
                             }
                         }
-                        // TODO: AutoLayout으로 리팩터링
-                        GeometryReader(content: { geometry in
-                            PhotoPickerImagePresenterView(imageState: image.imageState)
-                                .frame(width: geometry.size.width, height: geometry.size.width * 3/4)
-                                .background(.gray)
-                        })
-                    })
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("요리 시간")
-                        HStack(alignment: .bottom, spacing: 4) {
-                            TimeInputView(numericTime: $hour, timeUnit: "시간")
-                            TimeInputView(numericTime: $hour, timeUnit: "분")
-                            TimeInputView(numericTime: $hour, timeUnit: "초")
-                        }
-                    }
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("재료 선택")
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 90), spacing: 8)], alignment: .leading,
-                                  content: {
-                            ForEach(ingredients, id: \.grocery.name) { ingredient in
-                                IngredientView(name: ingredient.grocery.name,
-                                               onClosed: deleteIngredient(name:))
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("재료 선택")
+                            WrappingHStack(ingredients, id:\.self, spacing: .constant(6), lineSpacing: 6) { ingredient in
+                                    IngredientView(name: ingredient.grocery.name,
+                                                   onClosed: deleteIngredient(name:))
                             }
-                            
+                        }
+                        VStack(alignment: .leading, spacing: 8, content: {
+                            HStack {
+                                Text("사진")
+                                Spacer()
+                                PhotosPicker(selection: $image.imageSelection,
+                                             matching: .images,
+                                             photoLibrary: .shared()) {
+                                    Text( image.imageSelection == nil ? "선택하기": "다시 선택하기")
+                                        .foregroundColor(.orange)
+                                }
+                            }
+                            // TODO: AutoLayout으로 리팩터링
+                            GeometryReader(content: { geometry in
+                                PhotoPickerImagePresenterView(imageState: image.imageState)
+                                    .frame(width: geometry.size.width, height: geometry.size.width * 3/4)
+                                    .background(.gray)
+                            })
                         })
                     }
                 }

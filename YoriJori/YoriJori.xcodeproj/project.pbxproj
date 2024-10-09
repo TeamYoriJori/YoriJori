@@ -38,6 +38,7 @@
 		B8E969B72C7E090400C97EF7 /* WriteRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969B62C7E090400C97EF7 /* WriteRecipeView.swift */; };
 		B8E969BC2C7E0BCC00C97EF7 /* RecipeBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E969BB2C7E0BCC00C97EF7 /* RecipeBookListView.swift */; };
 		B8F3EA162CAE860900FC54E0 /* WriteStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3EA152CAE860900FC54E0 /* WriteStepView.swift */; };
+		B8F3EA1B2CB61B9B00FC54E0 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = B8F3EA1A2CB61B9B00FC54E0 /* WrappingHStack */; };
 		C20140E12A2F5EA4001EEDFE /* YoriJoriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E02A2F5EA4001EEDFE /* YoriJoriApp.swift */; };
 		C20140E32A2F5EA4001EEDFE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20140E22A2F5EA4001EEDFE /* ContentView.swift */; };
 		C20140E52A2F5EA5001EEDFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20140E42A2F5EA5001EEDFE /* Assets.xcassets */; };
@@ -145,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8F3EA1B2CB61B9B00FC54E0 /* WrappingHStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +410,9 @@
 			dependencies = (
 			);
 			name = YoriJori;
+			packageProductDependencies = (
+				B8F3EA1A2CB61B9B00FC54E0 /* WrappingHStack */,
+			);
 			productName = YoriJori;
 			productReference = C20140DD2A2F5EA4001EEDFE /* YoriJori.app */;
 			productType = "com.apple.product-type.application";
@@ -458,6 +463,9 @@
 				Base,
 			);
 			mainGroup = C20140D42A2F5EA3001EEDFE;
+			packageReferences = (
+				B8F3EA192CB61B9B00FC54E0 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+			);
 			productRefGroup = C20140DE2A2F5EA4001EEDFE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -816,6 +824,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B8F3EA192CB61B9B00FC54E0 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8F3EA1A2CB61B9B00FC54E0 /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8F3EA192CB61B9B00FC54E0 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		63CBCAF22A4080DF0069B433 /* DataModel.xcdatamodeld */ = {
