@@ -17,6 +17,10 @@ struct WriteStepView: View {
     @State private var seconds: String = "0"
     @State private var minute: String = "0"
     @State private var hour: String = "0"
+    @State private var ingredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
+    let ingredientCloumns = [
+        GridItem(.flexible()),GridItem(.flexible())
+    ]
     
     init(isPresenting: Binding<Bool>, index: Int) {
         self._isPresenting = isPresenting
@@ -53,6 +57,17 @@ struct WriteStepView: View {
                             TimeInputView(numericTime: $hour, timeUnit: "초")
                         }
                     }
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("재료 선택")
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 90), spacing: 8)], alignment: .leading,
+                                  content: {
+                            ForEach(ingredients, id: \.grocery.name) { ingredient in
+                                IngredientView(name: ingredient.grocery.name,
+                                               onClosed: deleteIngredient(name:))
+                            }
+                            
+                        })
+                    }
                 }
                 .padding([.horizontal, .top], 20)
                 
@@ -76,6 +91,9 @@ struct WriteStepView: View {
         }
     }
     
+    private func deleteIngredient(name: String) -> Void {
+        
+    }
 }
 
 extension WriteStepView {
@@ -105,6 +123,27 @@ extension WriteStepView {
                 })
             }
         }
+    }
+    
+    struct IngredientView: View {
+        let name: String
+        let onClosed: (String) -> Void
+        
+        var body: some View {
+            ZStack {
+                HStack(alignment: .center, spacing: 4) {
+                    Text(name)
+                    Button(action: {onClosed(name)}, label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
+                    })
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(RoundedRectangle(cornerRadius: 14).foregroundColor(.green))
+            }
+        }
+        
     }
     
 }
