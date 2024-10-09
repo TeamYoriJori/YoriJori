@@ -12,3 +12,9 @@ struct Ingredient {
     let amount: Double?
     let unit: Unit?
 }
+
+extension Ingredient : Equatable {
+    static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
+        lhs.grocery.name == rhs.grocery.name
+    }
+}

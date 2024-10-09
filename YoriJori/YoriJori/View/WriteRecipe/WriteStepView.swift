@@ -19,7 +19,9 @@ struct WriteStepView: View {
     @State private var minute: String = "0"
     @State private var hour: String = "0"
     // TODO: 재료는 한 번만 선택 가능하고, 선택하면 후보에서 사라진다.
-    @State private var ingredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
+    @State private var ingredients: [Ingredient] = [emptyIngredient, Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
+    
+    private static let emptyIngredient = Ingredient(grocery: Grocery(name: ""), amount: nil, unit: nil)
     
     init(isPresenting: Binding<Bool>, index: Int) {
         self._isPresenting = isPresenting
@@ -42,8 +44,12 @@ struct WriteStepView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("재료 선택")
                             WrappingHStack(ingredients, id:\.self, spacing: .constant(6), lineSpacing: 6) { ingredient in
+                                if (ingredient == WriteStepView.emptyIngredient) {
+                                    AddIngredientView(onTapped: addIngredient)
+                                } else {
                                     IngredientView(name: ingredient.grocery.name,
                                                    onClosed: deleteIngredient(name:))
+                                }
                             }
                         }
                         VStack(alignment: .leading, spacing: 8, content: {
@@ -88,9 +94,14 @@ struct WriteStepView: View {
         }
     }
     
+    private func addIngredient() -> Void {
+        
+    }
+    
     private func deleteIngredient(name: String) -> Void {
         
     }
+    
 }
 
 extension WriteStepView {
@@ -140,7 +151,24 @@ extension WriteStepView {
                 .background(RoundedRectangle(cornerRadius: 14).foregroundColor(.green))
             }
         }
+    }
+    
+    struct AddIngredientView: View {
+        let onTapped: () -> Void
         
+        var body: some View {
+            ZStack {
+                HStack(alignment: .center, spacing: 4) {
+                    Text("추가하기")
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(RoundedRectangle(cornerRadius: 14).foregroundColor(.orange))
+                .onTapGesture(perform: { onTapped() })
+            }
+        }
     }
     
 }
