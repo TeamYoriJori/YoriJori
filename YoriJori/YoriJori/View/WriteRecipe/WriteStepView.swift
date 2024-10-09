@@ -18,10 +18,8 @@ struct WriteStepView: View {
     @State private var seconds: String = "0"
     @State private var minute: String = "0"
     @State private var hour: String = "0"
-    @State private var ingredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
-    let ingredientCloumns = [
-        GridItem(.flexible()),GridItem(.flexible())
-    ]
+    // TODO: 재료는 한 번만 선택 가능하고, 선택하면 후보에서 사라진다.
+    @State private var ingredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
     
     init(isPresenting: Binding<Bool>, index: Int) {
         self._isPresenting = isPresenting
