@@ -67,7 +67,7 @@ struct WriteRecipeInformationView: View {
 //                                    .focused($focusedField, equals: .tag)
 //                                    .onSubmit { focusedField = .recipeBook }
                                 WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
-                                    if (tag == String()) {
+                                    if (tag == .empty) {
                                         AddTagView(onTapped: addTag)
                                     } else {
                                         TagView(name: tag, onClosed: deleteTag(name:))
