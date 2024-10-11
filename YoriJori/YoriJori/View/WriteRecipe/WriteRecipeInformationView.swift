@@ -62,9 +62,6 @@ struct WriteRecipeInformationView: View {
                         VStack(alignment: .leading, content: {
                             Text("태그")
                             VStack(content: {
-//                                TextField("", text: $tag, prompt: Text("요리 별명을 만들어주세요"))
-//                                    .focused($focusedField, equals: .tag)
-//                                    .onSubmit { focusedField = .recipeBook }
                                 WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
                                     if (tag.name == .empty) {
                                         AddTagView(onTapped: addTag)
@@ -172,19 +169,22 @@ extension WriteRecipeInformationView {
     }
     
     struct AddTagView: View {
+        @State private var tag: String = .empty
         let onTapped: () -> Void
         
         var body: some View {
             ZStack {
                 HStack(alignment: .center, spacing: 4) {
-                    Text("추가하기")
+                    TextField("", text: $tag, prompt: Text("태그"))
+                        .frame(minWidth: 30)
                     Image(systemName: "plus")
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
                 .background(RoundedRectangle(cornerRadius: 14).foregroundColor(.orange))
                 .onTapGesture(perform: { onTapped() })
+                .fixedSize(horizontal: true, vertical: false)
             }
         }
     }
