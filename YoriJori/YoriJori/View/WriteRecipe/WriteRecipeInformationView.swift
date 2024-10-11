@@ -162,7 +162,8 @@ extension WriteRecipeInformationView {
                 Text("#\(name)")
                 Button(action: {onClosed(name)}, label: {
                     Image(systemName: "xmark")
-                        .foregroundColor(.black)
+                        .foregroundColor(.orange)
+                        .font(.system(size: 14))
                 })
             }
         }
