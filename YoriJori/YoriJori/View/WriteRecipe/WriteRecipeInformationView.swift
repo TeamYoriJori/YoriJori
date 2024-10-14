@@ -35,6 +35,7 @@ struct WriteRecipeInformationView: View {
         NavigationStack(path: $router.navigationPath) {
             VStack(spacing: 0, content: {
                 StepProgressView(totalStepCount: 4, currnetStep: 1)
+                // TODO: 스크롤영역 버튼에 안가리도록 수정
                 ScrollView {
                     VStack(spacing: 28, content: {
                         VStack(alignment: .leading, content: {

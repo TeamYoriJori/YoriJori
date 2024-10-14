@@ -32,6 +32,7 @@ struct WriteStepView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // TODO: 스크롤영역 버튼에 안가리도록 수정
                 ScrollView {
                     VStack(alignment: .leading, spacing: 28) {
                         VStack(alignment: .leading, spacing: 8) {
