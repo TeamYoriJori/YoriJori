@@ -56,6 +56,11 @@ struct WriteStepView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("요리 방법")
                             TextEditor(text: $description)
+                                .padding(8)
+                                .scrollContentBackground(.hidden)
+                                .frame(minHeight: 100)
+                                .background(Color.yellow)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         VStack(alignment: .leading, spacing: 8, content: {
                             HStack {
