@@ -30,31 +30,22 @@ struct WriteIngredientView: View {
                 Spacer()
                 VStack(alignment: .center, content: {
                     Text("재료 이름")
-                    // TODO: 밑줄 있는 텍스트 필드 컴포넌트화
-                    VStack(content: {
-                        TextField("", text: $name, prompt: Text("재료 이름을 입력해주세요"))
-                            .multilineTextAlignment(.center)
-                            .focused($focusedField, equals: .name)
-                            .onSubmit { focusedField = .quanity }
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(.gray)
-                    })
+                    TextField("", text: $name, prompt: Text("재료 이름을 입력해주세요"))
+                        .multilineTextAlignment(.center)
+                        .focused($focusedField, equals: .name)
+                        .onSubmit { focusedField = .quanity }
+                        .underline()
                 })
                 .padding([.horizontal], 20)
                 HStack(alignment: .bottom){
                     VStack(alignment: .center, spacing: 6, content: {
                         Text("양")
-                        VStack(content: {
-                            TextField("", text: $quanity, prompt: Text(""))
-                                .multilineTextAlignment(.center)
-                                .keyboardType(.numberPad)
-                                .focused($focusedField, equals: .quanity)
-                                .onSubmit { focusedField = .unit }
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(.gray)
-                        })
+                        TextField("", text: $quanity, prompt: Text(""))
+                            .multilineTextAlignment(.center)
+                            .keyboardType(.numberPad)
+                            .focused($focusedField, equals: .quanity)
+                            .onSubmit { focusedField = .unit }
+                            .underline()
                     })
                     VStack(alignment: .center, spacing: 0 ,content: {
                         Text("단위")
@@ -65,9 +56,7 @@ struct WriteIngredientView: View {
                         }
                         .pickerStyle(.menu)
                         .tint(.orange)
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(.gray)
+                        .underline()
                     })
                 }
                 .padding([.horizontal], 20)

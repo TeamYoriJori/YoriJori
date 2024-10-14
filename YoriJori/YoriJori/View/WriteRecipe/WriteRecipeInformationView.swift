@@ -39,14 +39,11 @@ struct WriteRecipeInformationView: View {
                     VStack(spacing: 28, content: {
                         VStack(alignment: .leading, content: {
                             Text("레시피 이름")
-                            VStack(content: {
-                                TextField("", text: $name, prompt: Text("요리 이름을 입력해주세요"))
-                                    .focused($focusedField, equals: .name)
-                                    .onSubmit { focusedField = .nickname }
-                                Rectangle()
-                                    .frame(height: 1)
-                                    .foregroundColor(.gray)
-                            })
+                            TextField("", text: $name, prompt: Text("요리 이름을 입력해주세요"))
+                                .focused($focusedField, equals: .name)
+                                .onSubmit { focusedField = .nickname }
+                                .underline()
+                            
                         })
                         VStack(alignment: .leading, content: {
                             Text("레시피 별명")
@@ -54,36 +51,26 @@ struct WriteRecipeInformationView: View {
                                 TextField("", text: $nickname, prompt: Text("요리의 별명을 만들어주세요"))
                                     .focused($focusedField, equals: .nickname)
                                     .onSubmit { focusedField = .tag }
-                                Rectangle()
-                                    .frame(height: 1)
-                                    .foregroundColor(.gray)
+                                    .underline()
                             })
                         })
                         VStack(alignment: .leading, content: {
                             Text("태그")
-                            VStack(content: {
-                                WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
-                                    if (tag.name == .empty) {
-                                        AddTagView(onTapped: addTag)
-                                    } else {
-                                        TagView(name: tag.name, onClosed: deleteTag(name:))
-                                    }
+                            WrappingHStack(tags, id:\.self, spacing: .constant(6), lineSpacing: 6) { tag in
+                                if (tag.name == .empty) {
+                                    AddTagView(onTapped: addTag)
+                                } else {
+                                    TagView(name: tag.name, onClosed: deleteTag(name:))
                                 }
-                                Rectangle()
-                                    .frame(height: 1)
-                                    .foregroundColor(.gray)
-                            })
+                            }
+                            .underline()
                         })
                         VStack(alignment: .leading, content: {
                             Text("레시피 북")
-                            VStack(content: {
-                                // TODO: 레시피 북 리스트에서 선택 가능하도록 변경
-                                TextField("", text: $recipeBook, prompt: Text("아침"))
-                                    .focused($focusedField, equals: .recipeBook)
-                                Rectangle()
-                                    .frame(height: 1)
-                                    .foregroundColor(.gray)
-                            })
+                            // TODO: 레시피 북 리스트에서 선택 가능하도록 변경
+                            TextField("", text: $recipeBook, prompt: Text("아침"))
+                                .focused($focusedField, equals: .recipeBook)
+                                .underline()
                         })
                         VStack(alignment: .leading, spacing: 8, content: {
                             HStack {

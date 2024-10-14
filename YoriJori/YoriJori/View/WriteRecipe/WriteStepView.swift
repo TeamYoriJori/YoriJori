@@ -124,14 +124,10 @@ extension WriteStepView {
         var body: some View {
             HStack(alignment: .bottom){
                 HStack(alignment: .center, spacing: 6, content: {
-                    VStack(content: {
-                        TextField("", text: $inputValue)
-                            .multilineTextAlignment(.center)
-                            .keyboardType(.numberPad)
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(.gray)
-                    })
+                    TextField("", text: $inputValue)
+                        .multilineTextAlignment(.center)
+                        .keyboardType(.numberPad)
+                        .underline()
                     Text(timeUnit)
                 })
             }
@@ -162,7 +158,7 @@ extension WriteStepView {
         let onTapped: () -> Void
         
         var body: some View {
-        ZStack {
+            ZStack {
                 HStack(alignment: .center, spacing: 4) {
                     Text("추가하기")
                     Image(systemName: "plus")
