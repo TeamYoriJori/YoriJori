@@ -78,6 +78,7 @@ struct WriteStepView: View {
                                 PhotoPickerImagePresenterView(imageState: image.imageState)
                                     .frame(width: geometry.size.width, height: geometry.size.width * 3/4)
                                     .background(.gray)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
                             })
                         })
                     }
