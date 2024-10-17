@@ -11,37 +11,40 @@ struct WriteStepsView: View {
     @ObservedObject var router : Router = Router()
     @Binding var isOpen: Bool
     @State private var isPresentingWriteStep: Bool = false
-    @State var steps: [Step] = [Step(index: 1, description: "먹기 좋은 크기로 자른다", image: nil, time: 5, groceries: [Grocery(name:"토마토")]), Step(index: 2, description: "올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다", image: nil, time: 5, groceries: [Grocery(name:"토마토")])]
+    @State var steps: [Step] = [Step(index: 1, description: "먹기 좋은 크기로 자른다", image: nil, time: 5, groceries: [Grocery(name:"토마토")]), Step(index: 2, description: "올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다올리브유에 볶는다", image: nil, time: 5, groceries: [Grocery(name:"토마토")]), Step(index: 3, description: "후추와 소금으로 간을 한다", image: nil, time: 5, groceries: [Grocery(name:"토마토")])]
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             StepProgressView(totalStepCount: 4, currnetStep: 3)
-            HStack {
-                Text("과정")
-                    .font(.headline)
-                Spacer()
-            }.padding(EdgeInsets(top: 4, leading: 20, bottom: 4, trailing: 0))
+            // TODO: 리스트뷰 헤더로 수정
             List {
-                ForEach($steps, id: \.description){ step in
-                    StepView(step: step)
-                        .listRowInsets(EdgeInsets())
-                        .background(Color.clear)
+                Section(header: HStack {
+                    Text("과정")
+                        .font(.headline)
+                    Spacer()
+                }, footer: HStack {
+                    Button {
+                        isPresentingWriteStep.toggle()
+                    } label: {
+                        ZStack(content: {
+                            RoundedRectangle(cornerRadius: 22.5)
+                                .fill(.orange)
+                                .frame(width: 160, height: 40)
+                            Text("STEP 추가")
+                                .foregroundStyle(.white)
+                        })
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.top, 10)
+                }) {
+                    ForEach($steps, id: \.description) { step in
+                        StepView(step: step)
+                            .listRowInsets(EdgeInsets())
+                            .background(Color.clear)
+                    }
                 }
             }
             .listStyle(PlainListStyle())
-            Spacer()
-            Button {
-                isPresentingWriteStep.toggle()
-            } label: {
-                ZStack(content: {
-                    RoundedRectangle(cornerRadius: 22.5)
-                        .fill(.orange)
-                        .frame(width: 160, height: 40)
-                    // TODO: 자동으로 STEP 숫자 증가 기능 추가
-                    Text("STEP 추가")
-                        .foregroundStyle(.white)
-                })
-            }
             HStack(content: {
                 Button { router.goBack()
                 } label: {
