@@ -37,6 +37,7 @@ struct WriteIngredientsView: View {
                     Spacer()
                     Stepper("", value: $serving, in: range)
                 }
+                // TODO: Header, Footer로 리팩터링
                 List {
                     ForEach(ingredients, id: \.grocery.name){ ingredient in
                         let amount = numberFormatter.string(from: NSNumber(value: ingredient.amount ?? 0)) ?? ""
