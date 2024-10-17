@@ -11,4 +11,8 @@ extension String {
     
     static let empty = String()
     
+    var lineBreakByCharWrapping: Self {
+      self.map({ String($0) }).joined(separator: "\u{200B}")
+    }
+    
 }
