@@ -20,7 +20,7 @@ struct WriteStepView: View {
     @State private var hour: String = "0"
     // TODO: 재료는 한 번만 선택 가능하고, 선택하면 후보에서 사라진다.
     @State private var ingredients: [Ingredient] = [emptyIngredient, Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
-    @State private var selcetableIngredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
+    @State private var selcetableIngredients: [Ingredient] = [Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "토마토"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "오일"), amount: 3, unit: .개), Ingredient(grocery: Grocery(name: "브로콜리"), amount: 3, unit: .개),Ingredient(grocery: Grocery(name: "파스타면"), amount: 3, unit: .개)]
     @State private var description: String = "dddd"
     @State private var isingredientMenuHidden: Bool = true
     
@@ -103,10 +103,10 @@ struct WriteStepView: View {
                         }
                     })
                 }
-                
                 IngredientMenuView(
                     ingredients: $selcetableIngredients, onSelected: selectIngredient(ingredient:), onCloseButtonClicked: {isingredientMenuHidden = true})
                 .isHidden($isingredientMenuHidden)
+                .ignoresSafeArea()
             })
             .edgesIgnoringSafeArea(.bottom)
             .navigationTitle("과정 \(index.description)")
@@ -203,16 +203,23 @@ extension WriteStepView {
         var body: some View {
             ZStack(alignment: .topTrailing, content: {
                 VStack(alignment: .leading, content: {
-                    Text("재료를 골라주세요")
-                    WrappingHStack(ingredients, id:\.self, spacing: .constant(6), lineSpacing: 6) { ingredient in
-                        Button(action: {onSelected(ingredient)}, label: {
-                            Text(ingredient.grocery.name)
-                                .foregroundStyle(.white)
-                        })
-                        .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                        .background(RoundedRectangle(cornerRadius: 14).foregroundStyle(.yellow))
+                    ScrollView {
+                        // TODO: Top, Bottom에 그라디언트 효과 추가
+                        VStack(alignment: .leading) {
+                            Text("재료를 골라주세요")
+                            WrappingHStack(ingredients, id:\.self, spacing: .constant(6), lineSpacing: 6) { ingredient in
+                                Button(action: {onSelected(ingredient)}, label: {
+                                    Text(ingredient.grocery.name)
+                                        .foregroundStyle(.white)
+                                })
+                                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+                                .background(RoundedRectangle(cornerRadius: 14).foregroundStyle(.yellow))
+                            }
+                        }
                     }
                 })
+                .frame(maxHeight: 200)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(EdgeInsets(top: 16, leading: 20, bottom: 40, trailing: 20))
                 .background(.gray)
                 Button {
