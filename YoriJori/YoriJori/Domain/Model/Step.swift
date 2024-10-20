@@ -8,9 +8,10 @@
 import Foundation
 
 struct Step {
-    let index: Int
-    let description: String?
-    let image: Data?
-    let time: Int?
-    let groceries: [Grocery]?
+    // TODO: UUID 필요 여부 검토하고 추가한다
+    var index: Int
+    var description: String?
+    var image: Data?
+    var time: Int?
+    var groceries: [Grocery]?
 }

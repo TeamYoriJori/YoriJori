@@ -9,10 +9,10 @@ import Foundation
 
 struct RecipeBook {
     let id: UUID
-    let title: String?
-    let image: Data?
-    let updatedAt: Date
-    let recipes: [Recipe]?
+    var title: String?
+    var image: Data?
+    var updatedAt: Date
+    var recipes: [Recipe]?
 }
 
 extension RecipeBook: Equatable {

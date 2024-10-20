@@ -9,19 +9,19 @@ import Foundation
 
 struct Recipe {
     let id: UUID
-    let recipeBookID: UUID?
-    let title: String?
-    let subTitle: String?
-    let tags: [Tag]?
-    let ingredientsGroups: [IngreidentGroup]?
-    let cookingTime: Int?
-    let progress: [Step]?
-    let description: String?
-    let note: String?
-    let serving: Int?
-    let image: Data?
-    let createdAt: Date
-    let updatedAt: Date
+    var recipeBookID: UUID?
+    var title: String?
+    var subTitle: String?
+    var tags: [Tag]?
+    var ingredientsGroups: [IngreidentGroup]?
+    var cookingTime: Int?
+    var progress: [Step]?
+    var description: String?
+    var note: String?
+    var serving: Int?
+    var image: Data?
+    var createdAt: Date
+    var updatedAt: Date
 }
 
 extension Recipe: Equatable {
