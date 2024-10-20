@@ -114,6 +114,8 @@ struct WriteRecipeInformationView: View {
                     WriteIngredientsView(router: router, isOpen: $isOpen)
                 case .writeSteps:
                     WriteStepsView(router: router, isOpen: $isOpen)
+                case .writeMemo:
+                    WriteMemoView(router: router, isOpen: $isOpen)
                 }
             }
             .navigationTitle("요리 정보 작성")

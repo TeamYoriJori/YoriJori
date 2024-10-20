@@ -57,7 +57,7 @@ struct WriteStepsView: View {
                     }
                 }
                 Button {
-                    
+                    router.navigate(to: .writeMemo)
                 } label: {
                     ZStack {
                         Rectangle()

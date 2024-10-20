@@ -12,6 +12,7 @@ enum WriteRecipeRoute: Hashable {
     
     case writeIngredients
     case writeSteps
+    case writeMemo
     
 }
 
