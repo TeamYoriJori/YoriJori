@@ -124,6 +124,7 @@ struct WriteRecipeInformationView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         isOpen.toggle()
+                        // TODO: 저장 확인 알럿 보여주기
                     }, label: {
                         Text("닫기")
                             .foregroundStyle(.black)

@@ -75,7 +75,10 @@ struct WriteStepsView: View {
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { isOpen.toggle() },
+                Button(action: {
+                    // TODO: 저장 확인 알럿 보여주기
+                    isOpen.toggle()
+                },
                        label: { Text("닫기").foregroundStyle(.black) })
             }
         }
